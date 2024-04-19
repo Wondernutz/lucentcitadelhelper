@@ -57,6 +57,14 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
   --    "Ability: %s, ID: %d, Hit Value: %d, Source name: %s, Target name: %s", abilityName, abilityId, hitValue, sourceName, targetName
   --  ))
   --end
+
+  if abilityId == LCH.Common.constants.hindered_id then
+    LCH.Common.Hindered(result, targetUnitId, hitValue)
+  elseif abilityId == LCH.Orphic.constants.thunder_thrall_id then
+    LCH.Orphic.ThunderThrall(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Orphic.constants.heavy_shock_id then
+    LCH.Orphic.HeavyShock(result, targetType, targetUnitId, hitValue)
+  end
 end
 
 function LCH.UpdateTick(gameTimeMs)
@@ -67,10 +75,6 @@ function LCH.UpdateTick(gameTimeMs)
       -- If it switched from non-combat to combat, re-check boss names.
       LCH.BossesChanged()
     end
-    LCH.status.inCombat = true
-  end
-
-  if IsUnitInCombat("player") and LCH.status.isZilyesset then
     LCH.status.inCombat = true
   end
 
@@ -128,6 +132,7 @@ function LCH.ResetStatus()
   LCH.status.debuffTracker = {}
   LCH.status.unitDamageTaken = {}
 
+  LCH.Common.Init()
   LCH.Zilyesset.Init()
   LCH.Orphic.Init()
   LCH.Rize.Init()
