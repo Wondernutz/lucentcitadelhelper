@@ -57,10 +57,10 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
   --    "Ability: %s, ID: %d, Hit Value: %d, Source name: %s, Target name: %s", abilityName, abilityId, hitValue, sourceName, targetName
   --  ))
   --end
-end
 
-if abilityId == LCH.data.zilyesset_ryelaz_meteor or LCH.data.rize_ryelaz_meteor then
-  LCH.Zilyesset.RyelazMeteor(result, targetType, targetUnitId, hitValue, abilityId)
+  if abilityId == LCH.data.zilyesset_ryelaz_meteor or LCH.data.rize_ryelaz_meteor then
+    LCH.Zilyesset.RyelazMeteor(result, targetType, targetUnitId, hitValue, abilityId)
+  end
 end
 
 function LCH.UpdateTick(gameTimeMs)
