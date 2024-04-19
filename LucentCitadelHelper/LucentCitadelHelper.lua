@@ -58,8 +58,12 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
   --  ))
   --end
 
-  if abilityId == LCH.Orphic.constants.thunder_thrall_id then
+  if abilityId == LCH.Common.constants.hindered_id then
+    LCH.Common.Hindered(result, targetUnitId, hitValue)
+  elseif abilityId == LCH.Orphic.constants.thunder_thrall_id then
     LCH.Orphic.ThunderThrall(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Orphic.constants.heavy_shock_id then
+    LCH.Orphic.HeavyShock(result, targetType, targetUnitId, hitValue)
   end
 end
 
@@ -128,6 +132,7 @@ function LCH.ResetStatus()
   LCH.status.debuffTracker = {}
   LCH.status.unitDamageTaken = {}
 
+  LCH.Common.Init()
   LCH.Zilyesset.Init()
   LCH.Orphic.Init()
   LCH.Rize.Init()
