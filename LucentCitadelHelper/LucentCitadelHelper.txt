@@ -1,0 +1,21 @@
+## Title: Lucent Citadel Helper
+## Description: Additional alerts for Lucent Citadel
+## Author: @Wondernuts @kabs12
+## DependsOn: CombatAlerts LibAddonMenu-2.0
+## OptionalDependsOn: OdySupportIcons 
+## Version: 1.2.3
+## APIVersion: 101038 101039
+## SavedVariables: LucentCitadelHelperSavedVariables
+
+Lang/en.lua
+Lang/$(language).lua
+
+LucentCitadelHelper.lua
+LucentCitadelHelperData.lua
+LucentCitadelHelperUI.lua
+LucentCitadelHelperUtil.lua
+LucentCitadelHelperMenu.lua
+modules/Zilyesset.lua
+modules/Orphic.lua
+modules/Rize.lua
+LucentCitadelHelper.xml
