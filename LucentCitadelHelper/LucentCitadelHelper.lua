@@ -2,7 +2,7 @@ LCH = LCH or {}
 local LCH = LCH
 
 LCH.name     = "LucentCitadelHelper"
-LCH.version  = "0.1.0"
+LCH.version  = "0.1.1"
 LCH.author   = "@Wondernuts, @kabs12"
 LCH.active   = false
 
@@ -60,12 +60,14 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
 
   if abilityId == LCH.Common.constants.hindered_id then
     LCH.Common.Hindered(result, targetUnitId, hitValue)
+
+  elseif abilityId == LCH.Zilyesset.constants.brilliant_annihilation_id then
+    LCH.Zilyesset.Annihilation(result, targetType, targetUnitId, hitValue)
+
   elseif abilityId == LCH.Orphic.constants.thunder_thrall_id then
     LCH.Orphic.ThunderThrall(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Orphic.constants.heavy_shock_id then
     LCH.Orphic.HeavyShock(result, targetType, targetUnitId, hitValue)
-  elseif result == ACTION_RESULT_BEGIN and abilityId == LCH.data.zilyesset_ryelaz_meteor or LCH.data.rize_ryelaz_meteor and targetType == COMBAT_UNIT_TYPE_PLAYER then
-    LCH.Alert("", "Meteor (self)", 0xFF6600FF, abilityId, SOUNDS.OBJECTIVE_DISCOVERED, hitValue)
   end
 end
 

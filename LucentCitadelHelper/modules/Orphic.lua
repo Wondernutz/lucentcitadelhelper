@@ -14,7 +14,7 @@ LCH.Orphic.constants = {
 }
 
 function LCH.Orphic.Init()
-  LCH.Orphic.lastThunderThrall = 0
+  LCH.Orphic.lastThunderThrall = GetGameTimeSeconds()
   LCH.Orphic.isFirstThunderThrall = true
 end
 
