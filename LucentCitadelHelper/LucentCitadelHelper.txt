@@ -15,6 +15,7 @@ LucentCitadelHelperData.lua
 LucentCitadelHelperUI.lua
 LucentCitadelHelperUtil.lua
 LucentCitadelHelperMenu.lua
+modules/Common.lua
 modules/Zilyesset.lua
 modules/Orphic.lua
 modules/Rize.lua
