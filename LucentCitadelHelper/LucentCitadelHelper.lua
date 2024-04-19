@@ -60,7 +60,7 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
 
   if result == ACTION_RESULT_BEGIN and abilityId == LCH.data.zilyesset_ryelaz_meteor or LCH.data.rize_ryelaz_meteor and targetType == COMBAT_UNIT_TYPE_PLAYER then
     LCH.Alert("", "Meteor (self)", 0xFF6600FF, abilityId, SOUNDS.OBJECTIVE_DISCOVERED, hitValue)
-    end
+  end
 end
 
 function LCH.UpdateTick(gameTimeMs)
