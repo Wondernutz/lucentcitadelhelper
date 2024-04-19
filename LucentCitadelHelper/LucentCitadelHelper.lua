@@ -57,6 +57,10 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
   --    "Ability: %s, ID: %d, Hit Value: %d, Source name: %s, Target name: %s", abilityName, abilityId, hitValue, sourceName, targetName
   --  ))
   --end
+
+  if abilityId == LCH.Orphic.constants.thunder_thrall_id then
+    LCH.Orphic.ThunderThrall(result, targetType, targetUnitId, hitValue)
+  end
 end
 
 function LCH.UpdateTick(gameTimeMs)
@@ -67,10 +71,6 @@ function LCH.UpdateTick(gameTimeMs)
       -- If it switched from non-combat to combat, re-check boss names.
       LCH.BossesChanged()
     end
-    LCH.status.inCombat = true
-  end
-
-  if IsUnitInCombat("player") and LCH.status.isZilyesset then
     LCH.status.inCombat = true
   end
 
