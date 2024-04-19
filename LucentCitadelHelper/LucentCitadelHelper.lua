@@ -59,6 +59,10 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
   --end
 end
 
+if abilityId == LCH.data.zilyesset_ryelaz_meteor or LCH.data.rize_ryelaz_meteor then
+  LCH.Zilyesset.RyelazMeteor(result, targetType, targetUnitId, hitValue, abilityId)
+end
+
 function LCH.UpdateTick(gameTimeMs)
   local timeSec = GetGameTimeSeconds()
 

@@ -2,6 +2,23 @@ LCH = LCH or {}
 local LCH = LCH
 
 LCH.data    = {
+
+  zilyesset_ryelaz_meteor = 218283, -- Zilyesset Encounter -- Meteors
+  zilyesset_brilliant_shield_debuff = 214237, -- Zilyesset Encounter -- Players "debuff" to break shields
+  zilyesset_bleak_shield_debuff = 214254, -- Zilyesset Encounter -- Players "debuff" to break shields
+  zilyesset_sides_swap = 219694, -- Zilyesset Encounter -- Bosses Channeling Wipe Mech
+
+  --shard_volley_boss = 213900, -- Orphic Shattered Shard Encounter -- Buff on boss, removed after 3 seconds
+  orphic_shard_volley_target = { 213909, 213907, 213902}, -- Orphic Shattered Shard Encounter -- Targets players?
+  orphic_shield_charge = 215308, -- Orphic Shattered Shard Encounter -- Mechanic to force boss into the middle
+  orphic_xoryn_jump = 214383, -- Orphic Shattered Shard Encounter -- Xoryn Jump Attack
+  orphic_color_swap = 213913, -- Orphic Shattered Shard Encounter -- Boss Channeling Wipe Mech
+
+
+  rize_ryelaz_meteor = 222610, -- Rize Encounter -- Meteors
+  rize_xoryn_tempest = 215107, -- Xoryn Encounter -- Mirror Mech
+  rize_xory_tempest_assault = 215184, -- Xoryn Encounter -- Mirror hit?
+
   hindered_effect = 165972,
 
   -- TODO: Consider using UnpackRGBA(0xFFFFFFFF)
