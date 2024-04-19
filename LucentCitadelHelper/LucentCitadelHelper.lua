@@ -58,7 +58,13 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
   --  ))
   --end
 
-  if result == ACTION_RESULT_BEGIN and abilityId == LCH.data.zilyesset_ryelaz_meteor or LCH.data.rize_ryelaz_meteor and targetType == COMBAT_UNIT_TYPE_PLAYER then
+  if abilityId == LCH.Common.constants.hindered_id then
+    LCH.Common.Hindered(result, targetUnitId, hitValue)
+  elseif abilityId == LCH.Orphic.constants.thunder_thrall_id then
+    LCH.Orphic.ThunderThrall(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Orphic.constants.heavy_shock_id then
+    LCH.Orphic.HeavyShock(result, targetType, targetUnitId, hitValue)
+  elseif result == ACTION_RESULT_BEGIN and abilityId == LCH.data.zilyesset_ryelaz_meteor or LCH.data.rize_ryelaz_meteor and targetType == COMBAT_UNIT_TYPE_PLAYER then
     LCH.Alert("", "Meteor (self)", 0xFF6600FF, abilityId, SOUNDS.OBJECTIVE_DISCOVERED, hitValue)
   end
 end
@@ -71,10 +77,6 @@ function LCH.UpdateTick(gameTimeMs)
       -- If it switched from non-combat to combat, re-check boss names.
       LCH.BossesChanged()
     end
-    LCH.status.inCombat = true
-  end
-
-  if IsUnitInCombat("player") and LCH.status.isZilyesset then
     LCH.status.inCombat = true
   end
 
@@ -132,6 +134,7 @@ function LCH.ResetStatus()
   LCH.status.debuffTracker = {}
   LCH.status.unitDamageTaken = {}
 
+  LCH.Common.Init()
   LCH.Zilyesset.Init()
   LCH.Orphic.Init()
   LCH.Rize.Init()

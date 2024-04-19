@@ -97,7 +97,7 @@
       </Label>
 
       <!-- Boss 2: Orphic -->
-      <Label name="$(parent)LabelOrphic1" font="ZoFontWinH1" color="CCCC66" text="Xoryn Jump:" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
+      <Label name="$(parent)LabelOrphic1" font="ZoFontWinH1" color="FFD666" text="Xoryn Jump:" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
           <Dimensions x="600" y="50" />
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="0"/>
       </Label>
