@@ -14,7 +14,7 @@ LCH.Rize.constants = {
 
   necrotic_rain_id = 222809, -- necromancer bridge
   necrotic_rain_first_cd = 18, -- first cast of rain
-  necrotic_rain_cd = 30, -- cooldown
+  necrotic_rain_cd = 33, -- cooldown
   lustrous_javelin_id = 223546, -- Mantikora Javelin
 }
 
