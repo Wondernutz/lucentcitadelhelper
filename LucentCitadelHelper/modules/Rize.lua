@@ -67,9 +67,7 @@ function LCH.Rize.NecroticRain(result, targetType, targetUnitId, hitValue, abili
     LCH.Rize.isFirstNecroticRain = false
     
     LCH.Alert("", "Necrotic Rain", 0xFFD666FF, LCH.Rize.constants.necrotic_rain_id, SOUNDS.OBJECTIVE_DISCOVERED, 6000)
-    local color = { 1, 0.7, 0, 0.5 }
-    local action = { 6000, "Don't Stack", 0.8, 0, 0, 0.9, nil}
-    CombatAlerts.CastAlertsStart(LCH.Rize.constants.necrotic_rain_id, "Necrotic Rain", hitValue, {-1, 0}, color, action)
+    CombatAlerts.AlertCast(LCH.Rize.constants.necrotic_rain_id, "Necrotic Rain", hitValue, {-1, 0})
   end
 end
 
