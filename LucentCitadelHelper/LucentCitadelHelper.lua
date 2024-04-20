@@ -74,6 +74,9 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
     LCH.Orphic.XorynImmune(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Orphic.constants.breakout_id then
     LCH.Orphic.Breakout(result, targetType, targetUnitId, hitValue)
+
+  elseif abilityId == LCH.Rize.constants.splintered_burst_id then
+    LCH.Rize.SplinteredBurst(result, targetType, targetUnitId, hitValue)
   end
 end
 
