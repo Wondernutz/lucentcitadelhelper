@@ -87,6 +87,8 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
     LCH.Rize.SplinteredBurst(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Rize.constants.arcane_conveyance_cast_id then
     LCH.Rize.ArcaneConveyance(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Rize.constants.lustrous_javelin_id then
+    LCH.Rize.LustrousJavelin(result, targetType, targetUnitId, hitValue)
   end
 end
 
