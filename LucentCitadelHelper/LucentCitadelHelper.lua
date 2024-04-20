@@ -37,6 +37,9 @@ LCH.settings = {
   -- Orphic
   showXorynJumpTimer = true,
 
+  -- Rize
+  showNecroticRainTimer = true,
+
   -- Misc
   uiCustomScale = 1,
 }
@@ -79,6 +82,10 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
     LCH.Rize.SplinteredBurst(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Rize.constants.arcane_conveyance_cast_id then
     LCH.Rize.ArcaneConveyance(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Rize.constants.necrotic_spear_id then
+    LCH.Rize.NecroticSpear(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Rize.constants.necrotic_rain_id then
+    LCH.Rize.NecroticRain(result, targetType, targetUnitId, hitValue)
   end
 end
 

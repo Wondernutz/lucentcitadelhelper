@@ -70,7 +70,7 @@ function LCH.Menu.AddonMenu()
     },
     {
       type    = "checkbox",
-      name    = "Panel: Xoryn jump timer",
+      name    = "Panel: Xoryn Jump Timer",
       default = true,
       getFunc = function() return LCH.savedVariables.showXorynJumpTimer end,
       setFunc = function(newValue) LCH.savedVariables.showXorynJumpTimer = newValue end,
@@ -82,6 +82,13 @@ function LCH.Menu.AddonMenu()
       type = "header",
       name = "Baron Rize",
       reference = "RizeHeader"
+    },
+    {
+      type    = "checkbox",
+      name    = "Panel: Necrotic Rain Timer",
+      default = true,
+      getFunc = function() return LCH.savedVariables.showNecroticRainTimer end,
+      setFunc = function(newValue) LCH.savedVariables.showNecroticRainTimer = newValue end,
     },
     {
       type = "divider",
