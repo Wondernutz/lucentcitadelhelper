@@ -3,7 +3,6 @@ local LCH = LCH
 LCH.Orphic = {
   lastThunderThrall = 0,
   isFirstThunderThrall = true,
-  bossSpawned = false,
   xorynActive = false,
 }
 
@@ -12,6 +11,7 @@ LCH.Orphic.constants = {
   thunder_thrall_first_cd = 8.0, -- how soon Xoryn can first jump
   thunder_thrall_cd = 25.5, -- how often Xoryn jumps
 
+  breakout_id = 220185, -- Debuff falls off when Orphic first becomes active
   xoryn_immune_id = 218006, -- Xoryn Thunder Thrall buff gained when immune?
 
   heavy_shock_id = 222072,
@@ -22,7 +22,6 @@ LCH.Orphic.constants = {
 function LCH.Orphic.Init()
   LCH.Orphic.lastThunderThrall = GetGameTimeSeconds()
   LCH.Orphic.isFirstThunderThrall = true
-  LCH.Orphic.bossSpawned = false
   LCH.Orphic.xorynActive = false
 end
 
@@ -60,6 +59,13 @@ function LCH.Orphic.FateSealer(result, targetType, targetUnitId, hitValue)
   end
 end
 
+function LCH.Orphic.Breakout(result, targetType, targetUnitId, hitValue)
+  -- Orphic first becomes active when debuff falls off
+  if result == ACTION_RESULT_EFFECT_FADED then
+    LCH.Orphic.xorynActive = true
+  end
+end
+
 function LCH.Orphic.XorynImmune(result, targetType, targetUnitId, hitValue)
   -- Detects when Xoryn becomes immune
   if result == ACTION_RESULT_EFFECT_GAINED then
@@ -74,15 +80,6 @@ end
 
 function LCH.Orphic.UpdateTick(timeSec)
   LCHStatus:SetHidden(not (LCH.savedVariables.showXorynJumpTimer))
-
-  if not LCH.Orphic.bossSpawned then
-    -- Temporary hack to check if boss has spawned
-    local currentTargetHP, maxTargetHP, effmaxTargetHP = GetUnitPower("boss1", POWERTYPE_HEALTH)
-    if currentTargetHP < maxTargetHP then
-      LCH.Orphic.bossSpawned = true
-      LCH.Orphic.xorynActive = true
-    end
-  end
 
   LCH.Orphic.ThunderThrallUpdateTick(timeSec)
 end

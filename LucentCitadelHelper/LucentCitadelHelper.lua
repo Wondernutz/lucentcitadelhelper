@@ -72,6 +72,8 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
     LCH.Orphic.FateSealer(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Orphic.constants.xoryn_immune_id then
     LCH.Orphic.XorynImmune(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Orphic.constants.breakout_id then
+    LCH.Orphic.Breakout(result, targetType, targetUnitId, hitValue)
   end
 end
 
