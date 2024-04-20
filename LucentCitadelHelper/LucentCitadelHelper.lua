@@ -2,7 +2,7 @@ LCH = LCH or {}
 local LCH = LCH
 
 LCH.name     = "LucentCitadelHelper"
-LCH.version  = "0.1.2"
+LCH.version  = "0.1.3"
 LCH.author   = "@Wondernuts, @kabs12"
 LCH.active   = false
 
@@ -77,6 +77,8 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
 
   elseif abilityId == LCH.Rize.constants.splintered_burst_id then
     LCH.Rize.SplinteredBurst(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Rize.constants.arcane_conveyance_cast_id then
+    LCH.Rize.ArcaneConveyance(result, targetType, targetUnitId, hitValue)
   end
 end
 
