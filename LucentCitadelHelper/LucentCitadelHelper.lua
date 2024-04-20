@@ -63,6 +63,14 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
 
   elseif abilityId == LCH.Zilyesset.constants.brilliant_annihilation_id then
     LCH.Zilyesset.Annihilation(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Zilyesset.constants.summon_shardborn_lightweaver_id then
+    LCH.Zilyesset.SummonLightweaver(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Zilyesset.constants.summon_gloomy_blackguard_id then
+    LCH.Zilyesset.SummonBlackguard(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Zilyesset.constants.porcindark_id then
+    LCH.Zilyesset.OnLightSide(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Zilyesset.constants.porcinlight_id then
+    LCH.Zilyesset.OnDarkSide(result, targetType, targetUnitId, hitValue)
 
   elseif abilityId == LCH.Orphic.constants.thunder_thrall_id then
     LCH.Orphic.ThunderThrall(result, targetType, targetUnitId, hitValue)
@@ -79,6 +87,8 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
     LCH.Rize.SplinteredBurst(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Rize.constants.arcane_conveyance_cast_id then
     LCH.Rize.ArcaneConveyance(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Rize.constants.lustrous_javelin_id then
+    LCH.Rize.LustrousJavelin(result, targetType, targetUnitId, hitValue)
   end
 end
 
