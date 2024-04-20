@@ -31,7 +31,7 @@ function LCH.Zilyesset.getPlayerSide()
       local name, startTime, endTime, buffSlot, stackCount, iconFilename, buffType, effectType, abilityType, statusEffectType, id, canClickOff, castByPlayer = GetUnitBuffInfo('player', i)
       if id == LCH.Zilyesset.constants.porcinlight_id then
         return "dark"
-      else if id == LCH.Zilyesset.constants.porcindark_id then
+      elseif id == LCH.Zilyesset.constants.porcindark_id then
         return "light"
       end
     end
