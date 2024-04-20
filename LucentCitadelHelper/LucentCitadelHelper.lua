@@ -2,7 +2,7 @@ LCH = LCH or {}
 local LCH = LCH
 
 LCH.name     = "LucentCitadelHelper"
-LCH.version  = "0.1.1"
+LCH.version  = "0.1.2"
 LCH.author   = "@Wondernuts, @kabs12"
 LCH.active   = false
 
@@ -68,6 +68,10 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
     LCH.Orphic.ThunderThrall(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Orphic.constants.heavy_shock_id then
     LCH.Orphic.HeavyShock(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Orphic.constants.fate_sealer_id then
+    LCH.Orphic.FateSealer(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Orphic.constants.xoryn_immune_id then
+    LCH.Orphic.XorynImmune(result, targetType, targetUnitId, hitValue)
   end
 end
 
