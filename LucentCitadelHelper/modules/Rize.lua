@@ -75,8 +75,8 @@ function LCH.Rize.NecroticRain(result, targetType, targetUnitId, hitValue, abili
     LCH.Rize.lastNecroticRain = GetGameTimeSeconds()
     LCH.Rize.isFirstNecroticRain = false
     
-    LCH.Alert("", "Necrotic Rain", 0xFFD666FF, LCH.Rize.constants.necrotic_rain_id, SOUNDS.OBJECTIVE_DISCOVERED, 6000)
-    CombatAlerts.AlertCast(LCH.Rize.constants.necrotic_rain_id, "Necrotic Rain", hitValue, {-1, 0})
+    LCH.Alert("", "Necrotic Rain (Don't Stack)", 0xFFD666FF, LCH.Rize.constants.necrotic_rain_id, SOUNDS.OBJECTIVE_DISCOVERED, 6000)
+    CombatAlerts.AlertCast(LCH.Rize.constants.necrotic_rain_id, "Necrotic Rain", hitValue, {-3, 0})
   end
 end
 
