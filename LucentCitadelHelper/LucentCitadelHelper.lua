@@ -86,6 +86,17 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
     LCH.Rize.NecroticSpear(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Rize.constants.necrotic_rain_id then
     LCH.Rize.NecroticRain(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Orphic.constants.fate_sealer_id then
+    LCH.Orphic.FateSealer(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Orphic.constants.xoryn_immune_id then
+    LCH.Orphic.XorynImmune(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Orphic.constants.breakout_id then
+    LCH.Orphic.Breakout(result, targetType, targetUnitId, hitValue)
+
+  elseif abilityId == LCH.Rize.constants.splintered_burst_id then
+    LCH.Rize.SplinteredBurst(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Rize.constants.arcane_conveyance_cast_id then
+    LCH.Rize.ArcaneConveyance(result, targetType, targetUnitId, hitValue)
   end
 end
 
