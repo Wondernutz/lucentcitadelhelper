@@ -2,7 +2,7 @@ LCH = LCH or {}
 local LCH = LCH
 
 LCH.name     = "LucentCitadelHelper"
-LCH.version  = "0.1.0"
+LCH.version  = "0.1.3"
 LCH.author   = "@Wondernuts, @kabs12"
 LCH.active   = false
 
@@ -60,10 +60,25 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
 
   if abilityId == LCH.Common.constants.hindered_id then
     LCH.Common.Hindered(result, targetUnitId, hitValue)
+
+  elseif abilityId == LCH.Zilyesset.constants.brilliant_annihilation_id then
+    LCH.Zilyesset.Annihilation(result, targetType, targetUnitId, hitValue)
+
   elseif abilityId == LCH.Orphic.constants.thunder_thrall_id then
     LCH.Orphic.ThunderThrall(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Orphic.constants.heavy_shock_id then
     LCH.Orphic.HeavyShock(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Orphic.constants.fate_sealer_id then
+    LCH.Orphic.FateSealer(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Orphic.constants.xoryn_immune_id then
+    LCH.Orphic.XorynImmune(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Orphic.constants.breakout_id then
+    LCH.Orphic.Breakout(result, targetType, targetUnitId, hitValue)
+
+  elseif abilityId == LCH.Rize.constants.splintered_burst_id then
+    LCH.Rize.SplinteredBurst(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Rize.constants.arcane_conveyance_cast_id then
+    LCH.Rize.ArcaneConveyance(result, targetType, targetUnitId, hitValue)
   end
 end
 
