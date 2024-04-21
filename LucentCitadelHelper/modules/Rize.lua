@@ -8,6 +8,8 @@ LCH.Rize.constants = {
   splintered_burst_id = 219799, -- Crystal Atronach AOE On Tank
   arcane_conveyance_cast_id = 223024, -- Tether cast
   lustrous_javelin_id = 223546, -- Mantikora Javelin
+  accelerating_charge_id = 214542, -- Channel before chain lightning
+  tempest_id = 215107, -- Groupwide line mechanic from mirrors
 }
 
 function LCH.Rize.Init()
@@ -47,6 +49,20 @@ function LCH.Rize.ArcaneConveyance(result, targetType, targetUnitId, hitValue)
       "LucentCitadelHelper/icons/portalyellow.dds",
       hitValue
     )
+  end
+end
+
+function LCH.Rize.AcceleratingCharge(result, targetType, targetUnitId, hitValue)
+  if result == ACTION_RESULT_BEGIN and hitValue > 2000 then
+    if targetType == COMBAT_UNIT_TYPE_PLAYER then
+      LCH.Alert("", "Accelerating Charge", 0xFFD666FF, LCH.Rize.constants.accelerating_charge_id, SOUNDS.OBJECTIVE_DISCOVERED, 2000)
+    end
+  end
+end
+
+function LCH.Rize.Tempest(result, targetType, targetUnitId, hitValue)
+  if result == ACTION_RESULT_BEGIN and hitValue > 500 then
+    LCH.Alert("", "Tempest", 0x6082B6FF, LCH.Rize.constants.tempest_id, SOUNDS.BATTLEGROUND_CAPTURE_FLAG_TAKEN_OWN_TEAM, 2000)
   end
 end
 

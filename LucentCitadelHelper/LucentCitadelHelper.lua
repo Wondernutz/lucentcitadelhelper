@@ -2,7 +2,7 @@ LCH = LCH or {}
 local LCH = LCH
 
 LCH.name     = "LucentCitadelHelper"
-LCH.version  = "0.1.5"
+LCH.version  = "0.1.6"
 LCH.author   = "@Wondernuts, @kabs12"
 LCH.active   = false
 
@@ -91,6 +91,10 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
     LCH.Rize.ArcaneConveyance(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Rize.constants.lustrous_javelin_id then
     LCH.Rize.LustrousJavelin(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Rize.constants.accelerating_charge_id then
+    LCH.Rize.AcceleratingCharge(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Rize.constants.tempest_id then
+    LCH.Rize.Tempest(result, targetType, targetUnitId, hitValue)
   end
 end
 

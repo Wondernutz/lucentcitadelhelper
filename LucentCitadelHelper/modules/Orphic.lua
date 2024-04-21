@@ -29,7 +29,7 @@ end
 
 function LCH.Orphic.ColorChange(result, targetType, targetUnitId, hitValue)
   if result == ACTION_RESULT_BEGIN and hitValue > 2000 then
-    LCH.Alert("", "Color Change", 0x96DED1FF, LCH.Orphic.constants.color_change_id, SOUNDS.BATTLEGROUND_CAPTURE_FLAG_TAKEN_OWN_TEAM, 5000)
+    LCH.Alert("", "Color Change", 0x96DED1FF, LCH.Orphic.constants.color_change_id, SOUNDS.BATTLEGROUND_CAPTURE_FLAG_TAKEN_OWN_TEAM, 4000)
     CombatAlerts.CastAlertsStart(LCH.Orphic.constants.color_change_id, "Color Change", hitValue, 12000, nil, nil)
   end
 end
