@@ -39,7 +39,7 @@ end
 function LCH.Rize.ArcaneConveyance(result, targetType, targetUnitId, hitValue)
   if result == ACTION_RESULT_BEGIN then
     if targetType == COMBAT_UNIT_TYPE_PLAYER then
-      LCH.Alert("", "Arcane Conveyance (You)", 0xFFFFD700, LCH.Rize.constants.arcane_conveyance_cast_id, SOUNDS.DUEL_START, 2000)
+      LCH.Alert("", "Arcane Conveyance (You)", 0xFFD700FF, LCH.Rize.constants.arcane_conveyance_cast_id, SOUNDS.DUEL_START, 2000)
     end
 
     LCH.AddIconForDuration(
