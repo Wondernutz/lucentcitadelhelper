@@ -18,8 +18,8 @@ end
 
 function LCH.Zilyesset.Annihilation(result, targetType, targetUnitId, hitValue)
   if result == ACTION_RESULT_BEGIN and hitValue > 2000 then
-    LCH.Alert("", "Annihilation", 0xFF0033FF, LCH.Zilyesset.constants.brilliant_annihilation_id, SOUNDS.BATTLEGROUND_CAPTURE_FLAG_TAKEN_OWN_TEAM, 12000)
-    CombatAlerts.AlertCast(LCH.Zilyesset.constants.brilliant_annihilation_id, "Annihilation", hitValue, {-2, 0})
+    LCH.Alert("", "Annihilation", 0xFF0033FF, LCH.Zilyesset.constants.brilliant_annihilation_id, SOUNDS.BATTLEGROUND_CAPTURE_FLAG_TAKEN_OWN_TEAM, 5000)
+    CombatAlerts.CastAlertsStart(LCH.Zilyesset.constants.brilliant_annihilation_id, "Annihilation", hitValue, 12000, nil, nil)
   end
 end
 
@@ -63,7 +63,7 @@ function LCH.Zilyesset.SummonLightweaver(result, targetType, targetUnitId, hitVa
       return
     end
 
-    LCH.Alert("", "Summon Lightweaver", 0xFFBCC6CC, LCH.Zilyesset.constants.summon_shardborn_lightweaver_id, SOUNDS.OBJECTIVE_DISCOVERED, 2000)
+    LCH.Alert("", "Summon Lightweaver", 0xBCC6CCFF, LCH.Zilyesset.constants.summon_shardborn_lightweaver_id, SOUNDS.OBJECTIVE_DISCOVERED, 2000)
   end
 end
 
@@ -74,7 +74,7 @@ function LCH.Zilyesset.SummonBlackguard(result, targetType, targetUnitId, hitVal
   end
 
   if result == ACTION_RESULT_EFFECT_GAINED_DURATION then
-    LCH.Alert("", "Summon Blackguard", 0xFF0033FF, LCH.Zilyesset.constants.summon_gloomy_blackguard_id, SOUNDS.OBJECTIVE_DISCOVERED, 2000)
+    LCH.Alert("", "Summon Blackguard", 0x71797EFF, LCH.Zilyesset.constants.summon_gloomy_blackguard_id, SOUNDS.OBJECTIVE_DISCOVERED, 2000)
   end
 end
 
