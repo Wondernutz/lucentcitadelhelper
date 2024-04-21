@@ -7,6 +7,8 @@ LCH.Orphic = {
 }
 
 LCH.Orphic.constants = {
+  color_change_id = 213913, -- Color change/mirrors mechanic
+
   thunder_thrall_id = 214383,
   thunder_thrall_first_cd = 8.0, -- how soon Xoryn can first jump
   thunder_thrall_cd = 25.5, -- how often Xoryn jumps
@@ -16,13 +18,20 @@ LCH.Orphic.constants = {
 
   heavy_shock_id = 222072,
 
-  fate_sealer_id = 214311,
+  fate_sealer_id = 214311, -- Ball summon
 }
 
 function LCH.Orphic.Init()
   LCH.Orphic.lastThunderThrall = GetGameTimeSeconds()
   LCH.Orphic.isFirstThunderThrall = true
   LCH.Orphic.xorynActive = false
+end
+
+function LCH.Orphic.ColorChange(result, targetType, targetUnitId, hitValue)
+  if result == ACTION_RESULT_BEGIN and hitValue > 2000 then
+    LCH.Alert("", "Color Change", 0x96DED1FF, LCH.Orphic.constants.color_change_id, SOUNDS.BATTLEGROUND_CAPTURE_FLAG_TAKEN_OWN_TEAM, 5000)
+    CombatAlerts.CastAlertsStart(LCH.Orphic.constants.color_change_id, "Color Change", hitValue, 12000, nil, nil)
+  end
 end
 
 function LCH.Orphic.ThunderThrall(result, targetType, targetUnitId, hitValue)
@@ -39,6 +48,7 @@ end
 
 function LCH.Orphic.HeavyShock(result, targetType, targetUnitId, hitValue)
   -- Xoryn Channel Mechanic
+  -- TODO(wonder): This isn't working, find actual ability ID
   if result == ACTION_RESULT_BEGIN and hitValue > 500 then
     if targetType == COMBAT_UNIT_TYPE_PLAYER then
       LCH.Alert("", "Heavy Shock", 0xFFD666FF, LCH.Orphic.constants.heavy_shock_id, SOUNDS.OBJECTIVE_DISCOVERED, 2000)

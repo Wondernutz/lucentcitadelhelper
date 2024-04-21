@@ -18,7 +18,7 @@ end
 
 function LCH.Zilyesset.Annihilation(result, targetType, targetUnitId, hitValue)
   if result == ACTION_RESULT_BEGIN and hitValue > 2000 then
-    LCH.Alert("", "Annihilation", 0xFF0033FF, LCH.Zilyesset.constants.brilliant_annihilation_id, SOUNDS.BATTLEGROUND_CAPTURE_FLAG_TAKEN_OWN_TEAM, 12000)
+    LCH.Alert("", "Annihilation", 0xFF0033FF, LCH.Zilyesset.constants.brilliant_annihilation_id, SOUNDS.BATTLEGROUND_CAPTURE_FLAG_TAKEN_OWN_TEAM, 5000)
     CombatAlerts.CastAlertsStart(LCH.Zilyesset.constants.brilliant_annihilation_id, "Annihilation", hitValue, 12000, nil, nil)
   end
 end
