@@ -36,9 +36,9 @@ function LCH.Zilyesset.AddPadIcons()
       for i=1,3 do
         table.insert(LCH.status.PadIconNumber1, 
           OSI.CreatePositionIcon(
-            LCH.data.pad_icon_number1_pos_list[i][1],
-            LCH.data.pad_icon_number1_pos_list[i][2],
-            LCH.data.pad_icon_number1_pos_list[i][3],
+            LCH.Zilyesset.constants.pad_icon_number1_pos_list[i][1],
+            LCH.Zilyesset.constants.pad_icon_number1_pos_list[i][2],
+            LCH.Zilyesset.constants.pad_icon_number1_pos_list[i][3],
             "LucentCitadelHelper/icons/1.dds",
             1 * OSI.GetIconSize()))
       end
@@ -48,9 +48,9 @@ function LCH.Zilyesset.AddPadIcons()
       for i=1,3 do
         table.insert(LCH.status.PadIconNumber2, 
           OSI.CreatePositionIcon(
-            LCH.data.pad_icon_number2_pos_list[i][1],
-            LCH.data.pad_icon_number2_pos_list[i][2],
-            LCH.data.pad_icon_number2_pos_list[i][3],
+            LCH.Zilyesset.constants.pad_icon_number2_pos_list[i][1],
+            LCH.Zilyesset.constants.pad_icon_number2_pos_list[i][2],
+            LCH.Zilyesset.constants.pad_icon_number2_pos_list[i][3],
             "LucentCitadelHelper/icons/2.dds",
             1 * OSI.GetIconSize()))
       end
@@ -60,9 +60,9 @@ function LCH.Zilyesset.AddPadIcons()
       for i=1,3 do
         table.insert(LCH.status.PadIconNumber3, 
           OSI.CreatePositionIcon(
-            LCH.data.pad_icon_number3_pos_list[i][1],
-            LCH.data.pad_icon_number3_pos_list[i][2],
-            LCH.data.pad_icon_number3_pos_list[i][3],
+            LCH.Zilyesset.constants.pad_icon_number3_pos_list[i][1],
+            LCH.Zilyesset.constants.pad_icon_number3_pos_list[i][2],
+            LCH.Zilyesset.constants.pad_icon_number3_pos_list[i][3],
             "LucentCitadelHelper/icons/3.dds",
             1 * OSI.GetIconSize()))
       end
