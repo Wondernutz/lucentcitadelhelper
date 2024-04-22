@@ -18,6 +18,15 @@ LCH.status = {
 
   locked = true,
 
+  MirrorIconNumber1 = {},
+  MirrorIconNumber2 = {},
+  MirrorIconNumber3 = {},
+  MirrorIconNumber4 = {},
+  MirrorIconNumber5 = {},
+  MirrorIconNumber6 = {},
+  MirrorIconNumber7 = {},
+  MirrorIconNumber8 = {},
+
   unitDamageTaken = {}, -- unitDamageTaken[unitId] = all damage events for a given id.
   --[[ TODO: Damage events to track:
     ACTION_RESULT_DAMAGE,
@@ -33,9 +42,11 @@ LCH.status = {
 -- Default settings.
 LCH.settings = {
   showHinderedIcon = true,
+  showPadIcons = true,
 
   -- Orphic
   showXorynJumpTimer = true,
+  showMirrorIcons = true,
 
   -- Misc
   uiCustomScale = 1,
@@ -190,6 +201,9 @@ function LCH.BossesChanged()
     LCH.status.isRize = false
     LCH.status.isHMBoss = false
 
+    LCH.Zilyesset.RemovePadIcons()
+    LCH.Orphic.RemoveMirrorIcons()
+
     local currentTargetHP, maxTargetHP, effmaxTargetHP = GetUnitPower("boss1", POWERTYPE_HEALTH)
     local hardmodeHealth = {
       [LCH.data.zilyessetName] = 40000000, -- vet ?, HM 48.9M
@@ -208,8 +222,10 @@ function LCH.BossesChanged()
 
     if string.match(bossName, LCH.data.zilyessetName) then
       LCH.status.isZilyesset = true
+      LCH.Zilyesset.AddPadIcons()
     elseif string.match(bossName, LCH.data.orphicName) then
       LCH.status.isOrphic = true
+      LCH.Orphic.AddMirrorIcons()
     elseif string.match(bossName, LCH.data.rizeName) then
       LCH.status.isRize = true
     end

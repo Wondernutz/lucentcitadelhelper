@@ -11,9 +11,74 @@ LCH.Zilyesset.constants = {
   porcindark_id = 219330, -- Having this buff means player is on light side with Zilyesset
   summon_shardborn_lightweaver_id = 218113, -- Big add from Zilyesset
   summon_gloomy_blackguard_id = 218109, -- Big add from Count Ryelaz
+
+  pad_icon_number1_pos_list = {
+    [1] = {189899,40350,237901}, -- Count Ryelaz
+    [2] = {180032,40350,237903}, -- Zilyesset
+  },
+  pad_icon_number2_pos_list = {
+    [1] = {189899,40350,237901}, -- Count Ryelaz
+    [2] = {180032,40350,237903}, -- Zilyesset
+  },
+  pad_icon_number3_pos_list = {
+    [1] = {189899,40350,237901}, -- Count Ryelaz
+    [2] = {180032,40350,237903}, -- Zilyesset
+  },
 }
 
 function LCH.Zilyesset.Init()
+end
+
+function LCH.Zilyesset.AddPadIcons()
+  if LCH.savedVariables.showPadIcons and LCH.hasOSI() then
+
+    if table.getn(LCH.status.PadIconNumber1) == 0 then
+      for i=1,3 do
+        table.insert(LCH.status.PadIconNumber1, 
+          OSI.CreatePositionIcon(
+            LCH.data.pad_icon_number1_pos_list[i][1],
+            LCH.data.pad_icon_number1_pos_list[i][2],
+            LCH.data.pad_icon_number1_pos_list[i][3],
+            "LucentCitadelHelper/icons/1.dds",
+            1 * OSI.GetIconSize()))
+      end
+    end
+
+    if table.getn(LCH.status.PadIconNumber2) == 0 then
+      for i=1,3 do
+        table.insert(LCH.status.PadIconNumber2, 
+          OSI.CreatePositionIcon(
+            LCH.data.pad_icon_number2_pos_list[i][1],
+            LCH.data.pad_icon_number2_pos_list[i][2],
+            LCH.data.pad_icon_number2_pos_list[i][3],
+            "LucentCitadelHelper/icons/2.dds",
+            1 * OSI.GetIconSize()))
+      end
+    end
+
+    if table.getn(LCH.status.PadIconNumber3) == 0 then
+      for i=1,3 do
+        table.insert(LCH.status.PadIconNumber3, 
+          OSI.CreatePositionIcon(
+            LCH.data.pad_icon_number3_pos_list[i][1],
+            LCH.data.pad_icon_number3_pos_list[i][2],
+            LCH.data.pad_icon_number3_pos_list[i][3],
+            "LucentCitadelHelper/icons/3.dds",
+            1 * OSI.GetIconSize()))
+      end
+    end
+  end
+end
+
+function LCH.Zilyesset.RemovePadIcons()
+  LCH.DiscardPositionIconList(LCH.status.PadIconNumber1)
+  LCH.status.PadIconNumber1 = {}
+
+  LCH.DiscardPositionIconList(LCH.status.PadIconNumber2)
+  LCH.status.PadIconNumber2 = {}
+
+  LCH.DiscardPositionIconList(LCH.status.PadIconNumber3)
+  LCH.status.PadIconNumber3 = {}
 end
 
 function LCH.Zilyesset.Annihilation(result, targetType, targetUnitId, hitValue)
