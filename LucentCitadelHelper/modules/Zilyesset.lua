@@ -13,16 +13,16 @@ LCH.Zilyesset.constants = {
   summon_gloomy_blackguard_id = 218109, -- Big add from Count Ryelaz
 
   pad_icon_number1_pos_list = {
-    [1] = {189899,40350,237901}, -- Count Ryelaz
-    [2] = {180032,40350,237903}, -- Zilyesset
+    [1] = {127343,33533,131965}, -- Count Ryelaz
+    [2] = {127396,33541,128127}, -- Zilyesset
   },
   pad_icon_number2_pos_list = {
-    [1] = {189899,40350,237901}, -- Count Ryelaz
-    [2] = {180032,40350,237903}, -- Zilyesset
+    [1] = {125035,33533,133352}, -- Count Ryelaz
+    [2] = {124954,33541,126737}, -- Zilyesset
   },
   pad_icon_number3_pos_list = {
-    [1] = {189899,40350,237901}, -- Count Ryelaz
-    [2] = {180032,40350,237903}, -- Zilyesset
+    [1] = {122672,33533,132013}, -- Count Ryelaz
+    [2] = {122769,33541,127603}, -- Zilyesset
   },
 }
 
