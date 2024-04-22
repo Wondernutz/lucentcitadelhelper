@@ -16,6 +16,8 @@ LCH.Rize.constants = {
   necrotic_rain_first_cd = 18, -- first cast of rain
   necrotic_rain_cd = 33, -- cooldown
   lustrous_javelin_id = 223546, -- Mantikora Javelin
+  accelerating_charge_id = 214542, -- Channel before chain lightning
+  tempest_id = 215107, -- Groupwide line mechanic from mirrors
 }
 
 function LCH.Rize.Init()
@@ -49,7 +51,7 @@ end
 function LCH.Rize.ArcaneConveyance(result, targetType, targetUnitId, hitValue)
   if result == ACTION_RESULT_BEGIN then
     if targetType == COMBAT_UNIT_TYPE_PLAYER then
-      LCH.Alert("", "Arcane Conveyance (You)", 0xFFFFD700, LCH.Rize.constants.arcane_conveyance_cast_id, SOUNDS.DUEL_START, 2000)
+      LCH.Alert("", "Arcane Conveyance (You)", 0xFFD700FF, LCH.Rize.constants.arcane_conveyance_cast_id, SOUNDS.DUEL_START, 2000)
     end
 
     LCH.AddIconForDuration(
@@ -101,4 +103,20 @@ function LCH.Rize.NecroticRainUpdateTick(timeSec)
   end
 
   LCHStatusLabelRize1Value:SetText(LCH.GetSecondsRemainingString(timeLeft))
+function LCH.Rize.AcceleratingCharge(result, targetType, targetUnitId, hitValue)
+  if result == ACTION_RESULT_BEGIN and hitValue > 2000 then
+    if targetType == COMBAT_UNIT_TYPE_PLAYER then
+      LCH.Alert("", "Accelerating Charge", 0xFFD666FF, LCH.Rize.constants.accelerating_charge_id, SOUNDS.OBJECTIVE_DISCOVERED, 2000)
+    end
+  end
+end
+
+function LCH.Rize.Tempest(result, targetType, targetUnitId, hitValue)
+  if result == ACTION_RESULT_BEGIN and hitValue > 500 then
+    LCH.Alert("", "Tempest", 0x6082B6FF, LCH.Rize.constants.tempest_id, SOUNDS.BATTLEGROUND_CAPTURE_FLAG_TAKEN_OWN_TEAM, 2000)
+  end
+end
+
+function LCH.Rize.UpdateTick(timeSec)
+
 end

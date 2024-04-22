@@ -2,7 +2,7 @@ LCH = LCH or {}
 local LCH = LCH
 
 LCH.name     = "LucentCitadelHelper"
-LCH.version  = "0.1.4"
+LCH.version  = "0.1.6"
 LCH.author   = "@Wondernuts, @kabs12"
 LCH.active   = false
 
@@ -86,6 +86,8 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
   elseif abilityId == LCH.Zilyesset.constants.porcinlight_id then
     LCH.Zilyesset.OnDarkSide(result, targetType, targetUnitId, hitValue)
 
+  elseif abilityId == LCH.Orphic.constants.color_change_id then
+    LCH.Orphic.ColorChange(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Orphic.constants.thunder_thrall_id then
     LCH.Orphic.ThunderThrall(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Orphic.constants.heavy_shock_id then
@@ -107,6 +109,10 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
     LCH.Rize.NecroticRain(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Rize.constants.lustrous_javelin_id then
     LCH.Rize.LustrousJavelin(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Rize.constants.accelerating_charge_id then
+    LCH.Rize.AcceleratingCharge(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Rize.constants.tempest_id then
+    LCH.Rize.Tempest(result, targetType, targetUnitId, hitValue)
   end
 end
 
