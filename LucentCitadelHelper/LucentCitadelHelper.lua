@@ -18,6 +18,8 @@ LCH.status = {
 
   locked = true,
 
+
+  
   MirrorIconNumber1 = {},
   MirrorIconNumber2 = {},
   MirrorIconNumber3 = {},
