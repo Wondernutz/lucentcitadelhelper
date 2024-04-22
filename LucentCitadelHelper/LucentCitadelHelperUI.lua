@@ -120,15 +120,15 @@ function LCH.HideAllUI(hide)
   -- Generic
   LCHStatusLabelTop:SetHidden(hide)
 
-  -- Zilyesset
-  LCHStatusLabelZilyesset1:SetHidden(hide)
-  LCHStatusLabelZilyesset1Value:SetHidden(hide)
-  LCHStatusLabelZilyesset2:SetHidden(hide)
-  LCHStatusLabelZilyesset2Value:SetHidden(hide)
-  LCHStatusLabelZilyesset3:SetHidden(hide)
-  LCHStatusLabelZilyesset3Value:SetHidden(hide)
-  LCHStatusLabelZilyesset4:SetHidden(hide)
-  LCHStatusLabelZilyesset4Value:SetHidden(hide)
+  -- Ryelaz
+  LCHStatusLabelRyelaz1:SetHidden(hide)
+  LCHStatusLabelRyelaz1Value:SetHidden(hide)
+  LCHStatusLabelRyelaz2:SetHidden(hide)
+  LCHStatusLabelRyelaz2Value:SetHidden(hide)
+  LCHStatusLabelRyelaz3:SetHidden(hide)
+  LCHStatusLabelRyelaz3Value:SetHidden(hide)
+  LCHStatusLabelRyelaz4:SetHidden(hide)
+  LCHStatusLabelRyelaz4Value:SetHidden(hide)
 
   -- Orphic
   LCHStatusLabelOrphic1:SetHidden(hide)
