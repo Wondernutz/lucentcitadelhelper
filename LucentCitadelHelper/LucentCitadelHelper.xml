@@ -116,7 +116,7 @@
       </Label>
 
       <!-- Boss 3: Rize -->
-      <Label name="$(parent)LabelRize1" font="ZoFontWinH1" color="A8A9AD" text="Next Calamity:" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
+      <Label name="$(parent)LabelRize1" font="ZoFontWinH1" color="A8A9AD" text="Next Necrotic Rain:" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
           <Dimensions x="600" y="50" />
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="0"/>
       </Label>
