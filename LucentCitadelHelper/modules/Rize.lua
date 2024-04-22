@@ -103,6 +103,8 @@ function LCH.Rize.NecroticRainUpdateTick(timeSec)
   end
 
   LCHStatusLabelRize1Value:SetText(LCH.GetSecondsRemainingString(timeLeft))
+end
+
 function LCH.Rize.AcceleratingCharge(result, targetType, targetUnitId, hitValue)
   if result == ACTION_RESULT_BEGIN and hitValue > 2000 then
     if targetType == COMBAT_UNIT_TYPE_PLAYER then
