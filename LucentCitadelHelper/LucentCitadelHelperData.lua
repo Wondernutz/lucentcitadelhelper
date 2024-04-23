@@ -25,7 +25,7 @@ LCH.data    = {
 
   -- Boss names.
   -- String lower, to make sure changes here keep strings in lowercase.
-  RyelazName = string.lower(GetString(LCH_Ryelaz)),
+  ZilyessetName = string.lower(GetString(LCH_Zilyesset)),
   orphicName = string.lower(GetString(LCH_Orphic)),
   rizeName = string.lower(GetString(LCH_Rize)),
 

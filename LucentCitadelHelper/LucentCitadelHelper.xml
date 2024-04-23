@@ -59,39 +59,39 @@
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="-60" offsetX="0"/>
       </Label>
 
-      <!-- Boss 1: Ryelaz -->
-      <Label name="$(parent)LabelRyelaz1" font="ZoFontWinH1" color="CCCC66" text="Next Shrapnel:" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
+      <!-- Boss 1: Zilyesset -->
+      <Label name="$(parent)LabelZilyesset1" font="ZoFontWinH1" color="CCCC66" text="Next Shrapnel:" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
           <Dimensions x="600" y="50" />
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="0"/>
       </Label>
-      <Label name="$(parent)LabelRyelaz1Value" font="ZoFontWinH1" color="ff8500" text="60s" verticalAlignment="CENTER" horizontalAlignment="LEFT" alpha="0.85">
+      <Label name="$(parent)LabelZilyesset1Value" font="ZoFontWinH1" color="ff8500" text="60s" verticalAlignment="CENTER" horizontalAlignment="LEFT" alpha="0.85">
           <Dimensions x="600" y="50" />
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="0" offsetX="230"/>
       </Label>
 
-      <Label name="$(parent)LabelRyelaz2" font="ZoFontWinH1" color="FF6600" text="Next Firebombs:" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
+      <Label name="$(parent)LabelZilyesset2" font="ZoFontWinH1" color="FF6600" text="Next Firebombs:" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
           <Dimensions x="600" y="50" />
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="40"/>
       </Label>
-      <Label name="$(parent)LabelRyelaz2Value" font="ZoFontWinH1" color="ff8500" text="INC" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
+      <Label name="$(parent)LabelZilyesset2Value" font="ZoFontWinH1" color="ff8500" text="INC" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
           <Dimensions x="600" y="50" />
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="40" offsetX="230"/>
       </Label>
 
-      <Label name="$(parent)LabelRyelaz3" font="ZoFontWinH1" color="66CCFF" text="Next Frostbombs:" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
+      <Label name="$(parent)LabelZilyesset3" font="ZoFontWinH1" color="66CCFF" text="Next Frostbombs:" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
           <Dimensions x="600" y="50" />
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="80"/>
       </Label>
-      <Label name="$(parent)LabelRyelaz3Value" font="ZoFontWinH1" color="ff8500" text="INC" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
+      <Label name="$(parent)LabelZilyesset3Value" font="ZoFontWinH1" color="ff8500" text="INC" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
           <Dimensions x="600" y="50" />
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="80" offsetX="230"/>
       </Label>
 
-      <Label name="$(parent)LabelRyelaz4" font="ZoFontWinH1" color="A8A9AD" text="Next Chain:" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
+      <Label name="$(parent)LabelZilyesset4" font="ZoFontWinH1" color="A8A9AD" text="Next Chain:" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
           <Dimensions x="600" y="50" />
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="120"/>
       </Label>
-      <Label name="$(parent)LabelRyelaz4Value" font="ZoFontWinH1" color="ff8500" text="INC" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
+      <Label name="$(parent)LabelZilyesset4Value" font="ZoFontWinH1" color="ff8500" text="INC" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
           <Dimensions x="600" y="50" />
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="120" offsetX="230"/>
       </Label>
