@@ -18,6 +18,13 @@ LCH.status = {
 
   locked = true,
 
+  RyelazPadIconNumber1 = {},
+  RyelazPadIconNumber2 = {},
+  RyelazPadIconNumber3 = {},
+  ZilyessetPadIconNumber1 = {},
+  ZilyessetPadIconNumber2 = {},
+  ZilyessetPadIconNumber3 = {},
+
   MirrorIconNumber1 = {},
   MirrorIconNumber2 = {},
   MirrorIconNumber3 = {},

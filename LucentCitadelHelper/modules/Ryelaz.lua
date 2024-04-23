@@ -39,7 +39,7 @@ function LCH.Ryelaz.AddPadIcons()
           33533,
           132051,
           "LucentCitadelHelper/icons/1.dds",
-          1 * OSI.GetIconSize()))
+          1.5 * OSI.GetIconSize()))
     end
     if table.getn(LCH.status.RyelazPadIconNumber2) == 0 then
       table.insert(LCH.status.RyelazPadIconNumber2, 
@@ -48,7 +48,7 @@ function LCH.Ryelaz.AddPadIcons()
           33533,
           133229,
           "LucentCitadelHelper/icons/2.dds",
-          1 * OSI.GetIconSize()))
+          1.5 * OSI.GetIconSize()))
     end
     if table.getn(LCH.status.RyelazPadIconNumber3) == 0 then
       table.insert(LCH.status.RyelazPadIconNumber3, 
@@ -57,34 +57,34 @@ function LCH.Ryelaz.AddPadIcons()
           33533,
           131966,
           "LucentCitadelHelper/icons/3.dds",
-          1 * OSI.GetIconSize()))
+          1.5 * OSI.GetIconSize()))
     end
-    if table.getn(LCH.status.RyelazPadIconNumber1) == 0 then
-      table.insert(LCH.status.RyelazPadIconNumber1, 
+    if table.getn(LCH.status.ZilyessetPadIconNumber1) == 0 then
+      table.insert(LCH.status.ZilyessetPadIconNumber1, 
         OSI.CreatePositionIcon(
           127396,
           33541,
           128074,
           "LucentCitadelHelper/icons/1.dds",
-          1 * OSI.GetIconSize()))
+          1.5 * OSI.GetIconSize()))
     end
-    if table.getn(LCH.status.RyelazPadIconNumber2) == 0 then
-      table.insert(LCH.status.RyelazPadIconNumber2, 
+    if table.getn(LCH.status.ZilyessetPadIconNumber2) == 0 then
+      table.insert(LCH.status.ZilyessetPadIconNumber2, 
         OSI.CreatePositionIcon(
           124978,
           33541,
           126882,
           "LucentCitadelHelper/icons/2.dds",
-          1 * OSI.GetIconSize()))
+          1.5 * OSI.GetIconSize()))
     end
-    if table.getn(LCH.status.RyelazPadIconNumber3) == 0 then
-      table.insert(LCH.status.RyelazPadIconNumber3, 
+    if table.getn(LCH.status.ZilyessetPadIconNumber3) == 0 then
+      table.insert(LCH.status.ZilyessetPadIconNumber3, 
         OSI.CreatePositionIcon(
           122814,
           33541,
           127806,
           "LucentCitadelHelper/icons/3.dds",
-          1 * OSI.GetIconSize()))
+          1.5 * OSI.GetIconSize()))
     end
   end
 end
@@ -99,14 +99,14 @@ function LCH.Ryelaz.RemovePadIcons()
   LCH.DiscardPositionIconList(LCH.status.RyelazPadIconNumber3)
   LCH.status.RyelazPadIconNumber3 = {}
 
-  LCH.DiscardPositionIconList(LCH.status.RyelazPadIconNumber1)
-  LCH.status.RyelazPadIconNumber1 = {}
+  LCH.DiscardPositionIconList(LCH.status.ZilyessetPadIconNumber1)
+  LCH.status.ZilyessetPadIconNumber1 = {}
 
-  LCH.DiscardPositionIconList(LCH.status.RyelazPadIconNumber2)
-  LCH.status.RyelazPadIconNumber2 = {}
+  LCH.DiscardPositionIconList(LCH.status.ZilyessetPadIconNumber2)
+  LCH.status.ZilyessetPadIconNumber2 = {}
 
-  LCH.DiscardPositionIconList(LCH.status.RyelazPadIconNumber3)
-  LCH.status.RyelazPadIconNumber3 = {}
+  LCH.DiscardPositionIconList(LCH.status.ZilyessetPadIconNumber3)
+  LCH.status.ZilyessetPadIconNumber3 = {}
 end
 
 function LCH.Ryelaz.Annihilation(result, targetType, targetUnitId, hitValue)
