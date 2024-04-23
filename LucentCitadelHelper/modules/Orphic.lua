@@ -21,7 +21,6 @@ LCH.Orphic.constants = {
 
 function LCH.Orphic.AddMirrorIcons()
   if LCH.savedVariables.showMirrorIcons and LCH.hasOSI() then
-
     if table.getn(LCH.status.MirrorIconNumber1) == 0 then
       table.insert(LCH.status.MirrorIconNumber1, 
         OSI.CreatePositionIcon(
