@@ -11,7 +11,7 @@ LCH.status = {
   inCombat = false,
 
   currentBoss = "",
-  isRyelaz = false,
+  isZilyesset = false,
   isOrphic = false,
   isRize = false,
   isHMBoss = false,
@@ -79,16 +79,16 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
   if abilityId == LCH.Common.constants.hindered_id then
     LCH.Common.Hindered(result, targetUnitId, hitValue)
 
-  elseif abilityId == LCH.Ryelaz.constants.brilliant_annihilation_id then
-    LCH.Ryelaz.Annihilation(result, targetType, targetUnitId, hitValue)
-  elseif abilityId == LCH.Ryelaz.constants.summon_shardborn_lightweaver_id then
-    LCH.Ryelaz.SummonLightweaver(result, targetType, targetUnitId, hitValue)
-  elseif abilityId == LCH.Ryelaz.constants.summon_gloomy_blackguard_id then
-    LCH.Ryelaz.SummonBlackguard(result, targetType, targetUnitId, hitValue)
-  elseif abilityId == LCH.Ryelaz.constants.porcindark_id then
-    LCH.Ryelaz.OnLightSide(result, targetType, targetUnitId, hitValue)
-  elseif abilityId == LCH.Ryelaz.constants.porcinlight_id then
-    LCH.Ryelaz.OnDarkSide(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Zilyesset.constants.brilliant_annihilation_id then
+    LCH.Zilyesset.Annihilation(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Zilyesset.constants.summon_shardborn_lightweaver_id then
+    LCH.Zilyesset.SummonLightweaver(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Zilyesset.constants.summon_gloomy_blackguard_id then
+    LCH.Zilyesset.SummonBlackguard(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Zilyesset.constants.porcindark_id then
+    LCH.Zilyesset.OnLightSide(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Zilyesset.constants.porcinlight_id then
+    LCH.Zilyesset.OnDarkSide(result, targetType, targetUnitId, hitValue)
 
   elseif abilityId == LCH.Orphic.constants.thunder_thrall_id then
     LCH.Orphic.ThunderThrall(result, targetType, targetUnitId, hitValue)
@@ -125,9 +125,9 @@ function LCH.UpdateTick(gameTimeMs)
     return
   end
   
-  -- Boss 1: Ryelaz
-  if LCH.status.isRyelaz then
-    LCH.Ryelaz.UpdateTick(timeSec)
+  -- Boss 1: Zilyesset
+  if LCH.status.isZilyesset then
+    LCH.Zilyesset.UpdateTick(timeSec)
   end
 
   -- Boss 2: Orphic
@@ -176,7 +176,7 @@ function LCH.ResetStatus()
   LCH.status.unitDamageTaken = {}
 
   LCH.Common.Init()
-  LCH.Ryelaz.Init()
+  LCH.Zilyesset.Init()
   LCH.Orphic.Init()
   LCH.Rize.Init()
 
@@ -203,17 +203,17 @@ function LCH.BossesChanged()
   if bossName ~= nil then
     LCH.status.currentBoss = bossName
     
-    LCH.status.isRyelaz = false
+    LCH.status.isZilyesset = false
     LCH.status.isOrphic = false
     LCH.status.isRize = false
     LCH.status.isHMBoss = false
 
-    LCH.Ryelaz.RemovePadIcons()
+    LCH.Zilyesset.RemovePadIcons()
     LCH.Orphic.RemoveMirrorIcons()
 
     local currentTargetHP, maxTargetHP, effmaxTargetHP = GetUnitPower("boss1", POWERTYPE_HEALTH)
     local hardmodeHealth = {
-      [LCH.data.RyelazName] = 40000000, -- vet ?, HM 48.9M
+      [LCH.data.ZilyessetName] = 40000000, -- vet ?, HM 48.9M
       [LCH.data.orphicName] = 80000000,  -- vet ?, HM 97.8M
       [LCH.data.rizeName] = 20000000, -- vet: ?, HM 22.3M
     }
@@ -227,9 +227,9 @@ function LCH.BossesChanged()
       end
     end
 
-    if string.match(bossName, LCH.data.RyelazName) then
-      LCH.status.isRyelaz = true
-      LCH.Ryelaz.AddPadIcons()
+    if string.match(bossName, LCH.data.ZilyessetName) then
+      LCH.status.isZilyesset = true
+      LCH.Zilyesset.AddPadIcons()
     elseif string.match(bossName, LCH.data.orphicName) then
       LCH.status.isOrphic = true
       LCH.Orphic.AddMirrorIcons()

@@ -1,16 +1,16 @@
 LCH = LCH or {}
 local LCH = LCH
-LCH.Ryelaz = {
+LCH.Zilyesset = {
   playerSide = nil,
 }
 
-LCH.Ryelaz.constants = {
+LCH.Zilyesset.constants = {
   brilliant_annihilation_id = 214187,
 
   porcinlight_id = 219329, -- Having this buff means player is on dark side with Count Ryelaz
   porcindark_id = 219330, -- Having this buff means player is on light side with Zilyesset
   summon_shardborn_lightweaver_id = 218113, -- Big add from Zilyesset
-  summon_gloomy_blackguard_id = 218109, -- Big add from Count Ryelaz
+  summon_gloomy_blackguard_id = 218109, -- Big add from Count Zilyesset
 
   pad_icon_number1_pos_list = {
     [1] = {127343,33533,131965}, -- Count Ryelaz
@@ -26,10 +26,10 @@ LCH.Ryelaz.constants = {
   },
 }
 
-function LCH.Ryelaz.Init()
+function LCH.Zilyesset.Init()
 end
 
-function LCH.Ryelaz.AddPadIcons()
+function LCH.Zilyesset.AddPadIcons()
   if LCH.savedVariables.showPadIcons and LCH.hasOSI() then
 
     if table.getn(LCH.status.RyelazPadIconNumber1) == 0 then
@@ -89,7 +89,7 @@ function LCH.Ryelaz.AddPadIcons()
   end
 end
 
-function LCH.Ryelaz.RemovePadIcons()
+function LCH.Zilyesset.RemovePadIcons()
   LCH.DiscardPositionIconList(LCH.status.RyelazPadIconNumber1)
   LCH.status.RyelazPadIconNumber1 = {}
 
@@ -109,22 +109,22 @@ function LCH.Ryelaz.RemovePadIcons()
   LCH.status.ZilyessetPadIconNumber3 = {}
 end
 
-function LCH.Ryelaz.Annihilation(result, targetType, targetUnitId, hitValue)
+function LCH.Zilyesset.Annihilation(result, targetType, targetUnitId, hitValue)
   if result == ACTION_RESULT_BEGIN and hitValue > 2000 then
-    LCH.Alert("", "Annihilation", 0xFF0033FF, LCH.Ryelaz.constants.brilliant_annihilation_id, SOUNDS.BATTLEGROUND_CAPTURE_FLAG_TAKEN_OWN_TEAM, 12000)
-    CombatAlerts.AlertCast(LCH.Ryelaz.constants.brilliant_annihilation_id, "Annihilation", hitValue, {-2, 0})
+    LCH.Alert("", "Annihilation", 0xFF0033FF, LCH.Zilyesset.constants.brilliant_annihilation_id, SOUNDS.BATTLEGROUND_CAPTURE_FLAG_TAKEN_OWN_TEAM, 12000)
+    CombatAlerts.AlertCast(LCH.Zilyesset.constants.brilliant_annihilation_id, "Annihilation", hitValue, {-2, 0})
   end
 end
 
-function LCH.Ryelaz.getPlayerSide()
+function LCH.Zilyesset.getPlayerSide()
   local buffs = GetNumBuffs('player')
 
   if buffs > 0 then
     for i = 1, buffs do
       local name, startTime, endTime, buffSlot, stackCount, iconFilename, buffType, effectType, abilityType, statusEffectType, id, canClickOff, castByPlayer = GetUnitBuffInfo('player', i)
-      if id == LCH.Ryelaz.constants.porcinlight_id then
+      if id == LCH.Zilyesset.constants.porcinlight_id then
         return "dark"
-      elseif id == LCH.Ryelaz.constants.porcindark_id then
+      elseif id == LCH.Zilyesset.constants.porcindark_id then
         return "light"
       end
     end
@@ -133,44 +133,44 @@ function LCH.Ryelaz.getPlayerSide()
   return nil
 end
 
-function LCH.Ryelaz.OnLightSide(result, targetType, targetUnitId, hitValue)
+function LCH.Zilyesset.OnLightSide(result, targetType, targetUnitId, hitValue)
   if result == ACTION_RESULT_EFFECT_GAINED_DURATION then
     if targetType == COMBAT_UNIT_TYPE_PLAYER then
-      LCH.Ryelaz.playerSide = "light"
+      LCH.Zilyesset.playerSide = "light"
     end
   end
 end
 
-function LCH.Ryelaz.OnDarkSide(result, targetType, targetUnitId, hitValue)
+function LCH.Zilyesset.OnDarkSide(result, targetType, targetUnitId, hitValue)
   if result == ACTION_RESULT_EFFECT_GAINED_DURATION then
     if targetType == COMBAT_UNIT_TYPE_PLAYER then
-      LCH.Ryelaz.playerSide = "dark"
+      LCH.Zilyesset.playerSide = "dark"
     end
   end
 end
 
-function LCH.Ryelaz.SummonLightweaver(result, targetType, targetUnitId, hitValue)
+function LCH.Zilyesset.SummonLightweaver(result, targetType, targetUnitId, hitValue)
   -- Summon big add from Zilyesset
   if result == ACTION_RESULT_EFFECT_GAINED_DURATION then
-    if LCH.Ryelaz.playerSide == "dark" then
+    if LCH.Zilyesset.playerSide == "dark" then
       return
     end
 
-    LCH.Alert("", "Summon Lightweaver", 0xFFBCC6CC, LCH.Ryelaz.constants.summon_shardborn_lightweaver_id, SOUNDS.OBJECTIVE_DISCOVERED, 2000)
+    LCH.Alert("", "Summon Lightweaver", 0xFFBCC6CC, LCH.Zilyesset.constants.summon_shardborn_lightweaver_id, SOUNDS.OBJECTIVE_DISCOVERED, 2000)
   end
 end
 
-function LCH.Ryelaz.SummonBlackguard(result, targetType, targetUnitId, hitValue)
+function LCH.Zilyesset.SummonBlackguard(result, targetType, targetUnitId, hitValue)
   -- Summon big add from Zilyesset
-  if LCH.Ryelaz.playerSide == "light" then
+  if LCH.Zilyesset.playerSide == "light" then
     return
   end
 
   if result == ACTION_RESULT_EFFECT_GAINED_DURATION then
-    LCH.Alert("", "Summon Blackguard", 0xFF0033FF, LCH.Ryelaz.constants.summon_gloomy_blackguard_id, SOUNDS.OBJECTIVE_DISCOVERED, 2000)
+    LCH.Alert("", "Summon Blackguard", 0xFF0033FF, LCH.Zilyesset.constants.summon_gloomy_blackguard_id, SOUNDS.OBJECTIVE_DISCOVERED, 2000)
   end
 end
 
-function LCH.Ryelaz.UpdateTick(timeSec)
+function LCH.Zilyesset.UpdateTick(timeSec)
 
 end

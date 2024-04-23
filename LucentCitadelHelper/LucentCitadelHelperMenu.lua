@@ -57,8 +57,8 @@ function LCH.Menu.AddonMenu()
     },
     {
       type = "header",
-      name = "Count Ryelaz & Zilyesset",
-      reference = "RyelazHeader"
+      name = "Zilyesset & Count Ryelaz",
+      reference = "ZilyessetHeader"
     },
     {
       type    = "checkbox",
