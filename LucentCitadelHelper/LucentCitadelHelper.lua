@@ -209,7 +209,7 @@ function LCH.BossesChanged()
     local hardmodeHealth = {
       [LCH.data.zilyessetName] = 40000000, -- vet ?, HM 48.9M
       [LCH.data.orphicName] = 80000000,  -- vet ?, HM 97.8M
-      [LCH.data.xorynName] = 20000000, -- vet: ?, HM 22.3M
+      [LCH.data.xorynName] = 100000000, -- vet: ?, HM 118.8M
     }
 
     -- Check for HM.
