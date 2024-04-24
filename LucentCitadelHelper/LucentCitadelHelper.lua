@@ -61,8 +61,8 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
   if abilityId == LCH.Common.constants.hindered_id then
     LCH.Common.Hindered(result, targetUnitId, hitValue)
 
-  elseif abilityId == LCH.Zilyesset.constants.brilliant_annihilation_id then
-    LCH.Zilyesset.Annihilation(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Zilyesset.constants.brilliant_annihilation_id or abilityId == LCH.Zilyesset.constants.bleak_annihilation_id then
+    LCH.Zilyesset.Annihilation(abilityId, result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Zilyesset.constants.summon_shardborn_lightweaver_id then
     LCH.Zilyesset.SummonLightweaver(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Zilyesset.constants.summon_gloomy_blackguard_id then
