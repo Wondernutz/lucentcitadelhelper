@@ -2,7 +2,7 @@ LCH = LCH or {}
 local LCH = LCH
 
 LCH.name     = "LucentCitadelHelper"
-LCH.version  = "0.1.6"
+LCH.version  = "0.2.1"
 LCH.author   = "@Wondernuts, @kabs12"
 LCH.active   = false
 
@@ -13,7 +13,7 @@ LCH.status = {
   currentBoss = "",
   isZilyesset = false,
   isOrphic = false,
-  isRize = false,
+  isXoryn = false,
   isHMBoss = false,
 
   locked = true,
@@ -53,6 +53,9 @@ LCH.settings = {
 
   -- Orphic
   showXorynJumpTimer = true,
+
+  -- Last Boss
+  showFluctuatingCurrentTimer = true,
   showMirrorIcons = true,
 
   -- Rize
@@ -82,8 +85,8 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
   if abilityId == LCH.Common.constants.hindered_id then
     LCH.Common.Hindered(result, targetUnitId, hitValue)
 
-  elseif abilityId == LCH.Zilyesset.constants.brilliant_annihilation_id then
-    LCH.Zilyesset.Annihilation(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Zilyesset.constants.brilliant_annihilation_id or abilityId == LCH.Zilyesset.constants.bleak_annihilation_id then
+    LCH.Zilyesset.Annihilation(abilityId, result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Zilyesset.constants.summon_shardborn_lightweaver_id then
     LCH.Zilyesset.SummonLightweaver(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Zilyesset.constants.summon_gloomy_blackguard_id then
@@ -110,10 +113,6 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
     LCH.Rize.SplinteredBurst(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Rize.constants.arcane_conveyance_cast_id then
     LCH.Rize.ArcaneConveyance(result, targetType, targetUnitId, hitValue)
-  elseif abilityId == LCH.Rize.constants.necrotic_spear_id then
-    LCH.Rize.NecroticSpear(result, targetType, targetUnitId, hitValue)
-  elseif abilityId == LCH.Rize.constants.necrotic_rain_id then
-    LCH.Rize.NecroticRain(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Rize.constants.lustrous_javelin_id then
     LCH.Rize.LustrousJavelin(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Rize.constants.accelerating_charge_id then
@@ -148,9 +147,9 @@ function LCH.UpdateTick(gameTimeMs)
     LCH.Orphic.UpdateTick(timeSec)
   end
 
-  -- Boss 3: Rize
-  if LCH.status.isRize then
-    LCH.Rize.UpdateTick(timeSec)
+  -- Boss 3: Xoryn
+  if LCH.status.isXoryn then
+    LCH.Xoryn.UpdateTick(timeSec)
   end
 
 end
@@ -191,7 +190,7 @@ function LCH.ResetStatus()
   LCH.Common.Init()
   LCH.Zilyesset.Init()
   LCH.Orphic.Init()
-  LCH.Rize.Init()
+  LCH.Xoryn.Init()
 
   LCH.status.mainTankTag = ""
 end
@@ -218,7 +217,7 @@ function LCH.BossesChanged()
     
     LCH.status.isZilyesset = false
     LCH.status.isOrphic = false
-    LCH.status.isRize = false
+    LCH.status.isXoryn = false
     LCH.status.isHMBoss = false
 
     LCH.Zilyesset.RemovePadIcons()
@@ -228,7 +227,7 @@ function LCH.BossesChanged()
     local hardmodeHealth = {
       [LCH.data.ZilyessetName] = 40000000, -- vet ?, HM 48.9M
       [LCH.data.orphicName] = 80000000,  -- vet ?, HM 97.8M
-      [LCH.data.rizeName] = 20000000, -- vet: ?, HM 22.3M
+      [LCH.data.xorynName] = 100000000, -- vet: ?, HM 118.8M
     }
 
     -- Check for HM.
@@ -245,7 +244,6 @@ function LCH.BossesChanged()
       LCH.Zilyesset.AddPadIcons()
     elseif string.match(bossName, LCH.data.orphicName) then
       LCH.status.isOrphic = true
-      LCH.Orphic.AddMirrorIcons()
     elseif string.match(bossName, LCH.data.rizeName) then
       LCH.status.isRize = true
     end

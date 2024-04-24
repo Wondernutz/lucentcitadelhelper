@@ -115,48 +115,48 @@
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="40" offsetX="250"/>
       </Label>
 
-      <!-- Boss 3: Rize -->
-      <Label name="$(parent)LabelRize1" font="ZoFontWinH1" color="A8A9AD" text="Next Necrotic Rain:" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
+      <!-- Boss 3: Xoryn -->
+      <Label name="$(parent)LabelXoryn1" font="ZoFontWinH1" color="A8A9AD" text="Next Calamity:" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
           <Dimensions x="600" y="50" />
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="0"/>
       </Label>
-      <Label name="$(parent)LabelRize1Value" font="ZoFontWinH1" color="ff8500" text="-" verticalAlignment="CENTER" horizontalAlignment="LEFT" alpha="0.85">
+      <Label name="$(parent)LabelXoryn1Value" font="ZoFontWinH1" color="ff8500" text="-" verticalAlignment="CENTER" horizontalAlignment="LEFT" alpha="0.85">
           <Dimensions x="600" y="50" />
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="0" offsetX="250"/>
       </Label>
 
-      <Label name="$(parent)LabelRize2" font="ZoFontWinH1" color="303B4C" text="Next:" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
+      <Label name="$(parent)LabelXoryn2" font="ZoFontWinH1" color="FFD666" text="Fluct. Current:" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
           <Dimensions x="600" y="50" />
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="40"/>
       </Label>
-      <Label name="$(parent)LabelRize2Value" font="ZoFontWinH1" color="ff8500" text="INC" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
+      <Label name="$(parent)LabelXoryn2Value" font="ZoFontWinH1" color="ff8500" text="" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
           <Dimensions x="600" y="50" />
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="40" offsetX="250"/>
       </Label>
 
-      <Label name="$(parent)LabelRize3" font="ZoFontWinH1" color="FF0000" text="Red Boss:" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
+      <Label name="$(parent)LabelXoryn3" font="ZoFontWinH1" color="FF0000" text="Red Boss:" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
           <Dimensions x="600" y="50" />
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="80"/>
       </Label>
-      <Label name="$(parent)LabelRize3Value" font="ZoFontWinH1" color="ff8500" text="100.0%" verticalAlignment="CENTER" horizontalAlignment="LEFT" alpha="0.85">
+      <Label name="$(parent)LabelXoryn3Value" font="ZoFontWinH1" color="ff8500" text="100.0%" verticalAlignment="CENTER" horizontalAlignment="LEFT" alpha="0.85">
           <Dimensions x="600" y="50" />
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="80" offsetX="250"/>
       </Label>
 
-      <Label name="$(parent)LabelRize4" font="ZoFontWinH1" color="00FF00" text="Green Boss:" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
+      <Label name="$(parent)LabelXoryn4" font="ZoFontWinH1" color="00FF00" text="Green Boss:" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
           <Dimensions x="600" y="50" />
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="120"/>
       </Label>
-      <Label name="$(parent)LabelRize4Value" font="ZoFontWinH1" color="ff8500" text="100.0%" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
+      <Label name="$(parent)LabelXoryn4Value" font="ZoFontWinH1" color="ff8500" text="100.0%" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
           <Dimensions x="600" y="50" />
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="120" offsetX="250"/>
       </Label>
 
-      <Label name="$(parent)LabelRize5" font="ZoFontWinH1" color="0000FF" text="Blue Boss:" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
+      <Label name="$(parent)LabelXoryn5" font="ZoFontWinH1" color="0000FF" text="Blue Boss:" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
           <Dimensions x="600" y="50" />
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="160"/>
       </Label>
-      <Label name="$(parent)LabelRize5Value" font="ZoFontWinH1" color="ff8500" text="100.0%" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
+      <Label name="$(parent)LabelXoryn5Value" font="ZoFontWinH1" color="ff8500" text="100.0%" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
           <Dimensions x="600" y="50" />
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="160" offsetX="250"/>
       </Label>

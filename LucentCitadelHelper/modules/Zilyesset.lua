@@ -5,8 +5,8 @@ LCH.Zilyesset = {
 }
 
 LCH.Zilyesset.constants = {
-  brilliant_annihilation_id = 214187,
-
+  brilliant_annihilation_id = 214187, -- Room wipe
+  bleak_annihilation_id = 214203, -- Room wipe
   porcinlight_id = 219329, -- Having this buff means player is on dark side with Count Ryelaz
   porcindark_id = 219330, -- Having this buff means player is on light side with Zilyesset
   summon_shardborn_lightweaver_id = 218113, -- Big add from Zilyesset
@@ -103,10 +103,10 @@ function LCH.Zilyesset.RemovePadIcons()
   LCH.status.ZilyessetPadIconNumber3 = {}
 end
 
-function LCH.Zilyesset.Annihilation(result, targetType, targetUnitId, hitValue)
+function LCH.Zilyesset.Annihilation(abilityId, result, targetType, targetUnitId, hitValue)
   if result == ACTION_RESULT_BEGIN and hitValue > 2000 then
-    LCH.Alert("", "Annihilation", 0xFF0033FF, LCH.Zilyesset.constants.brilliant_annihilation_id, SOUNDS.BATTLEGROUND_CAPTURE_FLAG_TAKEN_OWN_TEAM, 12000)
-    CombatAlerts.AlertCast(LCH.Zilyesset.constants.brilliant_annihilation_id, "Annihilation", hitValue, {-2, 0})
+    LCH.Alert("", "Annihilation", 0xFF0033FF, abilityId, SOUNDS.BATTLEGROUND_CAPTURE_FLAG_TAKEN_OWN_TEAM, 4000)
+    CombatAlerts.CastAlertsStart(abilityId, "Annihilation", hitValue, 12000, nil, nil)
   end
 end
 
