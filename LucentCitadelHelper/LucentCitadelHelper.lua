@@ -2,7 +2,7 @@ LCH = LCH or {}
 local LCH = LCH
 
 LCH.name     = "LucentCitadelHelper"
-LCH.version  = "0.1.6"
+LCH.version  = "0.1.7"
 LCH.author   = "@Wondernuts, @kabs12"
 LCH.active   = false
 
@@ -88,6 +88,8 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
   elseif abilityId == LCH.Rize.constants.splintered_burst_id then
     LCH.Rize.SplinteredBurst(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Rize.constants.arcane_conveyance_cast_id then
+    LCH.Rize.ArcaneConveyanceIncoming(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Rize.constants.arcane_conveyance_debuff_id then
     LCH.Rize.ArcaneConveyance(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Rize.constants.lustrous_javelin_id then
     LCH.Rize.LustrousJavelin(result, targetType, targetUnitId, hitValue)
