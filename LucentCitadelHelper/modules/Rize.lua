@@ -71,9 +71,9 @@ function LCH.Rize.NecroticSpear(result, targetType, targetUnitId, hitValue)
   end
 end
 
-function LCH.Rize.NecroticRain(result, targetType, targetUnitId, hitValue, abilityId)
+function LCH.Rize.NecroticRain(result, targetType, targetUnitId, hitValue)
   -- Mzrelnir Necrotic Rain
-  if result == ACTION_RESULT_BEGIN and abilityId == LCH.Rize.constants.necrotic_rain_id then
+  if result == ACTION_RESULT_BEGIN and hitValue > 500 then
     LCH.Rize.lastNecroticRain = GetGameTimeSeconds()
     LCH.Rize.isFirstNecroticRain = false
     

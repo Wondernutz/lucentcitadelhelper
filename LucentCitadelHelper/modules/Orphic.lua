@@ -101,25 +101,18 @@ end
 function LCH.Orphic.RemoveMirrorIcons()
   LCH.DiscardPositionIconList(LCH.status.MirrorIconNumber1)
   LCH.status.MirrorIconNumber1 = {}
-
   LCH.DiscardPositionIconList(LCH.status.MirrorIconNumber2)
   LCH.status.MirrorIconNumber2 = {}
-
   LCH.DiscardPositionIconList(LCH.status.MirrorIconNumber3)
   LCH.status.MirrorIconNumber3 = {}
-
   LCH.DiscardPositionIconList(LCH.status.MirrorIconNumber4)
   LCH.status.MirrorIconNumber4 = {}
-
   LCH.DiscardPositionIconList(LCH.status.MirrorIconNumber5)
   LCH.status.MirrorIconNumber5 = {}
-
   LCH.DiscardPositionIconList(LCH.status.MirrorIconNumber6)
   LCH.status.MirrorIconNumber6 = {}
-
   LCH.DiscardPositionIconList(LCH.status.MirrorIconNumber7)
   LCH.status.MirrorIconNumber7 = {}
-
   LCH.DiscardPositionIconList(LCH.status.MirrorIconNumber8)
   LCH.status.MirrorIconNumber8 = {}
 end
