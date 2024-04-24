@@ -63,9 +63,8 @@ end
 
 function LCH.Rize.AcceleratingCharge(result, targetType, targetUnitId, hitValue)
   if result == ACTION_RESULT_BEGIN and hitValue > 2000 then
-    if targetType == COMBAT_UNIT_TYPE_PLAYER then
-      LCH.Alert("", "Accelerating Charge", 0xFFD666FF, LCH.Rize.constants.accelerating_charge_id, SOUNDS.OBJECTIVE_DISCOVERED, 2000)
-    end
+    LCH.Alert("", "Chain Lightning", 0xFFD666FF, LCH.Rize.constants.accelerating_charge_id, SOUNDS.OBJECTIVE_DISCOVERED, 2000)
+    CombatAlerts.CastAlertsStart(LCH.Rize.constants.accelerating_charge_id, "Chain Lightning", hitValue, nil, nil, { hitValue, "Block!", 1, 0.4, 0, 0.5, nil })
   end
 end
 
