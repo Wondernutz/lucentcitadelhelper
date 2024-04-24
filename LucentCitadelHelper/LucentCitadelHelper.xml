@@ -125,11 +125,11 @@
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="0" offsetX="250"/>
       </Label>
 
-      <Label name="$(parent)LabelRize2" font="ZoFontWinH1" color="303B4C" text="Next:" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
+      <Label name="$(parent)LabelRize2" font="ZoFontWinH1" color="FFD666" text="Fluct. Current:" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
           <Dimensions x="600" y="50" />
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="40"/>
       </Label>
-      <Label name="$(parent)LabelRize2Value" font="ZoFontWinH1" color="ff8500" text="INC" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
+      <Label name="$(parent)LabelRize2Value" font="ZoFontWinH1" color="ff8500" text="" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
           <Dimensions x="600" y="50" />
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="40" offsetX="250"/>
       </Label>

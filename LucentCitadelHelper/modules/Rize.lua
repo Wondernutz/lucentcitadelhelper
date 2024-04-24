@@ -1,7 +1,8 @@
 LCH = LCH or {}
 local LCH = LCH
 LCH.Rize = {
-
+  lastFluctuatingCurrent = 0,
+  fluctuatingCurrentDuration = 0,
 }
 
 LCH.Rize.constants = {
@@ -16,7 +17,8 @@ LCH.Rize.constants = {
 }
 
 function LCH.Rize.Init()
-
+  LCH.Rize.lastFluctuatingCurrent = 0
+  LCH.Rize.fluctuatingCurrentDuration = 0
 end
 
 function LCH.Rize.LustrousJavelin(result, targetType, targetUnitId, hitValue)
@@ -81,6 +83,9 @@ function LCH.Rize.FluctuatingCurrent(result, targetType, targetUnitId, hitValue)
   local borderId = "fluctuatingCurrent"
 
   if result == ACTION_RESULT_EFFECT_GAINED_DURATION then
+    LCH.Rize.lastFluctuatingCurrent = GetGameTimeSeconds()
+    LCH.Rize.fluctuatingCurrentDuration = hitValue / 1000
+    
     if targetType == COMBAT_UNIT_TYPE_PLAYER then
       LCH.Alert("", "Fluctuating Current (you)", 0xFFD666FF, LCH.Rize.constants.fluctuating_current_id, SOUNDS.OBJECTIVE_DISCOVERED, 2000)
       CombatAlerts.ScreenBorderEnable(0x22AAFF99, hitValue, borderId)
@@ -114,5 +119,28 @@ function LCH.Rize.OverloadedCurrent(result, targetType, targetUnitId, hitValue)
 end
 
 function LCH.Rize.UpdateTick(timeSec)
+  LCHStatus:SetHidden(not (LCH.savedVariables.showFluctuatingCurrentTimer))
 
+  LCH.Rize.FluctuatingCurrentUpdateTick(timeSec)
+end
+
+function LCH.Rize.FluctuatingCurrentUpdateTick(timeSec)
+  LCHStatusLabelRize2:SetHidden(not (LCH.savedVariables.showFluctuatingCurrentTimer))
+  LCHStatusLabelRize2Value:SetHidden(not (LCH.savedVariables.showFluctuatingCurrentTimer))
+
+  local delta = timeSec - LCH.Rize.lastFluctuatingCurrent
+
+  local timeLeft = LCH.Rize.fluctuatingCurrentDuration - delta
+
+  LCHStatusLabelRize2Value:SetText(LCH.Rize.getSecondsRemainingString(timeLeft))
+end
+
+function LCH.Rize.getSecondsRemainingString(seconds)
+  if seconds > 5 then 
+    return string.format("%.0f", seconds) .. "s "
+  elseif seconds > 0 then 
+    return string.format("%.1f", seconds) .. "s "
+  else
+    return "-"
+  end
 end
