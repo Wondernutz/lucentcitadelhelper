@@ -110,6 +110,8 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
   elseif abilityId == LCH.Xoryn.constants.splintered_burst_id then
     LCH.Xoryn.SplinteredBurst(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Xoryn.constants.arcane_conveyance_cast_id then
+    LCH.Xoryn.ArcaneConveyanceIncoming(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Xoryn.constants.arcane_conveyance_debuff_id then
     LCH.Xoryn.ArcaneConveyance(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Xoryn.constants.lustrous_javelin_id then
     LCH.Xoryn.LustrousJavelin(result, targetType, targetUnitId, hitValue)
@@ -117,6 +119,10 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
     LCH.Xoryn.AcceleratingCharge(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Xoryn.constants.tempest_id then
     LCH.Xoryn.Tempest(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Xoryn.constants.fluctuating_current_id then
+    LCH.Xoryn.FluctuatingCurrent(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Xoryn.constants.overloaded_current_id then
+    LCH.Xoryn.OverloadedCurrent(result, targetType, targetUnitId, hitValue)
   end
 end
 
