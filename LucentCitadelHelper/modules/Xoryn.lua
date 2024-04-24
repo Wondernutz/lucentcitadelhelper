@@ -98,6 +98,8 @@ function LCH.Xoryn.FluctuatingCurrent(result, targetType, targetUnitId, hitValue
     )
 
   elseif result == ACTION_RESULT_EFFECT_FADED then
+    LCH.Xoryn.fluctuatingCurrentDuration = 0
+
     if targetType == COMBAT_UNIT_TYPE_PLAYER then
       CombatAlerts.ScreenBorderDisable(borderId)
     end
