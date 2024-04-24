@@ -80,8 +80,15 @@ function LCH.Menu.AddonMenu()
     },
     {
       type = "header",
-      name = "Baron Rize",
-      reference = "RizeHeader"
+      name = "Last Boss",
+      reference = "XorynHeader"
+    },
+    {
+      type    = "checkbox",
+      name    = "Panel: Fluctuating Current timer",
+      default = true,
+      getFunc = function() return LCH.savedVariables.showFluctuatingCurrentTimer end,
+      setFunc = function(newValue) LCH.savedVariables.showFluctuatingCurrentTimer = newValue end,
     },
     {
       type = "divider",

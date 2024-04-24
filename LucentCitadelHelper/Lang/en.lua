@@ -5,7 +5,7 @@
 	
 	LCH_Zilyesset		=		"Zilyesset",
 	LCH_Orphic			=		"Orphic Shattered Shard",
-	LCH_Rize		    =		"Baron Rize",
+	LCH_Xoryn		    =		"Xoryn",
 }
 
 for stringId, stringValue in pairs(strings) do

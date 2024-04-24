@@ -27,7 +27,7 @@ LCH.data    = {
   -- String lower, to make sure changes here keep strings in lowercase.
   zilyessetName = string.lower(GetString(LCH_Zilyesset)),
   orphicName = string.lower(GetString(LCH_Orphic)),
-  rizeName = string.lower(GetString(LCH_Rize)),
+  xorynName = string.lower(GetString(LCH_Xoryn)),
 
   --default_color = { 1, 0.7, 0, 0.5 },
   dodgeDuration = GetAbilityDuration(28549),

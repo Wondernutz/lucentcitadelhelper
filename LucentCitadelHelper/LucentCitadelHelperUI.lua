@@ -136,17 +136,17 @@ function LCH.HideAllUI(hide)
   LCHStatusLabelOrphic2:SetHidden(hide)
   LCHStatusLabelOrphic2Value:SetHidden(hide)
 
-  -- Rize
-  LCHStatusLabelRize1:SetHidden(hide)
-  LCHStatusLabelRize1Value:SetHidden(hide)
-  LCHStatusLabelRize2:SetHidden(hide)
-  LCHStatusLabelRize2Value:SetHidden(hide)
-  LCHStatusLabelRize3:SetHidden(hide)
-  LCHStatusLabelRize3Value:SetHidden(hide)
-  LCHStatusLabelRize4:SetHidden(hide)
-  LCHStatusLabelRize4Value:SetHidden(hide)
-  LCHStatusLabelRize5:SetHidden(hide)
-  LCHStatusLabelRize5Value:SetHidden(hide)
+  -- Xoryn
+  LCHStatusLabelXoryn1:SetHidden(hide)
+  LCHStatusLabelXoryn1Value:SetHidden(hide)
+  LCHStatusLabelXoryn2:SetHidden(hide)
+  LCHStatusLabelXoryn2Value:SetHidden(hide)
+  LCHStatusLabelXoryn3:SetHidden(hide)
+  LCHStatusLabelXoryn3Value:SetHidden(hide)
+  LCHStatusLabelXoryn4:SetHidden(hide)
+  LCHStatusLabelXoryn4Value:SetHidden(hide)
+  LCHStatusLabelXoryn5:SetHidden(hide)
+  LCHStatusLabelXoryn5Value:SetHidden(hide)
 end
 
 
