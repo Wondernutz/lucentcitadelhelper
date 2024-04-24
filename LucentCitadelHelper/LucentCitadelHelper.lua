@@ -229,7 +229,7 @@ function LCH.BossesChanged()
 
     local currentTargetHP, maxTargetHP, effmaxTargetHP = GetUnitPower("boss1", POWERTYPE_HEALTH)
     local hardmodeHealth = {
-      [LCH.data.ZilyessetName] = 40000000, -- vet ?, HM 48.9M
+      [LCH.data.zilyessetName] = 40000000, -- vet ?, HM 48.9M
       [LCH.data.orphicName] = 80000000,  -- vet ?, HM 97.8M
       [LCH.data.xorynName] = 100000000, -- vet: ?, HM 118.8M
     }
@@ -243,12 +243,12 @@ function LCH.BossesChanged()
       end
     end
 
-    if string.match(bossName, LCH.data.ZilyessetName) then
+    if string.match(bossName, LCH.data.zilyessetName) then
       LCH.status.isZilyesset = true
       LCH.Zilyesset.AddPadIcons()
     elseif string.match(bossName, LCH.data.orphicName) then
       LCH.status.isOrphic = true
-    elseif string.match(bossName, LCH.data.XorynName) then
+    elseif string.match(bossName, LCH.data.xorynName) then
       LCH.status.isXoryn = true
     end
   end
