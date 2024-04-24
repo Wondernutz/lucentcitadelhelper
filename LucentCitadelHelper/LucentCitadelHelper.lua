@@ -2,7 +2,7 @@ LCH = LCH or {}
 local LCH = LCH
 
 LCH.name     = "LucentCitadelHelper"
-LCH.version  = "0.1.8"
+LCH.version  = "0.2.0"
 LCH.author   = "@Wondernuts, @kabs12"
 LCH.active   = false
 
@@ -97,6 +97,10 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
     LCH.Rize.AcceleratingCharge(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Rize.constants.tempest_id then
     LCH.Rize.Tempest(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Rize.constants.fluctuating_current_id then
+    LCH.Rize.FluctuatingCurrent(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Rize.constants.overloaded_current_id then
+    LCH.Rize.OverloadedCurrent(result, targetType, targetUnitId, hitValue)
   end
 end
 

@@ -10,6 +10,8 @@ LCH.Rize.constants = {
   arcane_conveyance_debuff_id = 223060, -- Tether debuff
   lustrous_javelin_id = 223546, -- Mantikora Javelin
   accelerating_charge_id = 214542, -- Channel before chain lightning
+  fluctuating_current_id = 214597, -- Debuff when holding it
+  overloaded_current_id = 214745, -- Debuff from holding/dropping fluctuating current
   tempest_id = 215107, -- Groupwide line mechanic from mirrors
 }
 
@@ -71,6 +73,43 @@ end
 function LCH.Rize.Tempest(result, targetType, targetUnitId, hitValue)
   if result == ACTION_RESULT_BEGIN and hitValue > 500 then
     LCH.Alert("", "Tempest", 0x6082B6FF, LCH.Rize.constants.tempest_id, SOUNDS.BATTLEGROUND_CAPTURE_FLAG_TAKEN_OWN_TEAM, 2000)
+    CombatAlerts.CastAlertsStart(LCH.Rize.constants.tempest_id, "Tempest", hitValue, 10000, nil, nil)
+  end
+end
+
+function LCH.Rize.FluctuatingCurrent(result, targetType, targetUnitId, hitValue)
+  local borderId = "fluctuatingCurrent"
+
+  if result == ACTION_RESULT_EFFECT_GAINED_DURATION then
+    if targetType == COMBAT_UNIT_TYPE_PLAYER then
+      LCH.Alert("", "Fluctuating Current (you)", 0xFFD666FF, LCH.Rize.constants.fluctuating_current_id, SOUNDS.OBJECTIVE_DISCOVERED, 2000)
+      CombatAlerts.ScreenBorderEnable(0x22AAFF99, hitValue, borderId)
+    end
+
+    LCH.AddIconForDuration(
+      LCH.GetTagForId(targetUnitId),
+      "LucentCitadelHelper/icons/portal.dds",
+      hitValue
+    )
+
+  elseif result == ACTION_RESULT_EFFECT_FADED then
+    if targetType == COMBAT_UNIT_TYPE_PLAYER then
+      CombatAlerts.ScreenBorderDisable(borderId)
+    end
+
+    LCH.RemoveIcon(LCH.GetTagForId(targetUnitId))
+  end
+end
+
+function LCH.Rize.OverloadedCurrent(result, targetType, targetUnitId, hitValue)
+  if result == ACTION_RESULT_EFFECT_GAINED_DURATION then
+    LCH.AddIconForDuration(
+      LCH.GetTagForId(targetUnitId),
+      "LucentCitadelHelper/icons/portalpurple.dds",
+      hitValue
+    )
+  elseif result == ACTION_RESULT_EFFECT_FADED then
+    LCH.RemoveIcon(LCH.GetTagForId(targetUnitId))
   end
 end
 
