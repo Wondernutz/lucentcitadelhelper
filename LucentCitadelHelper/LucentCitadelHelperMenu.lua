@@ -81,7 +81,7 @@ function LCH.Menu.AddonMenu()
     {
       type = "header",
       name = "Last Boss",
-      reference = "RizeHeader"
+      reference = "XorynHeader"
     },
     {
       type    = "checkbox",

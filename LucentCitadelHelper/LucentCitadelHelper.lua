@@ -13,7 +13,7 @@ LCH.status = {
   currentBoss = "",
   isZilyesset = false,
   isOrphic = false,
-  isRize = false,
+  isXoryn = false,
   isHMBoss = false,
 
   locked = true,
@@ -88,22 +88,22 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
   elseif abilityId == LCH.Orphic.constants.breakout_id then
     LCH.Orphic.Breakout(result, targetType, targetUnitId, hitValue)
 
-  elseif abilityId == LCH.Rize.constants.splintered_burst_id then
-    LCH.Rize.SplinteredBurst(result, targetType, targetUnitId, hitValue)
-  elseif abilityId == LCH.Rize.constants.arcane_conveyance_cast_id then
-    LCH.Rize.ArcaneConveyanceIncoming(result, targetType, targetUnitId, hitValue)
-  elseif abilityId == LCH.Rize.constants.arcane_conveyance_debuff_id then
-    LCH.Rize.ArcaneConveyance(result, targetType, targetUnitId, hitValue)
-  elseif abilityId == LCH.Rize.constants.lustrous_javelin_id then
-    LCH.Rize.LustrousJavelin(result, targetType, targetUnitId, hitValue)
-  elseif abilityId == LCH.Rize.constants.accelerating_charge_id then
-    LCH.Rize.AcceleratingCharge(result, targetType, targetUnitId, hitValue)
-  elseif abilityId == LCH.Rize.constants.tempest_id then
-    LCH.Rize.Tempest(result, targetType, targetUnitId, hitValue)
-  elseif abilityId == LCH.Rize.constants.fluctuating_current_id then
-    LCH.Rize.FluctuatingCurrent(result, targetType, targetUnitId, hitValue)
-  elseif abilityId == LCH.Rize.constants.overloaded_current_id then
-    LCH.Rize.OverloadedCurrent(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Xoryn.constants.splintered_burst_id then
+    LCH.Xoryn.SplinteredBurst(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Xoryn.constants.arcane_conveyance_cast_id then
+    LCH.Xoryn.ArcaneConveyanceIncoming(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Xoryn.constants.arcane_conveyance_debuff_id then
+    LCH.Xoryn.ArcaneConveyance(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Xoryn.constants.lustrous_javelin_id then
+    LCH.Xoryn.LustrousJavelin(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Xoryn.constants.accelerating_charge_id then
+    LCH.Xoryn.AcceleratingCharge(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Xoryn.constants.tempest_id then
+    LCH.Xoryn.Tempest(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Xoryn.constants.fluctuating_current_id then
+    LCH.Xoryn.FluctuatingCurrent(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Xoryn.constants.overloaded_current_id then
+    LCH.Xoryn.OverloadedCurrent(result, targetType, targetUnitId, hitValue)
   end
 end
 
@@ -132,9 +132,9 @@ function LCH.UpdateTick(gameTimeMs)
     LCH.Orphic.UpdateTick(timeSec)
   end
 
-  -- Boss 3: Rize
-  if LCH.status.isRize then
-    LCH.Rize.UpdateTick(timeSec)
+  -- Boss 3: Xoryn
+  if LCH.status.isXoryn then
+    LCH.Xoryn.UpdateTick(timeSec)
   end
 
 end
@@ -175,7 +175,7 @@ function LCH.ResetStatus()
   LCH.Common.Init()
   LCH.Zilyesset.Init()
   LCH.Orphic.Init()
-  LCH.Rize.Init()
+  LCH.Xoryn.Init()
 
   LCH.status.mainTankTag = ""
 end
@@ -202,14 +202,14 @@ function LCH.BossesChanged()
     
     LCH.status.isZilyesset = false
     LCH.status.isOrphic = false
-    LCH.status.isRize = false
+    LCH.status.isXoryn = false
     LCH.status.isHMBoss = false
 
     local currentTargetHP, maxTargetHP, effmaxTargetHP = GetUnitPower("boss1", POWERTYPE_HEALTH)
     local hardmodeHealth = {
       [LCH.data.zilyessetName] = 40000000, -- vet ?, HM 48.9M
       [LCH.data.orphicName] = 80000000,  -- vet ?, HM 97.8M
-      [LCH.data.rizeName] = 20000000, -- vet: ?, HM 22.3M
+      [LCH.data.xorynName] = 20000000, -- vet: ?, HM 22.3M
     }
 
     -- Check for HM.
@@ -225,8 +225,8 @@ function LCH.BossesChanged()
       LCH.status.isZilyesset = true
     elseif string.match(bossName, LCH.data.orphicName) then
       LCH.status.isOrphic = true
-    elseif string.match(bossName, LCH.data.rizeName) then
-      LCH.status.isRize = true
+    elseif string.match(bossName, LCH.data.xorynName) then
+      LCH.status.isXoryn = true
     end
   end
 end
