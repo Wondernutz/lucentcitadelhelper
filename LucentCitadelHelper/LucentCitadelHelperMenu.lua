@@ -107,6 +107,13 @@ function LCH.Menu.AddonMenu()
       setFunc = function(newValue) LCH.savedVariables.showFluctuatingCurrentTimer = newValue end,
     },
     {
+      type    = "checkbox",
+      name    = "Panel: Overloaded Current timer",
+      default = true,
+      getFunc = function() return LCH.savedVariables.showOverloadedCurrentTimer end,
+      setFunc = function(newValue) LCH.savedVariables.showOverloadedCurrentTimer = newValue end,
+    },
+    {
       type = "divider",
     },
     {
