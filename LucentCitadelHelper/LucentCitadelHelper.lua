@@ -57,6 +57,7 @@ LCH.settings = {
 
   -- Last Boss
   showFluctuatingCurrentTimer = true,
+  showOverloadedCurrentTimer = true,
   showNecroticRainTimer = true,
 
   -- Misc
@@ -248,6 +249,7 @@ function LCH.BossesChanged()
       LCH.Zilyesset.AddPadIcons()
     elseif string.match(bossName, LCH.data.orphicName) then
       LCH.status.isOrphic = true
+      LCH.Orphic.AddMirrorIcons()
     elseif string.match(bossName, LCH.data.xorynName) then
       LCH.status.isXoryn = true
     end

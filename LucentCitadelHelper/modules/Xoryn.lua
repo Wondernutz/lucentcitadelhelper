@@ -29,6 +29,8 @@ function LCH.Xoryn.Init()
   LCH.Xoryn.mzrelnirActive = false
   LCH.Xoryn.lastFluctuatingCurrent = 0
   LCH.Xoryn.fluctuatingCurrentDuration = 0
+  LCH.Xoryn.lastOverloadedCurrent = 0
+  LCH.Xoryn.overloadedCurrentDuration = 0
 end
 
 function LCH.Xoryn.LustrousJavelin(result, targetType, targetUnitId, hitValue)
@@ -126,33 +128,51 @@ function LCH.Xoryn.FluctuatingCurrent(result, targetType, targetUnitId, hitValue
       "LucentCitadelHelper/icons/portal.dds",
       hitValue
     )
+    LCH.Xoryn.activeIcons[targetUnitId] = "fluctuating"
 
   elseif result == ACTION_RESULT_EFFECT_FADED then
+    LCH.Xoryn.fluctuatingCurrentDuration = 0
+
     if targetType == COMBAT_UNIT_TYPE_PLAYER then
       CombatAlerts.ScreenBorderDisable(borderId)
     end
-
-    LCH.RemoveIcon(LCH.GetTagForId(targetUnitId))
+    -- The overloaded buff happens before fluctuating falls off, so calling LCH.RemoveIcon() would remove the overloaded icon
+    if LCH.Xoryn.activeIcons[targetUnitId] == "fluctuating" then
+      LCH.RemoveIcon(LCH.GetTagForId(targetUnitId))
+      LCH.Xoryn.activeIcons[targetUnitId] = nil
+    end
   end
 end
 
 function LCH.Xoryn.OverloadedCurrent(result, targetType, targetUnitId, hitValue)
   if result == ACTION_RESULT_EFFECT_GAINED_DURATION then
+    if targetType == COMBAT_UNIT_TYPE_PLAYER then
+      LCH.Xoryn.lastOverloadedCurrent = GetGameTimeSeconds()
+      LCH.Xoryn.overloadedCurrentDuration = hitValue / 1000
+    end
+
     LCH.AddIconForDuration(
       LCH.GetTagForId(targetUnitId),
       "LucentCitadelHelper/icons/portalpurple.dds",
       hitValue
     )
+    LCH.Xoryn.activeIcons[targetUnitId] = "overloaded"
+    
   elseif result == ACTION_RESULT_EFFECT_FADED then
+    if targetType == COMBAT_UNIT_TYPE_PLAYER then
+      LCH.Xoryn.overloadedCurrentDuration = 0
+    end
+
     LCH.RemoveIcon(LCH.GetTagForId(targetUnitId))
+    LCH.Xoryn.activeIcons[targetUnitId] = nil
   end
 end
 
 function LCH.Xoryn.UpdateTick(timeSec)
-  LCHStatus:SetHidden(not (LCH.savedVariables.showFluctuatingCurrentTimer))
-  LCHStatus:SetHidden(not (LCH.savedVariables.showNecroticRainTimer))
+  LCHStatus:SetHidden(not (LCH.savedVariables.showFluctuatingCurrentTimer or LCH.savedVariables.showOverloadedCurrentTimer or LCH.savedVariables.showNecroticRainTimer))
   
   LCH.Xoryn.FluctuatingCurrentUpdateTick(timeSec)
+  LCH.Xoryn.OverloadedCurrentUpdateTick(timeSec)
   LCH.Xoryn.NecroticRainUpdateTick(timeSec)
 end
 
@@ -167,14 +187,15 @@ function LCH.Xoryn.FluctuatingCurrentUpdateTick(timeSec)
   LCHStatusLabelXoryn2Value:SetText(LCH.Xoryn.getSecondsRemainingString(timeLeft))
 end
 
-function LCH.Xoryn.getSecondsRemainingString(seconds)
-  if seconds > 5 then 
-    return string.format("%.0f", seconds) .. "s "
-  elseif seconds > 0 then 
-    return string.format("%.1f", seconds) .. "s "
-  else
-    return "-"
-  end
+function LCH.Xoryn.OverloadedCurrentUpdateTick(timeSec)
+  LCHStatusLabelXoryn3:SetHidden(not (LCH.savedVariables.showOverloadedCurrentTimer))
+  LCHStatusLabelXoryn3Value:SetHidden(not (LCH.savedVariables.showOverloadedCurrentTimer))
+
+  local delta = timeSec - LCH.Xoryn.lastOverloadedCurrent
+
+  local timeLeft = LCH.Xoryn.overloadedCurrentDuration - delta
+
+  LCHStatusLabelXoryn3Value:SetText(LCH.Xoryn.getSecondsRemainingString(timeLeft))
 end
 
 function LCH.Xoryn.NecroticRainUpdateTick(timeSec)
@@ -191,4 +212,14 @@ function LCH.Xoryn.NecroticRainUpdateTick(timeSec)
   end
 
   LCHStatusLabelXoryn1Value:SetText(LCH.GetSecondsRemainingString(timeLeft))
+end
+
+function LCH.Xoryn.getSecondsRemainingString(seconds)
+  if seconds > 5 then 
+    return string.format("%.0f", seconds) .. "s "
+  elseif seconds > 0 then 
+    return string.format("%.1f", seconds) .. "s "
+  else
+    return "-"
+  end
 end
