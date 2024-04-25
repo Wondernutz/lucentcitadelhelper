@@ -7,6 +7,8 @@ LCH.Orphic = {
 }
 
 LCH.Orphic.constants = {
+  color_change_id = 213913, -- Color change/mirrors mechanic
+
   thunder_thrall_id = 214383,
   thunder_thrall_first_cd = 8.0, -- how soon Xoryn can first jump
   thunder_thrall_cd = 25.5, -- how often Xoryn jumps
@@ -14,9 +16,9 @@ LCH.Orphic.constants = {
   breakout_id = 220185, -- Debuff falls off when Orphic first becomes active
   xoryn_immune_id = 218006, -- Xoryn Thunder Thrall buff gained when immune?
 
-  heavy_shock_id = 222072,
+  heavy_shock_id = 222071,
 
-  fate_sealer_id = 214311,
+  fate_sealer_id = 214311, -- Ball summon
 }
 
 function LCH.Orphic.AddMirrorIcons()
@@ -121,9 +123,18 @@ function LCH.Orphic.Init()
   LCH.Orphic.xorynActive = false
 end
 
+function LCH.Orphic.ColorChange(result, targetType, targetUnitId, hitValue)
+  if result == ACTION_RESULT_BEGIN and hitValue > 2000 then
+    local hitOffset = 1000
+    LCH.Alert("", "Color Change", 0x96DED1FF, LCH.Orphic.constants.color_change_id, SOUNDS.BATTLEGROUND_CAPTURE_FLAG_TAKEN_OWN_TEAM, 4000)
+    CombatAlerts.CastAlertsStart(LCH.Orphic.constants.color_change_id, "Color Change", hitValue - hitOffset, 12000, nil, nil)
+  end
+end
+
 function LCH.Orphic.ThunderThrall(result, targetType, targetUnitId, hitValue)
   -- Xoryn Jump Mechanic
   if result == ACTION_RESULT_BEGIN and hitValue > 500 then
+    LCH.Orphic.xorynActive = true
     LCH.Orphic.lastThunderThrall = GetGameTimeSeconds()
     LCH.Orphic.isFirstThunderThrall = false
 
@@ -135,7 +146,8 @@ end
 
 function LCH.Orphic.HeavyShock(result, targetType, targetUnitId, hitValue)
   -- Xoryn Channel Mechanic
-  if result == ACTION_RESULT_BEGIN and hitValue > 500 then
+  -- TODO(wonder): This isn't working, find actual ability ID
+  if result == ACTION_RESULT_BEGIN then
     if targetType == COMBAT_UNIT_TYPE_PLAYER then
       LCH.Alert("", "Heavy Shock", 0xFFD666FF, LCH.Orphic.constants.heavy_shock_id, SOUNDS.OBJECTIVE_DISCOVERED, 2000)
     end
@@ -158,7 +170,7 @@ end
 function LCH.Orphic.Breakout(result, targetType, targetUnitId, hitValue)
   -- Orphic first becomes active when debuff falls off
   if result == ACTION_RESULT_EFFECT_FADED then
-    LCH.Orphic.xorynActive = true
+    zo_callLater(function () LCH.Orphic.xorynActive = true end, 1000)
   end
 end
 

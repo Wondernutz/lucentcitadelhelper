@@ -2,7 +2,7 @@ LCH = LCH or {}
 local LCH = LCH
 
 LCH.name     = "LucentCitadelHelper"
-LCH.version  = "0.2.3"
+LCH.version  = "0.2.4"
 LCH.author   = "@Wondernuts, @kabs12"
 LCH.active   = false
 
@@ -55,6 +55,10 @@ LCH.settings = {
   showXorynJumpTimer = true,
   showMirrorIcons = true,
 
+  -- Last Boss
+  showFluctuatingCurrentTimer = true,
+  showOverloadedCurrentTimer = true,
+
   -- Misc
   uiCustomScale = 1,
 }
@@ -70,17 +74,17 @@ end
 
 function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic, abilityActionSlotType, sourceName, sourceType, targetName, targetType, hitValue, powerType, damageType, log, sourceUnitId, targetUnitId, abilityId, overflow)
   -- Debug ability casts of NPCs (unit type None)
-  --if result == ACTION_RESULT_BEGIN and sourceType == COMBAT_UNIT_TYPE_NONE then
-  --  LCH:Trace(3, string.format(
-  --    "Ability: %s, ID: %d, Hit Value: %d, Source name: %s, Target name: %s", abilityName, abilityId, hitValue, sourceName, targetName
-  --  ))
-  --end
+  if result == ACTION_RESULT_BEGIN and sourceType == COMBAT_UNIT_TYPE_NONE then
+    LCH:Trace(3, string.format(
+      "Ability: %s, ID: %d, Hit Value: %d, Source name: %s, Target name: %s", abilityName, abilityId, hitValue, sourceName, targetName
+    ))
+  end
 
   if abilityId == LCH.Common.constants.hindered_id then
     LCH.Common.Hindered(result, targetUnitId, hitValue)
 
-  elseif abilityId == LCH.Zilyesset.constants.brilliant_annihilation_id then
-    LCH.Zilyesset.Annihilation(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Zilyesset.constants.brilliant_annihilation_id or abilityId == LCH.Zilyesset.constants.bleak_annihilation_id then
+    LCH.Zilyesset.Annihilation(abilityId, result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Zilyesset.constants.summon_shardborn_lightweaver_id then
     LCH.Zilyesset.SummonLightweaver(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Zilyesset.constants.summon_gloomy_blackguard_id then
@@ -90,6 +94,8 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
   elseif abilityId == LCH.Zilyesset.constants.porcinlight_id then
     LCH.Zilyesset.OnDarkSide(result, targetType, targetUnitId, hitValue)
 
+  elseif abilityId == LCH.Orphic.constants.color_change_id then
+    LCH.Orphic.ColorChange(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Orphic.constants.thunder_thrall_id then
     LCH.Orphic.ThunderThrall(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Orphic.constants.heavy_shock_id then
@@ -225,7 +231,7 @@ function LCH.BossesChanged()
     local hardmodeHealth = {
       [LCH.data.zilyessetName] = 40000000, -- vet ?, HM 48.9M
       [LCH.data.orphicName] = 80000000,  -- vet ?, HM 97.8M
-      [LCH.data.xorynName] = 20000000, -- vet: ?, HM 22.3M
+      [LCH.data.xorynName] = 100000000, -- vet: ?, HM 118.8M
     }
 
     -- Check for HM.

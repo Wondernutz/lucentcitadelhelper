@@ -12,6 +12,7 @@ LCH.Xoryn = {
 
 LCH.Xoryn.constants = {
   splintered_burst_id = 219799, -- Crystal Atronach AOE On Tank
+  glass_stomp_id = 219797, -- Splintered Shards cast ID
   arcane_conveyance_cast_id = 223024, -- Tether cast
   arcane_conveyance_debuff_id = 223060, -- Tether debuff
   lustrous_javelin_id = 223546, -- Mantikora Javelin
@@ -40,7 +41,8 @@ end
 function LCH.Xoryn.SplinteredBurst(result, targetType, targetUnitId, hitValue)
   if result == ACTION_RESULT_BEGIN then
     if targetType == COMBAT_UNIT_TYPE_PLAYER then
-      LCH.Alert("", "Splintered Burst", 0x66CCFFFF, LCH.Xoryn.constants.splintered_burst_id, SOUNDS.OBJECTIVE_DISCOVERED, 2000)
+      LCH.Alert("", "Splintered Burst", 0x66CCFFFF, LCH.Xoryn.constants.glass_stomp_id, SOUNDS.OBJECTIVE_DISCOVERED, 2000)
+      CombatAlerts.AlertCast(LCH.Xoryn.constants.glass_stomp_id, "Splintered Burst", hitValue, {-2, 1})
     end
 
     LCH.AddIconForDuration(

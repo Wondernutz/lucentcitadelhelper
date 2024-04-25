@@ -60,38 +60,38 @@
       </Label>
 
       <!-- Boss 1: Zilyesset -->
-      <Label name="$(parent)LabelZilyesset1" font="ZoFontWinH1" color="CCCC66" text="Next Shrapnel:" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
+      <Label name="$(parent)LabelZilyesset1" font="ZoFontWinH1" color="CCCC66" text="" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
           <Dimensions x="600" y="50" />
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="0"/>
       </Label>
-      <Label name="$(parent)LabelZilyesset1Value" font="ZoFontWinH1" color="ff8500" text="60s" verticalAlignment="CENTER" horizontalAlignment="LEFT" alpha="0.85">
+      <Label name="$(parent)LabelZilyesset1Value" font="ZoFontWinH1" color="ff8500" text="" verticalAlignment="CENTER" horizontalAlignment="LEFT" alpha="0.85">
           <Dimensions x="600" y="50" />
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="0" offsetX="230"/>
       </Label>
 
-      <Label name="$(parent)LabelZilyesset2" font="ZoFontWinH1" color="FF6600" text="Next Firebombs:" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
+      <Label name="$(parent)LabelZilyesset2" font="ZoFontWinH1" color="FF6600" text="" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
           <Dimensions x="600" y="50" />
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="40"/>
       </Label>
-      <Label name="$(parent)LabelZilyesset2Value" font="ZoFontWinH1" color="ff8500" text="INC" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
+      <Label name="$(parent)LabelZilyesset2Value" font="ZoFontWinH1" color="ff8500" text="" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
           <Dimensions x="600" y="50" />
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="40" offsetX="230"/>
       </Label>
 
-      <Label name="$(parent)LabelZilyesset3" font="ZoFontWinH1" color="66CCFF" text="Next Frostbombs:" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
+      <Label name="$(parent)LabelZilyesset3" font="ZoFontWinH1" color="66CCFF" text="" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
           <Dimensions x="600" y="50" />
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="80"/>
       </Label>
-      <Label name="$(parent)LabelZilyesset3Value" font="ZoFontWinH1" color="ff8500" text="INC" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
+      <Label name="$(parent)LabelZilyesset3Value" font="ZoFontWinH1" color="ff8500" text="" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
           <Dimensions x="600" y="50" />
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="80" offsetX="230"/>
       </Label>
 
-      <Label name="$(parent)LabelZilyesset4" font="ZoFontWinH1" color="A8A9AD" text="Next Chain:" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
+      <Label name="$(parent)LabelZilyesset4" font="ZoFontWinH1" color="A8A9AD" text="" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
           <Dimensions x="600" y="50" />
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="120"/>
       </Label>
-      <Label name="$(parent)LabelZilyesset4Value" font="ZoFontWinH1" color="ff8500" text="INC" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
+      <Label name="$(parent)LabelZilyesset4Value" font="ZoFontWinH1" color="ff8500" text="" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
           <Dimensions x="600" y="50" />
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="120" offsetX="230"/>
       </Label>
@@ -106,59 +106,59 @@
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="0" offsetX="250"/>
       </Label>
 
-      <Label name="$(parent)LabelOrphic2" font="ZoFontWinH1" color="FFD666" text="Chain Lightning:" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
+      <Label name="$(parent)LabelOrphic2" font="ZoFontWinH1" color="FFD666" text="" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
           <Dimensions x="600" y="50" />
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="40"/>
       </Label>
-      <Label name="$(parent)LabelOrphic2Value" font="ZoFontWinH1" color="ff8500" text="INC" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
+      <Label name="$(parent)LabelOrphic2Value" font="ZoFontWinH1" color="ff8500" text="" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
           <Dimensions x="600" y="50" />
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="40" offsetX="250"/>
       </Label>
 
       <!-- Boss 3: Xoryn -->
-      <Label name="$(parent)LabelXoryn1" font="ZoFontWinH1" color="A8A9AD" text="Next Calamity:" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
+      <Label name="$(parent)LabelXoryn1" font="ZoFontWinH1" color="A8A9AD" text="Knot Drop:" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
           <Dimensions x="600" y="50" />
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="0"/>
       </Label>
       <Label name="$(parent)LabelXoryn1Value" font="ZoFontWinH1" color="ff8500" text="-" verticalAlignment="CENTER" horizontalAlignment="LEFT" alpha="0.85">
           <Dimensions x="600" y="50" />
-          <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="0" offsetX="250"/>
+          <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="0" offsetX="275"/>
       </Label>
 
-      <Label name="$(parent)LabelXoryn2" font="ZoFontWinH1" color="303B4C" text="Next:" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
+      <Label name="$(parent)LabelXoryn2" font="ZoFontWinH1" color="FFD666" text="Fluctuating Current:" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
           <Dimensions x="600" y="50" />
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="40"/>
       </Label>
-      <Label name="$(parent)LabelXoryn2Value" font="ZoFontWinH1" color="ff8500" text="INC" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
+      <Label name="$(parent)LabelXoryn2Value" font="ZoFontWinH1" color="ff8500" text="" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
           <Dimensions x="600" y="50" />
-          <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="40" offsetX="250"/>
+          <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="40" offsetX="275"/>
       </Label>
 
-      <Label name="$(parent)LabelXoryn3" font="ZoFontWinH1" color="FF0000" text="Red Boss:" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
+      <Label name="$(parent)LabelXoryn3" font="ZoFontWinH1" color="7F00FF" text="Overloaded Current:" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
           <Dimensions x="600" y="50" />
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="80"/>
       </Label>
-      <Label name="$(parent)LabelXoryn3Value" font="ZoFontWinH1" color="ff8500" text="100.0%" verticalAlignment="CENTER" horizontalAlignment="LEFT" alpha="0.85">
+      <Label name="$(parent)LabelXoryn3Value" font="ZoFontWinH1" color="ff8500" text="" verticalAlignment="CENTER" horizontalAlignment="LEFT" alpha="0.85">
           <Dimensions x="600" y="50" />
-          <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="80" offsetX="250"/>
+          <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="80" offsetX="275"/>
       </Label>
 
-      <Label name="$(parent)LabelXoryn4" font="ZoFontWinH1" color="00FF00" text="Green Boss:" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
+      <Label name="$(parent)LabelXoryn4" font="ZoFontWinH1" color="00FF00" text="" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
           <Dimensions x="600" y="50" />
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="120"/>
       </Label>
-      <Label name="$(parent)LabelXoryn4Value" font="ZoFontWinH1" color="ff8500" text="100.0%" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
+      <Label name="$(parent)LabelXoryn4Value" font="ZoFontWinH1" color="ff8500" text="" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
           <Dimensions x="600" y="50" />
-          <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="120" offsetX="250"/>
+          <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="120" offsetX="275"/>
       </Label>
 
-      <Label name="$(parent)LabelXoryn5" font="ZoFontWinH1" color="0000FF" text="Blue Boss:" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
+      <Label name="$(parent)LabelXoryn5" font="ZoFontWinH1" color="0000FF" text="" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
           <Dimensions x="600" y="50" />
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="160"/>
       </Label>
-      <Label name="$(parent)LabelXoryn5Value" font="ZoFontWinH1" color="ff8500" text="100.0%" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
+      <Label name="$(parent)LabelXoryn5Value" font="ZoFontWinH1" color="ff8500" text="" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
           <Dimensions x="600" y="50" />
-          <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="160" offsetX="250"/>
+          <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="160" offsetX="275"/>
       </Label>
 
       </Controls>
