@@ -2,7 +2,7 @@ LCH = LCH or {}
 local LCH = LCH
 
 LCH.name     = "LucentCitadelHelper"
-LCH.version  = "0.2.1"
+LCH.version  = "0.2.4"
 LCH.author   = "@Wondernuts, @kabs12"
 LCH.active   = false
 
@@ -39,6 +39,7 @@ LCH.settings = {
 
   -- Last Boss
   showFluctuatingCurrentTimer = true,
+  showOverloadedCurrentTimer = true,
 
   -- Misc
   uiCustomScale = 1,
@@ -55,11 +56,11 @@ end
 
 function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic, abilityActionSlotType, sourceName, sourceType, targetName, targetType, hitValue, powerType, damageType, log, sourceUnitId, targetUnitId, abilityId, overflow)
   -- Debug ability casts of NPCs (unit type None)
-  --if result == ACTION_RESULT_BEGIN and sourceType == COMBAT_UNIT_TYPE_NONE then
-  --  LCH:Trace(3, string.format(
-  --    "Ability: %s, ID: %d, Hit Value: %d, Source name: %s, Target name: %s", abilityName, abilityId, hitValue, sourceName, targetName
-  --  ))
-  --end
+  if result == ACTION_RESULT_BEGIN and sourceType == COMBAT_UNIT_TYPE_NONE then
+    LCH:Trace(3, string.format(
+      "Ability: %s, ID: %d, Hit Value: %d, Source name: %s, Target name: %s", abilityName, abilityId, hitValue, sourceName, targetName
+    ))
+  end
 
   if abilityId == LCH.Common.constants.hindered_id then
     LCH.Common.Hindered(result, targetUnitId, hitValue)

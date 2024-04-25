@@ -2,6 +2,7 @@ LCH = LCH or {}
 local LCH = LCH
 LCH.Zilyesset = {
   playerSide = nil,
+  annihilationOngoing = false,
 }
 
 LCH.Zilyesset.constants = {
@@ -14,12 +15,17 @@ LCH.Zilyesset.constants = {
 }
 
 function LCH.Zilyesset.Init()
+  LCH.Zilyesset.annihilationOngoing = false
 end
 
 function LCH.Zilyesset.Annihilation(abilityId, result, targetType, targetUnitId, hitValue)
-  if result == ACTION_RESULT_BEGIN and hitValue > 2000 then
+  -- There are two different Annihilation casts, but it's possible that one of them will not register for the player
+  if result == ACTION_RESULT_BEGIN and hitValue > 2000 and not LCH.Zilyesset.annihilationOngoing then
+    LCH.Zilyesset.annihilationOngoing = true
     LCH.Alert("", "Annihilation", 0xFF0033FF, abilityId, SOUNDS.BATTLEGROUND_CAPTURE_FLAG_TAKEN_OWN_TEAM, 4000)
     CombatAlerts.CastAlertsStart(abilityId, "Annihilation", hitValue, 12000, nil, nil)
+  elseif result == ACTION_RESULT_COMPLETE then
+    LCH.Zilyesset.annihilationOngoing = false
   end
 end
 
