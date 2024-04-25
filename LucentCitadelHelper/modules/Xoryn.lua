@@ -42,7 +42,7 @@ function LCH.Xoryn.SplinteredBurst(result, targetType, targetUnitId, hitValue)
   if result == ACTION_RESULT_BEGIN then
     if targetType == COMBAT_UNIT_TYPE_PLAYER then
       LCH.Alert("", "Splintered Burst", 0x66CCFFFF, LCH.Xoryn.constants.glass_stomp_id, SOUNDS.OBJECTIVE_DISCOVERED, 2000)
-      CombatAlerts.AlertCast(LCH.Xoryn.constants.glass_stomp_id, "Splintered Burst", hitValue, {-2, 2})
+      CombatAlerts.AlertCast(LCH.Xoryn.constants.glass_stomp_id, "Splintered Burst", hitValue, {-2, 1})
     end
 
     LCH.AddIconForDuration(
