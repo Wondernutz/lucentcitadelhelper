@@ -107,13 +107,6 @@ function LCH.Menu.AddonMenu()
       setFunc = function(newValue) LCH.savedVariables.showFluctuatingCurrentTimer = newValue end,
     },
     {
-      type    = "checkbox",
-      name    = "Panel: Necrotic Rain Timer",
-      default = true,
-      getFunc = function() return LCH.savedVariables.showNecroticRainTimer end,
-      setFunc = function(newValue) LCH.savedVariables.showNecroticRainTimer = newValue end,
-    },
-    {
       type = "divider",
     },
     {

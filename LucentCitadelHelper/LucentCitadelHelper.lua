@@ -57,8 +57,6 @@ LCH.settings = {
 
   -- Last Boss
   showFluctuatingCurrentTimer = true,
-  showOverloadedCurrentTimer = true,
-  showNecroticRainTimer = true,
 
   -- Misc
   uiCustomScale = 1,
@@ -75,11 +73,11 @@ end
 
 function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic, abilityActionSlotType, sourceName, sourceType, targetName, targetType, hitValue, powerType, damageType, log, sourceUnitId, targetUnitId, abilityId, overflow)
   -- Debug ability casts of NPCs (unit type None)
-  --if result == ACTION_RESULT_BEGIN and sourceType == COMBAT_UNIT_TYPE_NONE then
-  --  LCH:Trace(3, string.format(
-  --    "Ability: %s, ID: %d, Hit Value: %d, Source name: %s, Target name: %s", abilityName, abilityId, hitValue, sourceName, targetName
-  --  ))
-  --end
+  if result == ACTION_RESULT_BEGIN and sourceType == COMBAT_UNIT_TYPE_NONE then
+    LCH:Trace(3, string.format(
+      "Ability: %s, ID: %d, Hit Value: %d, Source name: %s, Target name: %s", abilityName, abilityId, hitValue, sourceName, targetName
+    ))
+  end
 
   if abilityId == LCH.Common.constants.hindered_id then
     LCH.Common.Hindered(result, targetUnitId, hitValue)
@@ -108,6 +106,8 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
   elseif abilityId == LCH.Orphic.constants.breakout_id then
     LCH.Orphic.Breakout(result, targetType, targetUnitId, hitValue)
 
+  elseif abilityId == LCH.Xoryn.constants.necrotic_rain_id then
+    LCH.Xoryn.NecroticRain(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Xoryn.constants.splintered_burst_id then
     LCH.Xoryn.SplinteredBurst(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Xoryn.constants.arcane_conveyance_cast_id then

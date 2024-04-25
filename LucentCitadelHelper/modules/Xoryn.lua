@@ -3,32 +3,29 @@ local LCH = LCH
 LCH.Xoryn = {
   lastFluctuatingCurrent = 0,
   fluctuatingCurrentDuration = 0,
+
+  lastOverloadedCurrent = 0,
+  overloadedCurrentDuration = 0,
+
+  activeIcons = {}
 }
 
 LCH.Xoryn.constants = {
   splintered_burst_id = 219799, -- Crystal Atronach AOE On Tank
   arcane_conveyance_cast_id = 223024, -- Tether cast
   arcane_conveyance_debuff_id = 223060, -- Tether debuff
-
-  necrotic_spear_id = 219928, -- buff id for when it fully spawns?
-
-  necrotic_rain_id = 222809, -- necromancer bridge
-  necrotic_rain_first_cd = 16, -- first cast of rain
-  necrotic_rain_cd = 33, -- cooldown
-
   lustrous_javelin_id = 223546, -- Mantikora Javelin
   accelerating_charge_id = 214542, -- Channel before chain lightning
   fluctuating_current_id = 214597, -- Debuff when holding it
   overloaded_current_id = 214745, -- Debuff from holding/dropping fluctuating current
   tempest_id = 215107, -- Groupwide line mechanic from mirrors
+  necrotic_rain_id = 222809, -- necromancer bridge
 }
 
 function LCH.Xoryn.Init()
-  LCH.Xoryn.lastNecroticRain = GetGameTimeSeconds()
-  LCH.Xoryn.isFirstNecroticRain = true
-  LCH.Xoryn.mzrelnirActive = false
   LCH.Xoryn.lastFluctuatingCurrent = 0
   LCH.Xoryn.fluctuatingCurrentDuration = 0
+
   LCH.Xoryn.lastOverloadedCurrent = 0
   LCH.Xoryn.overloadedCurrentDuration = 0
 end
@@ -77,22 +74,10 @@ function LCH.Xoryn.ArcaneConveyance(result, targetType, targetUnitId, hitValue)
   end
 end
 
-function LCH.Xoryn.NecroticSpear(result, targetType, targetUnitId, hitValue)
-  -- Mzrelnir first becomes active when a Necromancer casts Necrotic Spear
-  if result == ACTION_RESULT_BEGIN then
-    LCH.Xoryn.mzrelnirActive = true
-    LCH.Xoryn.lastNecroticRain = GetGameTimeSeconds()
-    LCH.Xoryn.isFirstNecroticRain = true
-  end
-end
-
 function LCH.Xoryn.NecroticRain(result, targetType, targetUnitId, hitValue)
   -- Mzrelnir Necrotic Rain
-  if result == ACTION_RESULT_BEGIN and hitValue > 500 then
-    LCH.Xoryn.lastNecroticRain = GetGameTimeSeconds()
-    LCH.Xoryn.isFirstNecroticRain = false
-    
-    LCH.Alert("", "Necrotic Rain (Don't Stack)", 0xFFD666FF, LCH.Xoryn.constants.necrotic_rain_id, SOUNDS.OBJECTIVE_DISCOVERED, 6000)
+  if result == ACTION_RESULT_BEGIN and hitValue > 500 then    
+    LCH.Alert("", "Necrotic Rain (Don't Stack)", 0xFFD666FF, LCH.Xoryn.constants.necrotic_rain_id, SOUNDS.OBJECTIVE_DISCOVERED, 7000)
     CombatAlerts.AlertCast(LCH.Xoryn.constants.necrotic_rain_id, "Necrotic Rain", hitValue, {-3, 0})
   end
 end
@@ -169,11 +154,10 @@ function LCH.Xoryn.OverloadedCurrent(result, targetType, targetUnitId, hitValue)
 end
 
 function LCH.Xoryn.UpdateTick(timeSec)
-  LCHStatus:SetHidden(not (LCH.savedVariables.showFluctuatingCurrentTimer or LCH.savedVariables.showOverloadedCurrentTimer or LCH.savedVariables.showNecroticRainTimer))
-  
+  LCHStatus:SetHidden(not (LCH.savedVariables.showFluctuatingCurrentTimer or LCH.savedVariables.showOverloadedCurrentTimer))
+
   LCH.Xoryn.FluctuatingCurrentUpdateTick(timeSec)
   LCH.Xoryn.OverloadedCurrentUpdateTick(timeSec)
-  LCH.Xoryn.NecroticRainUpdateTick(timeSec)
 end
 
 function LCH.Xoryn.FluctuatingCurrentUpdateTick(timeSec)
@@ -196,22 +180,6 @@ function LCH.Xoryn.OverloadedCurrentUpdateTick(timeSec)
   local timeLeft = LCH.Xoryn.overloadedCurrentDuration - delta
 
   LCHStatusLabelXoryn3Value:SetText(LCH.Xoryn.getSecondsRemainingString(timeLeft))
-end
-
-function LCH.Xoryn.NecroticRainUpdateTick(timeSec)
-  LCHStatusLabelXoryn1:SetHidden(not (LCH.savedVariables.showNecroticRainTimer and LCH.Xoryn.mzrelnirActive))
-  LCHStatusLabelXoryn1Value:SetHidden(not (LCH.savedVariables.showNecroticRainTimer and LCH.Xoryn.mzrelnirActive))
-
-  local delta = timeSec - LCH.Xoryn.lastNecroticRain
-
-  local timeLeft = 0
-  if LCH.Xoryn.isFirstNecroticRain then
-    timeLeft = LCH.Xoryn.constants.necrotic_rain_first_cd - delta
-  else
-    timeLeft = LCH.Xoryn.constants.necrotic_rain_cd - delta
-  end
-
-  LCHStatusLabelXoryn1Value:SetText(LCH.GetSecondsRemainingString(timeLeft))
 end
 
 function LCH.Xoryn.getSecondsRemainingString(seconds)
