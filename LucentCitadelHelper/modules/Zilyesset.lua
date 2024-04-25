@@ -111,8 +111,8 @@ function LCH.Zilyesset.Annihilation(abilityId, result, targetType, targetUnitId,
     LCH.Zilyesset.annihilationOngoing = true
     LCH.Alert("", "Annihilation", 0xFF0033FF, abilityId, SOUNDS.BATTLEGROUND_CAPTURE_FLAG_TAKEN_OWN_TEAM, 4000)
     CombatAlerts.CastAlertsStart(abilityId, "Annihilation", hitValue, 12000, nil, nil)
-  elseif result == ACTION_RESULT_COMPLETE then
-    LCH.Zilyesset.annihilationOngoing = false
+
+    zo_callLater(function () LCH.Zilyesset.annihilationOngoing = false end, hitValue)
   end
 end
 
@@ -151,12 +151,12 @@ end
 
 function LCH.Zilyesset.SummonLightweaver(result, targetType, targetUnitId, hitValue)
   -- Summon big add from Zilyesset
-  if result == ACTION_RESULT_EFFECT_GAINED_DURATION then
-    if LCH.Zilyesset.playerSide == "dark" then
-      return
-    end
+  if LCH.Zilyesset.playerSide == "dark" then
+    return
+  end
 
-    LCH.Alert("", "Summon Lightweaver", 0xFFBCC6CC, LCH.Zilyesset.constants.summon_shardborn_lightweaver_id, SOUNDS.OBJECTIVE_DISCOVERED, 2000)
+  if result == ACTION_RESULT_EFFECT_GAINED_DURATION then
+    LCH.Alert("", "Summon Lightweaver", 0xBCC6CCFF, LCH.Zilyesset.constants.summon_shardborn_lightweaver_id, SOUNDS.OBJECTIVE_DISCOVERED, 2000)
   end
 end
 

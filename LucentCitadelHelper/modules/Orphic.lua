@@ -154,7 +154,7 @@ function LCH.Orphic.HeavyShock(result, targetType, targetUnitId, hitValue)
 
     LCH.AddIconForDuration(
       LCH.GetTagForId(targetUnitId),
-      "OdySupportIcons/icons/lightning-bolt.dds",
+      "OdySupportIcons/icons/electric-danger.dds",
       hitValue
     )
   end
