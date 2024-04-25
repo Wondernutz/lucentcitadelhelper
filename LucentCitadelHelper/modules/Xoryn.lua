@@ -158,10 +158,19 @@ function LCH.Xoryn.FluctuatingCurrentUpdateTick(timeSec)
   LCHStatusLabelXoryn2Value:SetHidden(not (LCH.savedVariables.showFluctuatingCurrentTimer))
 
   local delta = timeSec - LCH.Xoryn.lastFluctuatingCurrent
-
   local timeLeft = LCH.Xoryn.fluctuatingCurrentDuration - delta
 
-  LCHStatusLabelXoryn2Value:SetText(LCH.Xoryn.getSecondsRemainingString(timeLeft))
+  LCHStatusLabelXoryn2Value:SetText(LCH.Xoryn.getFluctuatingText(timeLeft))
+end
+
+function LCH.Xoryn.getFluctuatingText(seconds)
+  if seconds > 5 then 
+    return string.format("%.0f", seconds) .. "s "
+  elseif seconds > 0 then 
+    return string.format("%.1f", seconds) .. "s "
+  else
+    return "-"
+  end
 end
 
 function LCH.Xoryn.OverloadedCurrentUpdateTick(timeSec)
@@ -169,18 +178,19 @@ function LCH.Xoryn.OverloadedCurrentUpdateTick(timeSec)
   LCHStatusLabelXoryn3Value:SetHidden(not (LCH.savedVariables.showOverloadedCurrentTimer))
 
   local delta = timeSec - LCH.Xoryn.lastOverloadedCurrent
-
   local timeLeft = LCH.Xoryn.overloadedCurrentDuration - delta
 
-  LCHStatusLabelXoryn3Value:SetText(LCH.Xoryn.getSecondsRemainingString(timeLeft))
+  LCHStatusLabelXoryn3Value:SetText(LCH.Xoryn.getOverloadedText(timeLeft))
+  local color = (timeLeft > 0 and 0xFF0000FF or 0x00FF00FF)
+  LCHStatusLabelXoryn3Value:SetColor(LCH.UnpackRGBA(color))
 end
 
-function LCH.Xoryn.getSecondsRemainingString(seconds)
+function LCH.Xoryn.getOverloadedText(seconds)
   if seconds > 5 then 
-    return string.format("%.0f", seconds) .. "s "
+    return string.format("YES - %.0f", seconds) .. "s "
   elseif seconds > 0 then 
-    return string.format("%.1f", seconds) .. "s "
+    return string.format("YES - %.1f", seconds) .. "s "
   else
-    return "-"
+    return "NO"
   end
 end

@@ -250,3 +250,15 @@ function LCH.GroupNames()
     end
   end
 end
+
+function LCH.UnpackRGBA( rgba )
+	local a = rgba % 256
+	rgba = (rgba - a) / 256
+	local b = rgba % 256
+	rgba = (rgba - b) / 256
+	local g = rgba % 256
+	rgba = (rgba - g) / 256
+	local r = rgba % 256
+
+	return r / 255, g / 255, b / 255, a / 255
+end
