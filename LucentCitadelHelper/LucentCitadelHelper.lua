@@ -57,6 +57,7 @@ LCH.settings = {
 
   -- Last Boss
   showFluctuatingCurrentTimer = true,
+  showOverloadedCurrentTimer = true,
 
   -- Misc
   uiCustomScale = 1,
