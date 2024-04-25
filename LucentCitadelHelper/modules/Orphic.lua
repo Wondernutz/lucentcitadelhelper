@@ -16,7 +16,7 @@ LCH.Orphic.constants = {
   breakout_id = 220185, -- Debuff falls off when Orphic first becomes active
   xoryn_immune_id = 218006, -- Xoryn Thunder Thrall buff gained when immune?
 
-  heavy_shock_id = 222072,
+  heavy_shock_id = 222071,
 
   fate_sealer_id = 214311, -- Ball summon
 }
