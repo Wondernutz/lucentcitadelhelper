@@ -2,7 +2,7 @@ LCH = LCH or {}
 local LCH = LCH
 
 LCH.name     = "LucentCitadelHelper"
-LCH.version  = "0.2.5"
+LCH.version  = "0.2.6"
 LCH.author   = "@Wondernuts, @kabs12"
 LCH.active   = false
 
@@ -89,7 +89,7 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
   elseif abilityId == LCH.Orphic.constants.breakout_id then
     LCH.Orphic.Breakout(result, targetType, targetUnitId, hitValue)
 
-  elseif abilityId == LCH.Xoryn.constants.splintered_burst_id then
+  elseif abilityId == LCH.Xoryn.constants.glass_stomp_id then
     LCH.Xoryn.SplinteredBurst(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Xoryn.constants.arcane_conveyance_cast_id then
     LCH.Xoryn.ArcaneConveyanceIncoming(result, targetType, targetUnitId, hitValue)
