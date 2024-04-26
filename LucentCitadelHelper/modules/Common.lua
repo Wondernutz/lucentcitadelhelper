@@ -26,11 +26,13 @@ LCH.Common.CCADodgeIDs = {
 		vet: Vet-only?
 		offset: Offset to reported hitValue, in milliseconds
 		--------------------------------------------------]]
-    [222271] = { -2, 1 }, -- Zilyesset Heavy Strike
-    [218274] = { -2, 1 }, -- Count Ryelaz Shear
-    [219791] = { -2, 1 }, -- Crystal Atronach Crystal Spear
-    [219792] = { -2, 1 }, -- Crystal Atronach Crunch
+    [222271] = { -2, 2 }, -- Zilyesset Heavy Strike
+    [218274] = { -2, 2 }, -- Count Ryelaz Shear
+    [219791] = { -2, 2 }, -- Crystal Atronach Crystal Spear
+    [219792] = { -2, 2 }, -- Crystal Atronach Crunch
     [219793] = { -2, 1 }, -- Crystal Atronach Crushing Shards
+    [223546] = { -3, 2 }, -- Mantikora Javelin
+    [221863] = { -2, 2 }, -- Crystal Hollow Sentinel Heavy Attack
 }
 
 function LCH.Common.AddToCCADodgeList()
