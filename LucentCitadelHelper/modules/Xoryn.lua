@@ -30,14 +30,6 @@ function LCH.Xoryn.Init()
   LCH.Xoryn.overloadedCurrentDuration = 0
 end
 
-function LCH.Xoryn.LustrousJavelin(result, targetType, targetUnitId, hitValue)
-  if result == ACTION_RESULT_BEGIN then
-    if targetType == COMBAT_UNIT_TYPE_PLAYER then
-      CombatAlerts.AlertCast(LCH.Xoryn.constants.lustrous_javelin_id, "Lustrous Javelin", hitValue, {-3, 2})
-    end
-  end
-end
-
 function LCH.Xoryn.SplinteredBurst(result, targetType, targetUnitId, hitValue)
   if result == ACTION_RESULT_BEGIN then
     if targetType == COMBAT_UNIT_TYPE_PLAYER then
@@ -47,7 +39,7 @@ function LCH.Xoryn.SplinteredBurst(result, targetType, targetUnitId, hitValue)
 
     LCH.AddIconForDuration(
       LCH.GetTagForId(targetUnitId),
-      "LucentCitadelHelper/icons/target.dds",
+      "LucentCitadelHelper/icons/crystal-burst.dds",
       hitValue
     )
   end
@@ -67,7 +59,7 @@ function LCH.Xoryn.ArcaneConveyance(result, targetType, targetUnitId, hitValue)
 
     LCH.AddIconForDuration(
       LCH.GetTagForId(targetUnitId),
-      "LucentCitadelHelper/icons/portalyellow.dds",
+      "LucentCitadelHelper/icons/death-warning.dds",
       hitValue
     )
   elseif result == ACTION_RESULT_EFFECT_FADED then
@@ -103,7 +95,7 @@ function LCH.Xoryn.FluctuatingCurrent(result, targetType, targetUnitId, hitValue
 
     LCH.AddIconForDuration(
       LCH.GetTagForId(targetUnitId),
-      "LucentCitadelHelper/icons/portal.dds",
+      "LucentCitadelHelper/icons/electric-badge.dds",
       hitValue
     )
     LCH.Xoryn.activeIcons[targetUnitId] = "fluctuating"
@@ -131,7 +123,7 @@ function LCH.Xoryn.OverloadedCurrent(result, targetType, targetUnitId, hitValue)
 
     LCH.AddIconForDuration(
       LCH.GetTagForId(targetUnitId),
-      "LucentCitadelHelper/icons/portalpurple.dds",
+      "LucentCitadelHelper/icons/no-electric.dds",
       hitValue
     )
     LCH.Xoryn.activeIcons[targetUnitId] = "overloaded"

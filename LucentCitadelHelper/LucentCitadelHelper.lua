@@ -95,8 +95,6 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
     LCH.Xoryn.ArcaneConveyanceIncoming(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Xoryn.constants.arcane_conveyance_debuff_id then
     LCH.Xoryn.ArcaneConveyance(result, targetType, targetUnitId, hitValue)
-  elseif abilityId == LCH.Xoryn.constants.lustrous_javelin_id then
-    LCH.Xoryn.LustrousJavelin(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Xoryn.constants.accelerating_charge_id then
     LCH.Xoryn.AcceleratingCharge(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Xoryn.constants.tempest_id then
