@@ -124,20 +124,24 @@ function LCH.Xoryn.OverloadedCurrent(result, targetType, targetUnitId, hitValue)
       LCH.Xoryn.overloadedCurrentDuration = hitValue / 1000
     end
 
-    LCH.AddIconForDuration(
-      LCH.GetTagForId(targetUnitId),
-      "LucentCitadelHelper/icons/no-electric.dds",
-      hitValue
-    )
-    LCH.Xoryn.activeIcons[targetUnitId] = "overloaded"
+    if LCH.savedVariables.showOverloadedCurrentIcons then
+      LCH.AddIconForDuration(
+        LCH.GetTagForId(targetUnitId),
+        "LucentCitadelHelper/icons/no-electric.dds",
+        hitValue
+      )
+      LCH.Xoryn.activeIcons[targetUnitId] = "overloaded"
+    end
     
   elseif result == ACTION_RESULT_EFFECT_FADED then
     if targetType == COMBAT_UNIT_TYPE_PLAYER then
       LCH.Xoryn.overloadedCurrentDuration = 0
     end
 
-    LCH.RemoveIcon(LCH.GetTagForId(targetUnitId))
-    LCH.Xoryn.activeIcons[targetUnitId] = nil
+    if LCH.savedVariables.showOverloadedCurrentIcons or LCH.Xoryn.activeIcons[targetUnitId] == "overloaded" then
+      LCH.RemoveIcon(LCH.GetTagForId(targetUnitId))
+      LCH.Xoryn.activeIcons[targetUnitId] = nil
+    end
   end
 end
 

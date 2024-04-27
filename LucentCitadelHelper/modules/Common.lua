@@ -33,6 +33,8 @@ LCH.Common.CCADodgeIDs = {
     [219793] = { -2, 1 }, -- Crystal Atronach Crushing Shards
     [223546] = { -3, 2 }, -- Mantikora Javelin
     [221863] = { -2, 2 }, -- Crystal Hollow Sentinel Heavy Attack
+    [219030] = { -2, 2 }, -- Jresazzel Power Bash
+    [221877] = { -2, 2 }, -- Ruinach Frenzy
 }
 
 function LCH.Common.AddToCCADodgeList()
