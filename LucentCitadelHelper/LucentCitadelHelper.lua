@@ -241,7 +241,7 @@ function LCH.BossesChanged()
       end
     end
 
-    if string.match(bossName, LCH.data.ZilyessetName) then
+    if string.match(bossName, LCH.data.zilyessetName) then
       LCH.status.isZilyesset = true
       LCH.Zilyesset.AddPadIcons()
     elseif string.match(bossName, LCH.data.orphicName) then
