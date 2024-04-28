@@ -8,6 +8,39 @@ LCH.Common.constants = {
   hindered_id = 165972,
 }
 
+LCH.Common.CCADodgeIDs = {
+		--[[ Options ---------------------------------------
+		1: Size of alert window
+			0: None
+			>0: Time, in milliseconds
+			-1: Default (auto-detect)
+			-2: Default (melee)
+			-3: Default (projectile)
+		2: Alert text/ping (ignored if alert window is 0)
+			0: Never
+			1: Always
+			2: Suppressed for tanks
+		3: Interruptible (optional, default false)
+		4: Color, regular (optional)
+		5: Color, alerted (optional)
+		vet: Vet-only?
+		offset: Offset to reported hitValue, in milliseconds
+		--------------------------------------------------]]
+    [222271] = { -2, 2 }, -- Zilyesset Heavy Strike
+    [218274] = { -2, 2 }, -- Count Ryelaz Shear
+    [219791] = { -2, 2 }, -- Crystal Atronach Crystal Spear
+    [219792] = { -2, 2 }, -- Crystal Atronach Crunch
+    [219793] = { -2, 1 }, -- Crystal Atronach Crushing Shards
+    [223546] = { -3, 2 }, -- Mantikora Javelin
+    [221863] = { -2, 2 }, -- Crystal Hollow Sentinel Heavy Attack
+}
+
+function LCH.Common.AddToCCADodgeList()
+  for k, v in pairs(LCH.Common.CCADodgeIDs) do
+    CombatAlertsData.dodge.ids[k] = v
+  end
+end
+
 function LCH.Common.Init()
 
 end
