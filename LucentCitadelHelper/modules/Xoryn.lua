@@ -3,6 +3,7 @@ local LCH = LCH
 LCH.Xoryn = {
   lastFluctuatingCurrent = 0,
   fluctuatingCurrentDuration = 0,
+  isFluctuatingActive = false,
 
   lastOverloadedCurrent = 0,
   overloadedCurrentDuration = 0,
@@ -26,17 +27,10 @@ LCH.Xoryn.constants = {
 function LCH.Xoryn.Init()
   LCH.Xoryn.lastFluctuatingCurrent = 0
   LCH.Xoryn.fluctuatingCurrentDuration = 0
+  LCH.Xoryn.isFluctuatingActive = false
 
   LCH.Xoryn.lastOverloadedCurrent = 0
   LCH.Xoryn.overloadedCurrentDuration = 0
-end
-
-function LCH.Xoryn.LustrousJavelin(result, targetType, targetUnitId, hitValue)
-  if result == ACTION_RESULT_BEGIN then
-    if targetType == COMBAT_UNIT_TYPE_PLAYER then
-      CombatAlerts.AlertCast(LCH.Xoryn.constants.lustrous_javelin_id, "Lustrous Javelin", hitValue, {-3, 2})
-    end
-  end
 end
 
 function LCH.Xoryn.SplinteredBurst(result, targetType, targetUnitId, hitValue)
@@ -48,7 +42,7 @@ function LCH.Xoryn.SplinteredBurst(result, targetType, targetUnitId, hitValue)
 
     LCH.AddIconForDuration(
       LCH.GetTagForId(targetUnitId),
-      "LucentCitadelHelper/icons/target.dds",
+      "LucentCitadelHelper/icons/crystal-burst.dds",
       hitValue
     )
   end
@@ -68,7 +62,7 @@ function LCH.Xoryn.ArcaneConveyance(result, targetType, targetUnitId, hitValue)
 
     LCH.AddIconForDuration(
       LCH.GetTagForId(targetUnitId),
-      "LucentCitadelHelper/icons/portalyellow.dds",
+      "LucentCitadelHelper/icons/death-warning.dds",
       hitValue
     )
   elseif result == ACTION_RESULT_EFFECT_FADED then
@@ -102,6 +96,7 @@ function LCH.Xoryn.FluctuatingCurrent(result, targetType, targetUnitId, hitValue
   local borderId = "fluctuatingCurrent"
 
   if result == ACTION_RESULT_EFFECT_GAINED_DURATION then
+    LCH.Xoryn.isFluctuatingActive = true
     LCH.Xoryn.lastFluctuatingCurrent = GetGameTimeSeconds()
     LCH.Xoryn.fluctuatingCurrentDuration = hitValue / 1000
     
@@ -112,13 +107,13 @@ function LCH.Xoryn.FluctuatingCurrent(result, targetType, targetUnitId, hitValue
 
     LCH.AddIconForDuration(
       LCH.GetTagForId(targetUnitId),
-      "LucentCitadelHelper/icons/portal.dds",
+      "LucentCitadelHelper/icons/electric-badge.dds",
       hitValue
     )
     LCH.Xoryn.activeIcons[targetUnitId] = "fluctuating"
 
   elseif result == ACTION_RESULT_EFFECT_FADED then
-    LCH.Xoryn.fluctuatingCurrentDuration = 0
+    LCH.Xoryn.isFluctuatingActive = false
 
     if targetType == COMBAT_UNIT_TYPE_PLAYER then
       CombatAlerts.ScreenBorderDisable(borderId)
@@ -140,7 +135,7 @@ function LCH.Xoryn.OverloadedCurrent(result, targetType, targetUnitId, hitValue)
 
     LCH.AddIconForDuration(
       LCH.GetTagForId(targetUnitId),
-      "LucentCitadelHelper/icons/portalpurple.dds",
+      "LucentCitadelHelper/icons/no-electric.dds",
       hitValue
     )
     LCH.Xoryn.activeIcons[targetUnitId] = "overloaded"
@@ -169,16 +164,34 @@ function LCH.Xoryn.FluctuatingCurrentUpdateTick(timeSec)
   local delta = timeSec - LCH.Xoryn.lastFluctuatingCurrent
   local timeLeft = LCH.Xoryn.fluctuatingCurrentDuration - delta
 
-  LCHStatusLabelXoryn2Value:SetText(LCH.Xoryn.getFluctuatingText(timeLeft))
+  if LCH.Xoryn.isFluctuatingActive then
+    LCHStatusLabelXoryn2Value:SetText("ACTIVE: " .. LCH.Xoryn.getActiveFluctuatingText(timeLeft))
+    LCHStatusLabelXoryn2Value:SetColor(LCH.UnpackRGBA(0xFFD666FF))
+  else
+    -- The total duration between new Fluctuating casts is 60s, or the total Fluctuating duration (45s) + 15s
+    timeLeft = timeLeft + 15
+    LCHStatusLabelXoryn2Value:SetText("INCOMING: " .. LCH.Xoryn.getInactiveFluctuatingText(timeLeft))
+    LCHStatusLabelXoryn2Value:SetColor(LCH.UnpackRGBA(0xFF8500FF))
+  end
 end
 
-function LCH.Xoryn.getFluctuatingText(seconds)
+function LCH.Xoryn.getActiveFluctuatingText(seconds)
   if seconds > 5 then 
     return string.format("%.0f", seconds) .. "s "
   elseif seconds > 0 then 
     return string.format("%.1f", seconds) .. "s "
   else
     return "-"
+  end
+end
+
+function LCH.Xoryn.getInactiveFluctuatingText(seconds)
+  if seconds > 5 then 
+    return string.format("%.0f", seconds) .. "s "
+  elseif seconds > 0 then 
+    return string.format("%.1f", seconds) .. "s "
+  else
+    return "NOW"
   end
 end
 
