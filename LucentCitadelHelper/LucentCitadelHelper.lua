@@ -2,7 +2,7 @@ LCH = LCH or {}
 local LCH = LCH
 
 LCH.name     = "LucentCitadelHelper"
-LCH.version  = "0.2.9"
+LCH.version  = "0.2.11"
 LCH.author   = "@Wondernuts, @kabs12"
 LCH.active   = false
 
@@ -76,6 +76,8 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
     LCH.Zilyesset.OnLightSide(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Zilyesset.constants.porcinlight_id then
     LCH.Zilyesset.OnDarkSide(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Zilyesset.constants.bleak_lusterbeam_id or abilityId == LCH.Zilyesset.constants.brilliant_lusterbeam_id then
+    LCH.Zilyesset.Lusterbeam(abilityId, result, targetType, targetUnitId, hitValue)
 
   elseif abilityId == LCH.Orphic.constants.color_change_id then
     LCH.Orphic.ColorChange(result, targetType, targetUnitId, hitValue)

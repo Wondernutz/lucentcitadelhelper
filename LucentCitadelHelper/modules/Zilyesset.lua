@@ -12,6 +12,8 @@ LCH.Zilyesset.constants = {
   porcindark_id = 219330, -- Having this buff means player is on light side with Zilyesset
   summon_shardborn_lightweaver_id = 218113, -- Big add from Zilyesset
   summon_gloomy_blackguard_id = 218109, -- Big add from Count Ryelaz
+  bleak_lusterbeam_id = 214254, -- Aura to remove protection from adds
+  brilliant_lusterbeam_id = 214237, -- Aura to remove protection from adds
 }
 
 function LCH.Zilyesset.Init()
@@ -81,6 +83,15 @@ function LCH.Zilyesset.SummonBlackguard(result, targetType, targetUnitId, hitVal
 
   if result == ACTION_RESULT_EFFECT_GAINED_DURATION then
     LCH.Alert("", "Summon Blackguard", 0x71797EFF, LCH.Zilyesset.constants.summon_gloomy_blackguard_id, SOUNDS.OBJECTIVE_DISCOVERED, 2000)
+  end
+end
+
+function LCH.Zilyesset.Lusterbeam(abilityId, result, targetType, targetUnitId, hitValue)
+  -- Aura to remove protection from adds
+  if result == ACTION_RESULT_EFFECT_GAINED_DURATION then
+    if targetType == COMBAT_UNIT_TYPE_PLAYER then
+      LCH.Alert("", GetFormattedAbilityName(abilityId), 0xB22222FF, abilityId, SOUNDS.OBJECTIVE_DISCOVERED, 2000)
+    end
   end
 end
 
