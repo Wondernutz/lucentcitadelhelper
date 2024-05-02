@@ -9,6 +9,8 @@ LCH.Orphic = {
 LCH.Orphic.constants = {
   color_change_id = 213913, -- Color change/mirrors mechanic
 
+  shield_throw_id = 221931, -- Sentinel Shield Throw
+
   thunder_thrall_id = 214383,
   thunder_thrall_first_cd = 8.0, -- how soon Xoryn can first jump
   thunder_thrall_cd = 25.5, -- how often Xoryn jumps
@@ -128,6 +130,13 @@ function LCH.Orphic.ColorChange(result, targetType, targetUnitId, hitValue)
     local hitOffset = 1000
     LCH.Alert("", "Color Change", 0x96DED1FF, LCH.Orphic.constants.color_change_id, SOUNDS.BATTLEGROUND_CAPTURE_FLAG_TAKEN_OWN_TEAM, 4000)
     CombatAlerts.CastAlertsStart(LCH.Orphic.constants.color_change_id, "Color Change", hitValue - hitOffset, 12000, nil, nil)
+  end
+end
+
+function LCH.Orphic.ShieldThrow(result, targetType, targetUnitId, hitValue)
+  if result == ACTION_RESULT_BEGIN and hitValue > 2000 then
+    LCH.Alert("", "Shield Throw", 0x96DED1FF, LCH.Orphic.constants.shield_throw_id, SOUNDS.BATTLEGROUND_CAPTURE_FLAG_TAKEN_OWN_TEAM, 1500)
+    CombatAlerts.CastAlertsStart(LCH.Orphic.constants.shield_throw_id, "Shield Throw", hitValue, nil, nil, { hitValue, "Block!", 1, 0.4, 0, 0.5, nil })
   end
 end
 
