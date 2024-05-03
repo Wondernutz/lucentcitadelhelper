@@ -114,6 +114,13 @@ function LCH.Menu.AddonMenu()
       setFunc = function(newValue) LCH.savedVariables.showOverloadedCurrentTimer = newValue end,
     },
     {
+      type    = "checkbox",
+      name    = "Show Overloaded Current icons",
+      default = false,
+      getFunc = function() return LCH.savedVariables.showOverloadedCurrentIcons end,
+      setFunc = function(newValue) LCH.savedVariables.showOverloadedCurrentIcons = newValue end,
+    },
+    {
       type = "divider",
     },
     {

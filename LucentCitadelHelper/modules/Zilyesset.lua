@@ -171,6 +171,15 @@ function LCH.Zilyesset.SummonBlackguard(result, targetType, targetUnitId, hitVal
   end
 end
 
+function LCH.Zilyesset.Lusterbeam(abilityId, result, targetType, targetUnitId, hitValue)
+  -- Aura to remove protection from adds
+  if result == ACTION_RESULT_EFFECT_GAINED_DURATION then
+    if targetType == COMBAT_UNIT_TYPE_PLAYER then
+      LCH.Alert("", GetFormattedAbilityName(abilityId), 0xB22222FF, abilityId, SOUNDS.OBJECTIVE_DISCOVERED, 2000)
+    end
+  end
+end
+
 function LCH.Zilyesset.UpdateTick(timeSec)
 
 end
