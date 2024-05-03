@@ -124,20 +124,24 @@ function LCH.Xoryn.OverloadedCurrent(result, targetType, targetUnitId, hitValue)
       LCH.Xoryn.overloadedCurrentDuration = hitValue / 1000
     end
 
-    LCH.AddIconForDuration(
-      LCH.GetTagForId(targetUnitId),
-      "LucentCitadelHelper/icons/no-electric.dds",
-      hitValue
-    )
-    LCH.Xoryn.activeIcons[targetUnitId] = "overloaded"
+    if LCH.savedVariables.showOverloadedCurrentIcons then
+      LCH.AddIconForDuration(
+        LCH.GetTagForId(targetUnitId),
+        "LucentCitadelHelper/icons/no-electric.dds",
+        hitValue
+      )
+      LCH.Xoryn.activeIcons[targetUnitId] = "overloaded"
+    end
     
   elseif result == ACTION_RESULT_EFFECT_FADED then
     if targetType == COMBAT_UNIT_TYPE_PLAYER then
       LCH.Xoryn.overloadedCurrentDuration = 0
     end
 
-    LCH.RemoveIcon(LCH.GetTagForId(targetUnitId))
-    LCH.Xoryn.activeIcons[targetUnitId] = nil
+    if LCH.savedVariables.showOverloadedCurrentIcons or LCH.Xoryn.activeIcons[targetUnitId] == "overloaded" then
+      LCH.RemoveIcon(LCH.GetTagForId(targetUnitId))
+      LCH.Xoryn.activeIcons[targetUnitId] = nil
+    end
   end
 end
 
@@ -159,8 +163,8 @@ function LCH.Xoryn.FluctuatingCurrentUpdateTick(timeSec)
     LCHStatusLabelXoryn2Value:SetText("ACTIVE: " .. LCH.Xoryn.getActiveFluctuatingText(timeLeft))
     LCHStatusLabelXoryn2Value:SetColor(LCH.UnpackRGBA(0xFFD666FF))
   else
-    -- The total duration between new Fluctuating casts is 60s, or the total Fluctuating duration (45s) + 15s
-    timeLeft = timeLeft + 15
+    -- The total duration between new Fluctuating casts is 60s, or the total Fluctuating duration (60s)
+    timeLeft = timeLeft + 1
     LCHStatusLabelXoryn2Value:SetText("INCOMING: " .. LCH.Xoryn.getInactiveFluctuatingText(timeLeft))
     LCHStatusLabelXoryn2Value:SetColor(LCH.UnpackRGBA(0xFF8500FF))
   end

@@ -2,7 +2,7 @@ LCH = LCH or {}
 local LCH = LCH
 
 LCH.name     = "LucentCitadelHelper"
-LCH.version  = "0.2.7"
+LCH.version  = "0.2.12"
 LCH.author   = "@Wondernuts, @kabs12"
 LCH.active   = false
 
@@ -40,6 +40,7 @@ LCH.settings = {
   -- Last Boss
   showFluctuatingCurrentTimer = true,
   showOverloadedCurrentTimer = true,
+  showOverloadedCurrentIcons = false,
 
   -- Misc
   uiCustomScale = 1,
@@ -75,6 +76,8 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
     LCH.Zilyesset.OnLightSide(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Zilyesset.constants.porcinlight_id then
     LCH.Zilyesset.OnDarkSide(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Zilyesset.constants.bleak_lusterbeam_id or abilityId == LCH.Zilyesset.constants.brilliant_lusterbeam_id then
+    LCH.Zilyesset.Lusterbeam(abilityId, result, targetType, targetUnitId, hitValue)
 
   elseif abilityId == LCH.Orphic.constants.color_change_id then
     LCH.Orphic.ColorChange(result, targetType, targetUnitId, hitValue)
@@ -88,6 +91,8 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
     LCH.Orphic.XorynImmune(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Orphic.constants.breakout_id then
     LCH.Orphic.Breakout(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Orphic.constants.shield_throw_id then
+    LCH.Orphic.ShieldThrow(result, targetType, targetUnitId, hitValue)
 
   elseif abilityId == LCH.Xoryn.constants.glass_stomp_id then
     LCH.Xoryn.SplinteredBurst(result, targetType, targetUnitId, hitValue)
