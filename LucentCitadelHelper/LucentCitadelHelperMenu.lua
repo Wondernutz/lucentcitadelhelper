@@ -61,6 +61,14 @@ function LCH.Menu.AddonMenu()
       reference = "ZilyessetHeader"
     },
     {
+      type    = "checkbox",
+      name    = "Icon: Show Pad Numbers",
+      default = true,
+      getFunc = function() return LCH.savedVariables.showPadIcons end,
+      setFunc = function(newValue) LCH.savedVariables.showPadIcons = newValue end,
+      warning = requiresOSI
+    },
+    {
       type = "divider",
     },
     {
@@ -70,10 +78,18 @@ function LCH.Menu.AddonMenu()
     },
     {
       type    = "checkbox",
-      name    = "Panel: Xoryn jump timer",
+      name    = "Panel: Xoryn Jump Timer",
       default = true,
       getFunc = function() return LCH.savedVariables.showXorynJumpTimer end,
       setFunc = function(newValue) LCH.savedVariables.showXorynJumpTimer = newValue end,
+    },
+    {
+      type    = "checkbox",
+      name    = "Icon: Show Mirror Numbers",
+      default = true,
+      getFunc = function() return LCH.savedVariables.showMirrorIcons end,
+      setFunc = function(newValue) LCH.savedVariables.showMirrorIcons = newValue end,
+      warning = requiresOSI
     },
     {
       type = "divider",

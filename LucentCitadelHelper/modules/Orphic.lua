@@ -23,6 +23,102 @@ LCH.Orphic.constants = {
   fate_sealer_id = 214311, -- Ball summon
 }
 
+function LCH.Orphic.AddMirrorIcons()
+  if LCH.savedVariables.showMirrorIcons and LCH.hasOSI() then
+    if table.getn(LCH.status.MirrorIconNumber1) == 0 then
+      table.insert(LCH.status.MirrorIconNumber1, 
+        OSI.CreatePositionIcon(
+          149309,
+          22868,
+          85334,
+          "LucentCitadelHelper/icons/1.dds",
+          1 * OSI.GetIconSize()))
+    end
+    if table.getn(LCH.status.MirrorIconNumber2) == 0 then
+      table.insert(LCH.status.MirrorIconNumber2, 
+        OSI.CreatePositionIcon(
+          151958,
+          22867,
+          87981,
+          "LucentCitadelHelper/icons/2.dds",
+          1 * OSI.GetIconSize()))
+    end
+    if table.getn(LCH.status.MirrorIconNumber3) == 0 then
+      table.insert(LCH.status.MirrorIconNumber3, 
+        OSI.CreatePositionIcon(
+          182466,
+          40391,
+          222635,
+          "LucentCitadelHelper/icons/3.dds",
+          1 * OSI.GetIconSize()))
+    end
+    if table.getn(LCH.status.MirrorIconNumber4) == 0 then
+      table.insert(LCH.status.MirrorIconNumber4, 
+        OSI.CreatePositionIcon(
+          151170,
+          22864,
+          89707, 
+          "LucentCitadelHelper/icons/4.dds",
+          1 * OSI.GetIconSize()))
+    end
+    if table.getn(LCH.status.MirrorIconNumber5) == 0 then
+      table.insert(LCH.status.MirrorIconNumber5, 
+        OSI.CreatePositionIcon(
+          149282,
+          22869,
+          90564,
+          "LucentCitadelHelper/icons/5.dds",
+          1 * OSI.GetIconSize()))
+    end
+    if table.getn(LCH.status.MirrorIconNumber6) == 0 then
+      table.insert(LCH.status.MirrorIconNumber6, 
+        OSI.CreatePositionIcon(
+          147494,
+          22869,
+          89770,
+          "LucentCitadelHelper/icons/6.dds",
+          1 * OSI.GetIconSize()))
+    end
+    if table.getn(LCH.status.MirrorIconNumber7) == 0 then
+      table.insert(LCH.status.MirrorIconNumber7, 
+        OSI.CreatePositionIcon(
+          146618,
+          22867,
+          87932,
+          "LucentCitadelHelper/icons/7.dds",
+          1 * OSI.GetIconSize()))
+    end
+    if table.getn(LCH.status.MirrorIconNumber8) == 0 then
+      table.insert(LCH.status.MirrorIconNumber8, 
+        OSI.CreatePositionIcon(
+          147495,
+          22869,
+          86171,
+          "LucentCitadelHelper/icons/8.dds",
+          1 * OSI.GetIconSize()))
+    end
+  end
+end
+
+function LCH.Orphic.RemoveMirrorIcons()
+  LCH.DiscardPositionIconList(LCH.status.MirrorIconNumber1)
+  LCH.status.MirrorIconNumber1 = {}
+  LCH.DiscardPositionIconList(LCH.status.MirrorIconNumber2)
+  LCH.status.MirrorIconNumber2 = {}
+  LCH.DiscardPositionIconList(LCH.status.MirrorIconNumber3)
+  LCH.status.MirrorIconNumber3 = {}
+  LCH.DiscardPositionIconList(LCH.status.MirrorIconNumber4)
+  LCH.status.MirrorIconNumber4 = {}
+  LCH.DiscardPositionIconList(LCH.status.MirrorIconNumber5)
+  LCH.status.MirrorIconNumber5 = {}
+  LCH.DiscardPositionIconList(LCH.status.MirrorIconNumber6)
+  LCH.status.MirrorIconNumber6 = {}
+  LCH.DiscardPositionIconList(LCH.status.MirrorIconNumber7)
+  LCH.status.MirrorIconNumber7 = {}
+  LCH.DiscardPositionIconList(LCH.status.MirrorIconNumber8)
+  LCH.status.MirrorIconNumber8 = {}
+end
+
 function LCH.Orphic.Init()
   LCH.Orphic.lastThunderThrall = GetGameTimeSeconds()
   LCH.Orphic.isFirstThunderThrall = true
