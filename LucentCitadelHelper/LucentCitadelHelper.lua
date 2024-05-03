@@ -2,7 +2,7 @@ LCH = LCH or {}
 local LCH = LCH
 
 LCH.name     = "LucentCitadelHelper"
-LCH.version  = "0.2.12"
+LCH.version  = "0.3.0"
 LCH.author   = "@Wondernuts, @kabs12"
 LCH.active   = false
 
