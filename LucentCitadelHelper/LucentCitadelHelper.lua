@@ -2,7 +2,7 @@ LCH = LCH or {}
 local LCH = LCH
 
 LCH.name     = "LucentCitadelHelper"
-LCH.version  = "0.3.0"
+LCH.version  = "0.3.1"
 LCH.author   = "@Wondernuts, @kabs12"
 LCH.active   = false
 
@@ -82,7 +82,9 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
   end
 
   if abilityId == LCH.Common.constants.hindered_id then
-    LCH.Common.Hindered(result, targetUnitId, hitValue)
+    LCH.Common.Hindered(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Common.constants.radiance_debuff_id then
+    LCH.Common.Radiance(result, targetType, targetUnitId, hitValue)
 
   elseif abilityId == LCH.Zilyesset.constants.brilliant_annihilation_id or abilityId == LCH.Zilyesset.constants.bleak_annihilation_id then
     LCH.Zilyesset.Annihilation(abilityId, result, targetType, targetUnitId, hitValue)

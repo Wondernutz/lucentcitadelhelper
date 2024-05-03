@@ -6,6 +6,7 @@ LCH.Common = {
 
 LCH.Common.constants = {
   hindered_id = 165972,
+  radiance_debuff_id = 214675,
 }
 
 LCH.Common.CCADodgeIDs = {
@@ -52,7 +53,7 @@ function LCH.Common.Init()
 
 end
 
-function LCH.Common.Hindered(result, targetUnitId, hitValue)
+function LCH.Common.Hindered(result, targetType, targetUnitId, hitValue)
   local isDPS, isHeal, isTank = GetPlayerRoles()
   if isDPS then
     return
@@ -66,5 +67,20 @@ function LCH.Common.Hindered(result, targetUnitId, hitValue)
     -- TODO: Track how much healing is left.
   elseif result == ACTION_RESULT_EFFECT_FADED then
     LCH.RemoveIcon(LCH.GetTagForId(targetUnitId))
+  end
+end
+
+function LCH.Common.Radiance(result, targetType, targetUnitId, hitValue)
+  local borderId = "radiance"
+
+  if result == ACTION_RESULT_EFFECT_GAINED_DURATION then
+    if targetType == COMBAT_UNIT_TYPE_PLAYER then
+      CombatAlerts.ScreenBorderEnable(0xBF40BF99, hitValue, borderId)
+    end
+
+  elseif result == ACTION_RESULT_EFFECT_FADED then
+    if targetType == COMBAT_UNIT_TYPE_PLAYER then
+      CombatAlerts.ScreenBorderDisable(borderId)
+    end
   end
 end

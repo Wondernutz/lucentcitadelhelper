@@ -79,7 +79,7 @@ end
 function LCH.Xoryn.Tempest(result, targetType, targetUnitId, hitValue)
   if result == ACTION_RESULT_BEGIN and hitValue > 500 then
     LCH.Alert("", "Tempest", 0x6082B6FF, LCH.Xoryn.constants.tempest_id, SOUNDS.BATTLEGROUND_CAPTURE_FLAG_TAKEN_OWN_TEAM, 2000)
-    CombatAlerts.CastAlertsStart(LCH.Xoryn.constants.tempest_id, "Tempest", hitValue, 10000, nil, nil)
+    CombatAlerts.CastAlertsStart(LCH.Xoryn.constants.tempest_id, "Tempest", 8000, 10000, nil, nil)
   end
 end
 
