@@ -134,7 +134,7 @@ function LCH.Orphic.ColorChange(result, targetType, targetUnitId, hitValue)
 end
 
 function LCH.Orphic.ShieldThrow(result, targetType, targetUnitId, hitValue)
-  if result == ACTION_RESULT_BEGIN and hitValue > 2000 then
+  if result == ACTION_RESULT_BEGIN and hitValue > 500 then
     LCH.Alert("", "Shield Throw", 0x96DED1FF, LCH.Orphic.constants.shield_throw_id, SOUNDS.BATTLEGROUND_CAPTURE_FLAG_TAKEN_OWN_TEAM, 1500)
     CombatAlerts.CastAlertsStart(LCH.Orphic.constants.shield_throw_id, "Shield Throw", hitValue, nil, nil, { hitValue, "Block!", 1, 0.4, 0, 0.5, nil })
   end
