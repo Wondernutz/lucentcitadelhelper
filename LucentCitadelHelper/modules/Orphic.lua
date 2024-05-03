@@ -15,6 +15,8 @@ LCH.Orphic.constants = {
   thunder_thrall_first_cd = 8.0, -- how soon Xoryn can first jump
   thunder_thrall_cd = 25.5, -- how often Xoryn jumps
 
+  shield_throw_id = 221931, -- Crystal Sentinel Shield Throw
+
   breakout_id = 220185, -- Debuff falls off when Orphic first becomes active
   xoryn_immune_id = 218006, -- Xoryn Thunder Thrall buff gained when immune?
 
@@ -135,7 +137,7 @@ end
 
 function LCH.Orphic.ShieldThrow(result, targetType, targetUnitId, hitValue)
   if result == ACTION_RESULT_BEGIN and hitValue > 500 then
-    LCH.Alert("", "Shield Throw", 0x96DED1FF, LCH.Orphic.constants.shield_throw_id, SOUNDS.BATTLEGROUND_CAPTURE_FLAG_TAKEN_OWN_TEAM, 1500)
+    LCH.Alert("", "Shield Throw", 0xCC8747FF, LCH.Orphic.constants.shield_throw_id, SOUNDS.OBJECTIVE_DISCOVERED, 2000)
     CombatAlerts.CastAlertsStart(LCH.Orphic.constants.shield_throw_id, "Shield Throw", hitValue, nil, nil, { hitValue, "Block!", 1, 0.4, 0, 0.5, nil })
   end
 end
