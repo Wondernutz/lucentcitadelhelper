@@ -160,7 +160,7 @@ function LCH.Xoryn.FluctuatingCurrentUpdateTick(timeSec)
   local timeLeft = LCH.Xoryn.fluctuatingCurrentDuration - delta
 
   if LCH.Xoryn.isFluctuatingActive then
-    LCHStatusLabelXoryn2Value:SetText("ACTIVE: " .. LCH.Xoryn.getActiveFluctuatingText(timeLeft))
+    LCHStatusLabelXoryn2Value:SetText(string.format("ACTIVE: %s (%s)", LCH.Xoryn.getActiveFluctuatingText(delta), LCH.Xoryn.getActiveFluctuatingText(timeLeft)))
     LCHStatusLabelXoryn2Value:SetColor(LCH.UnpackRGBA(0xFFD666FF))
   else
     -- The total duration between new Fluctuating casts is 60s, or the total Fluctuating duration (60s)
