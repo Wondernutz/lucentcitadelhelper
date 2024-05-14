@@ -148,9 +148,9 @@ function LCH.Orphic.ThunderThrall(result, targetType, targetUnitId, hitValue)
     LCH.Orphic.lastThunderThrall = GetGameTimeSeconds()
     LCH.Orphic.isFirstThunderThrall = false
 
-    if targetType == COMBAT_UNIT_TYPE_PLAYER then
-      LCH.Alert("", "Thunder Thrall", 0xFFD666FF, LCH.Orphic.constants.thunder_thrall_id, SOUNDS.OBJECTIVE_DISCOVERED, 2000)
-    end
+    --if targetType == COMBAT_UNIT_TYPE_PLAYER then
+    --  LCH.Alert("", "Thunder Thrall", 0xFFD666FF, LCH.Orphic.constants.thunder_thrall_id, SOUNDS.OBJECTIVE_DISCOVERED, 2000)
+    --end
   end
 end
 

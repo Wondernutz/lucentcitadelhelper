@@ -122,8 +122,6 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
 
   elseif abilityId == LCH.Xoryn.constants.glass_stomp_id then
     LCH.Xoryn.SplinteredBurst(result, targetType, targetUnitId, hitValue)
-  elseif abilityId == LCH.Xoryn.constants.arcane_conveyance_cast_id then
-    LCH.Xoryn.ArcaneConveyanceIncoming(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Xoryn.constants.arcane_conveyance_debuff_id then
     LCH.Xoryn.ArcaneConveyance(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Xoryn.constants.accelerating_charge_id then

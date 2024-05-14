@@ -65,9 +65,9 @@ end
 
 function LCH.Xoryn.ArcaneConveyance(result, targetType, targetUnitId, hitValue)
   if result == ACTION_RESULT_EFFECT_GAINED_DURATION then
-    if targetType == COMBAT_UNIT_TYPE_PLAYER then
-      LCH.Alert("", "Arcane Conveyance (you)", 0xFFD700FF, LCH.Xoryn.constants.arcane_conveyance_cast_id, SOUNDS.DUEL_START, 2000)
-    end
+    --if targetType == COMBAT_UNIT_TYPE_PLAYER then
+    --  LCH.Alert("", "Arcane Conveyance (you)", 0xFFD700FF, LCH.Xoryn.constants.arcane_conveyance_cast_id, SOUNDS.DUEL_START, 2000)
+    --end
 
     LCH.AddIconForDuration(
       LCH.GetTagForId(targetUnitId),
