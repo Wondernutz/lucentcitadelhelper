@@ -79,7 +79,7 @@ end
 function LCH.Xoryn.Tempest(result, targetType, targetUnitId, hitValue)
   if result == ACTION_RESULT_BEGIN and hitValue > 500 then
     LCH.Alert("", "Tempest", 0x6082B6FF, LCH.Xoryn.constants.tempest_id, SOUNDS.BATTLEGROUND_CAPTURE_FLAG_TAKEN_OWN_TEAM, 2000)
-    CombatAlerts.CastAlertsStart(LCH.Xoryn.constants.tempest_id, "Tempest", hitValue, 10000, nil, nil)
+    CombatAlerts.CastAlertsStart(LCH.Xoryn.constants.tempest_id, "Tempest", 8000, 10000, nil, nil)
   end
 end
 
@@ -160,7 +160,7 @@ function LCH.Xoryn.FluctuatingCurrentUpdateTick(timeSec)
   local timeLeft = LCH.Xoryn.fluctuatingCurrentDuration - delta
 
   if LCH.Xoryn.isFluctuatingActive then
-    LCHStatusLabelXoryn2Value:SetText("ACTIVE: " .. LCH.Xoryn.getActiveFluctuatingText(timeLeft))
+    LCHStatusLabelXoryn2Value:SetText(string.format("ACTIVE: %s (%s)", LCH.Xoryn.getActiveFluctuatingText(delta), LCH.Xoryn.getActiveFluctuatingText(timeLeft)))
     LCHStatusLabelXoryn2Value:SetColor(LCH.UnpackRGBA(0xFFD666FF))
   else
     -- The total duration between new Fluctuating casts is 60s, or the total Fluctuating duration (60s)

@@ -13,7 +13,7 @@ LCH.Orphic.constants = {
   thunder_thrall_first_cd = 8.0, -- how soon Xoryn can first jump
   thunder_thrall_cd = 25.5, -- how often Xoryn jumps
 
-  shield_throw_id = 221931, -- Crystal Sentinel Shield Throw
+  shield_throw_id = 221945, -- Crystal Sentinel Shield Throw
 
   breakout_id = 220185, -- Debuff falls off when Orphic first becomes active
   xoryn_immune_id = 218006, -- Xoryn Thunder Thrall buff gained when immune?
