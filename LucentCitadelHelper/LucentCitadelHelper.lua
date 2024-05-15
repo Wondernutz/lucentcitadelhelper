@@ -2,7 +2,7 @@ LCH = LCH or {}
 local LCH = LCH
 
 LCH.name     = "LucentCitadelHelper"
-LCH.version  = "0.2.12"
+LCH.version  = "0.4.2"
 LCH.author   = "@Wondernuts, @kabs12"
 LCH.active   = false
 
@@ -56,6 +56,7 @@ LCH.settings = {
   showMirrorIcons = true,
 
   -- Last Boss
+  showFluctuatingCurrentHolder = true,
   showFluctuatingCurrentTimer = true,
   showOverloadedCurrentTimer = true,
   showOverloadedCurrentIcons = false,
@@ -72,6 +73,7 @@ function LCH.EffectChanged(eventCode, changeType, effectSlot, effectName, unitTa
   -- EFFECT_RESULT_FADED = 2
   -- EFFECT_RESULT_UPDATED = 3
 end
+  
 
 function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic, abilityActionSlotType, sourceName, sourceType, targetName, targetType, hitValue, powerType, damageType, log, sourceUnitId, targetUnitId, abilityId, overflow)
   -- Debug ability casts of NPCs (unit type None)
@@ -82,7 +84,9 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
   end
 
   if abilityId == LCH.Common.constants.hindered_id then
-    LCH.Common.Hindered(result, targetUnitId, hitValue)
+    LCH.Common.Hindered(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Common.constants.radiance_debuff_id then
+    LCH.Common.Radiance(result, targetType, targetUnitId, hitValue)
 
   elseif abilityId == LCH.Zilyesset.constants.brilliant_annihilation_id or abilityId == LCH.Zilyesset.constants.bleak_annihilation_id then
     LCH.Zilyesset.Annihilation(abilityId, result, targetType, targetUnitId, hitValue)
@@ -116,8 +120,6 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
     LCH.Xoryn.NecroticRain(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Xoryn.constants.glass_stomp_id then
     LCH.Xoryn.SplinteredBurst(result, targetType, targetUnitId, hitValue)
-  elseif abilityId == LCH.Xoryn.constants.arcane_conveyance_cast_id then
-    LCH.Xoryn.ArcaneConveyanceIncoming(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Xoryn.constants.arcane_conveyance_debuff_id then
     LCH.Xoryn.ArcaneConveyance(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Xoryn.constants.accelerating_charge_id then

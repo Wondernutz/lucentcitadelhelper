@@ -6,6 +6,7 @@ LCH.Common = {
 
 LCH.Common.constants = {
   hindered_id = 165972,
+  radiance_debuff_id = 214675,
 }
 
 LCH.Common.CCADodgeIDs = {
@@ -27,19 +28,19 @@ LCH.Common.CCADodgeIDs = {
 		offset: Offset to reported hitValue, in milliseconds
 		--------------------------------------------------]]
     [218710] = { -2, 2 }, -- Darkcaster Slasher Butcher
-    [222271] = { -2, 2 }, -- Zilyesset Heavy Strike
-    [218274] = { -2, 2 }, -- Count Ryelaz Shear
-    [219420] = { -2, 2 }, -- Cavot Agnan Smite
-    [217971] = { -2, 2 }, -- Orphic Shattered Shard Heavy Strike
+    --[222271] = { -2, 2 }, -- Zilyesset Heavy Strike
+    --[218274] = { -2, 2 }, -- Count Ryelaz Shear
+    --[219420] = { -2, 2 }, -- Cavot Agnan Smite
+    --[217971] = { -2, 2 }, -- Orphic Shattered Shard Heavy Strike
     [213685] = { -2, 2 }, -- Orphic Shattered Shard Shockwave
-    [221863] = { -2, 2 }, -- Crystal Hollow Sentinel Heavy Attack
+    --[221863] = { -2, 2 }, -- Crystal Hollow Sentinel Heavy Attack
     [221877] = { -2, 2 }, -- Ruinach Frenzy
     [219791] = { -2, 2 }, -- Crystal Atronach Crystal Spear
     [219792] = { -2, 2 }, -- Crystal Atronach Crunch
-    [219793] = { -2, 2,  }, -- Crystal Atronach Crushing Shards
-    [222605] = { -2, 2 }, -- Baron Rize Shear
+    --[219793] = { -2, 2,  }, -- Crystal Atronach Crushing Shards
+    --[222605] = { -2, 2 }, -- Baron Rize Shear
     [223546] = { -3, 2 }, -- Mantikora Javelin
-    [219030] = { -2, 2 }, -- Jresazzel Power Bash
+    --[219030] = { -2, 2 }, -- Jresazzel Power Bash
 }
 
 function LCH.Common.AddToCCADodgeList()
@@ -52,7 +53,7 @@ function LCH.Common.Init()
 
 end
 
-function LCH.Common.Hindered(result, targetUnitId, hitValue)
+function LCH.Common.Hindered(result, targetType, targetUnitId, hitValue)
   local isDPS, isHeal, isTank = GetPlayerRoles()
   if isDPS then
     return
@@ -66,5 +67,20 @@ function LCH.Common.Hindered(result, targetUnitId, hitValue)
     -- TODO: Track how much healing is left.
   elseif result == ACTION_RESULT_EFFECT_FADED then
     LCH.RemoveIcon(LCH.GetTagForId(targetUnitId))
+  end
+end
+
+function LCH.Common.Radiance(result, targetType, targetUnitId, hitValue)
+  local borderId = "radiance"
+
+  if result == ACTION_RESULT_EFFECT_GAINED_DURATION then
+    if targetType == COMBAT_UNIT_TYPE_PLAYER then
+      CombatAlerts.ScreenBorderEnable(0xBF40BF99, hitValue, borderId)
+    end
+
+  elseif result == ACTION_RESULT_EFFECT_FADED then
+    if targetType == COMBAT_UNIT_TYPE_PLAYER then
+      CombatAlerts.ScreenBorderDisable(borderId)
+    end
   end
 end
