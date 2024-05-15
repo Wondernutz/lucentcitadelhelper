@@ -49,7 +49,7 @@ function LCH.Orphic.AddMirrorIcons()
     if table.getn(LCH.status.MirrorIconNumber4) == 0 then
       table.insert(LCH.status.MirrorIconNumber4, 
         OSI.CreatePositionIcon(
-          151052,22869,89768,
+          151158,22864,89721,
           "LucentCitadelHelper/icons/4.dds",
           1 * OSI.GetIconSize()))
     end
@@ -70,7 +70,7 @@ function LCH.Orphic.AddMirrorIcons()
     if table.getn(LCH.status.MirrorIconNumber7) == 0 then
       table.insert(LCH.status.MirrorIconNumber7, 
         OSI.CreatePositionIcon(
-          146755,22869,87935,
+          146799,22869,87913,
           "LucentCitadelHelper/icons/7.dds",
           1 * OSI.GetIconSize()))
     end
