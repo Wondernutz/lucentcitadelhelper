@@ -99,8 +99,6 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
 
   elseif abilityId == LCH.Orphic.constants.color_change_id then
     LCH.Orphic.ColorChange(result, targetType, targetUnitId, hitValue)
-  elseif abilityId == LCH.Orphic.constants.shield_throw_id then
-    LCH.Orphic.ShieldThrow(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Orphic.constants.thunder_thrall_id then
     LCH.Orphic.ThunderThrall(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Orphic.constants.heavy_shock_id then
@@ -111,6 +109,8 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
     LCH.Orphic.XorynImmune(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Orphic.constants.breakout_id then
     LCH.Orphic.Breakout(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Orphic.constants.shield_throw_id then
+    LCH.Orphic.ShieldThrow(result, targetType, targetUnitId, hitValue)
 
   elseif abilityId == LCH.Xoryn.constants.necrotic_rain_id then
     LCH.Xoryn.NecroticRain(result, targetType, targetUnitId, hitValue)
