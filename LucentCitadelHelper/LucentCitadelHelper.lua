@@ -111,8 +111,6 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
     LCH.Orphic.XorynImmune(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Orphic.constants.breakout_id then
     LCH.Orphic.Breakout(result, targetType, targetUnitId, hitValue)
-  elseif abilityId == LCH.Orphic.constants.shield_throw_id then
-    LCH.Orphic.ShieldThrow(result, targetType, targetUnitId, hitValue)
 
   elseif abilityId == LCH.Xoryn.constants.necrotic_rain_id then
     LCH.Xoryn.NecroticRain(result, targetType, targetUnitId, hitValue)
