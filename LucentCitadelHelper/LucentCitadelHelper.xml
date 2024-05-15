@@ -7,7 +7,7 @@
 
       <Controls>
         <Label name="$(parent)Label" width="800" height="200" font="EsoUI/Common/Fonts/univers67.otf|72|soft-shadow-thick" inheritAlpha="true" color="FF6600"
-            wrapMode="TRUNCATE" verticalAlignment="TOP" horizontalAlignment="CENTER" text="FIREBOMBS: 5.0">
+            wrapMode="TRUNCATE" verticalAlignment="TOP" horizontalAlignment="CENTER" text="MESSAGE ONE">
           <Anchor point="TOP" relativeTo="$(parent)" relativePoint="TOP" />
         </Label>
       </Controls>
@@ -125,7 +125,7 @@
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="0" offsetX="275"/>
       </Label>
 
-      <Label name="$(parent)LabelXoryn2" font="ZoFontWinH1" color="FFD666" text="Fluctuating Duration:" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
+      <Label name="$(parent)LabelXoryn2" font="ZoFontWinH1" color="FFD666" text="Fluctuating Time:" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
           <Dimensions x="600" y="50" />
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="40"/>
       </Label>
@@ -134,7 +134,7 @@
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="40" offsetX="275"/>
       </Label>
 
-      <Label name="$(parent)LabelXoryn3" font="ZoFontWinH1" color="7F00FF" text="Overloaded (self):" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
+      <Label name="$(parent)LabelXoryn3" font="ZoFontWinH1" color="7F00FF" text="Overloaded:" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
           <Dimensions x="600" y="50" />
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="80"/>
       </Label>

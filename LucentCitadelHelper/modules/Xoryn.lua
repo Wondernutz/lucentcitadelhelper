@@ -82,7 +82,7 @@ end
 function LCH.Xoryn.AcceleratingCharge(result, targetType, targetUnitId, hitValue)
   if result == ACTION_RESULT_BEGIN and hitValue > 2000 then
     LCH.Alert("", "Chain Lightning", 0xFFD666FF, LCH.Xoryn.constants.accelerating_charge_id, SOUNDS.OBJECTIVE_DISCOVERED, 2000)
-    CombatAlerts.CastAlertsStart(LCH.Xoryn.constants.accelerating_charge_id, "Chain Lightning", hitValue, nil, nil, { hitValue, "Block!", 1, 0.4, 0, 0.5, nil })
+    CombatAlerts.CastAlertsStart(LCH.Xoryn.constants.accelerating_charge_id, "Chain Lightning", hitValue + 3000, nil, nil, { hitValue, "Block!", 1, 0.4, 0, 0.5, SOUNDS.FRIEND_INVITE_RECEIVED })
   end
 end
 
@@ -144,13 +144,13 @@ function LCH.Xoryn.createFluctuatingIconTextControls(unitTag, beginTime)
     if icon then
       -- [!] create a label control if no custom control is available
       if not icon.myLabel then
-        icon.myLabel = icon.ctrl:CreateControl( icon.ctrl:GetName() .. "Label", CT_LABEL )
-        icon.myLabel:SetAnchor( CENTER, icon.ctrl, CENTER, 0, 0 )
+        icon.myLabel = icon.ctrl:CreateControl(icon.ctrl:GetName() .. "Label", CT_LABEL)
+        icon.myLabel:SetAnchor(CENTER, icon.ctrl, CENTER, 0, 0)
         icon.myLabel:SetFont("$(BOLD_FONT)|42|outline")
         icon.myLabel:SetScale(3)
-        icon.myLabel:SetDrawLayer( DL_BACKGROUND )
-        icon.myLabel:SetDrawTier( DT_LOW )
-        icon.myLabel:SetColor(0.9,0.9,0.9,0.85)
+        icon.myLabel:SetDrawLayer(DL_BACKGROUND)
+        icon.myLabel:SetDrawTier(DT_LOW)
+        icon.myLabel:SetColor(0.9, 0.9, 0.9, 0.85)
       end
       -- [!] adjust label for icon
       LCH.Xoryn.adjustLabelForIcon(icon)
@@ -224,7 +224,7 @@ function LCH.Xoryn.FluctuatingCurrentUpdateTick(timeSec)
   local timeLeft = LCH.Xoryn.fluctuatingCurrentDuration - delta
 
   if LCH.Xoryn.isFluctuatingActive then
-    LCHStatusLabelXoryn1Value:SetText(string.format("%s - (%s)", LCH.Xoryn.fluctuatingHolder, LCH.Xoryn.getActiveFluctuatingText(delta)))
+    LCHStatusLabelXoryn1Value:SetText(string.format("%s [%s]", LCH.Xoryn.fluctuatingHolder, LCH.Xoryn.getActiveFluctuatingText(delta)))
 
     LCHStatusLabelXoryn2Value:SetText(string.format("%s", LCH.Xoryn.getActiveFluctuatingText(timeLeft)))
     LCHStatusLabelXoryn2Value:SetColor(LCH.UnpackRGBA(0xFFD666FF))
@@ -251,12 +251,12 @@ function LCH.Xoryn.FluctuatingCurrentIconUpdateTick(timeSec)
         local timeElapsed = timeSec - icon.startTimer
         if timeElapsed > (LCH.Xoryn.constants.fluctuating_max_time - 3) then
           if math.fmod(zo_floor(timeElapsed*10), 10) < 5 then
-            icon.myLabel:SetColor(0.9,0.9,0.9,0.85)
+            icon.myLabel:SetColor(0.9, 0.9, 0.9, 0.85)
           else
-            icon.myLabel:SetColor(0.9,0,0,0.85)
+            icon.myLabel:SetColor(0.9, 0, 0, 0.85)
           end
         else
-          icon.myLabel:SetColor(0.9,0.9,0.9,0.85)
+          icon.myLabel:SetColor(0.9, 0.9, 0.9, 0.85)
         end
         icon.myLabel:SetText(tostring(zo_floor(timeElapsed)))
         LCH.Xoryn.adjustLabelForIcon(icon)
@@ -266,10 +266,8 @@ function LCH.Xoryn.FluctuatingCurrentIconUpdateTick(timeSec)
 end
 
 function LCH.Xoryn.getActiveFluctuatingText(seconds)
-  if seconds > 5 then 
+  if seconds > 0 then 
     return string.format("%.0f", seconds) .. "s"
-  elseif seconds > 0 then 
-    return string.format("%.1f", seconds) .. "s"
   else
     return "-"
   end
@@ -299,9 +297,9 @@ end
 
 function LCH.Xoryn.getOverloadedText(seconds)
   if seconds > 5 then 
-    return string.format("YES - %.0f", seconds) .. "s "
+    return string.format("%.0f", seconds) .. "s "
   elseif seconds > 0 then 
-    return string.format("YES - %.1f", seconds) .. "s "
+    return string.format("%.1f", seconds) .. "s "
   else
     return "NO"
   end
