@@ -73,7 +73,7 @@ end
 function LCH.Xoryn.NecroticRain(result, targetType, targetUnitId, hitValue)
   -- Mzrelnir Necrotic Rain
   if result == ACTION_RESULT_BEGIN and hitValue > 500 then    
-    LCH.Alert("", "Necrotic Rain (Don't Stack)", 0xFFD666FF, LCH.Xoryn.constants.necrotic_rain_id, SOUNDS.OBJECTIVE_DISCOVERED, 8000)
+    LCH.Alert("", "Necrotic Rain (Don't Stack)", 0xFFD666FF, LCH.Xoryn.constants.necrotic_rain_id, SOUNDS.OBJECTIVE_DISCOVERED, 4000)
     CombatAlerts.CastAlertsStart(LCH.Xoryn.constants.necrotic_rain_id, "Necrotic Rain", 8000, 8000, nil, nil)
   end
 end
