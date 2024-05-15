@@ -28,19 +28,19 @@ LCH.Common.CCADodgeIDs = {
 		offset: Offset to reported hitValue, in milliseconds
 		--------------------------------------------------]]
     [218710] = { -2, 2 }, -- Darkcaster Slasher Butcher
-    [222271] = { -2, 2 }, -- Zilyesset Heavy Strike
-    [218274] = { -2, 2 }, -- Count Ryelaz Shear
-    [219420] = { -2, 2 }, -- Cavot Agnan Smite
-    [217971] = { -2, 2 }, -- Orphic Shattered Shard Heavy Strike
+    --[222271] = { -2, 2 }, -- Zilyesset Heavy Strike
+    --[218274] = { -2, 2 }, -- Count Ryelaz Shear
+    --[219420] = { -2, 2 }, -- Cavot Agnan Smite
+    --[217971] = { -2, 2 }, -- Orphic Shattered Shard Heavy Strike
     [213685] = { -2, 2 }, -- Orphic Shattered Shard Shockwave
-    [221863] = { -2, 2 }, -- Crystal Hollow Sentinel Heavy Attack
+    --[221863] = { -2, 2 }, -- Crystal Hollow Sentinel Heavy Attack
     [221877] = { -2, 2 }, -- Ruinach Frenzy
     [219791] = { -2, 2 }, -- Crystal Atronach Crystal Spear
     [219792] = { -2, 2 }, -- Crystal Atronach Crunch
-    [219793] = { -2, 2,  }, -- Crystal Atronach Crushing Shards
-    [222605] = { -2, 2 }, -- Baron Rize Shear
+    --[219793] = { -2, 2,  }, -- Crystal Atronach Crushing Shards
+    --[222605] = { -2, 2 }, -- Baron Rize Shear
     [223546] = { -3, 2 }, -- Mantikora Javelin
-    [219030] = { -2, 2 }, -- Jresazzel Power Bash
+    --[219030] = { -2, 2 }, -- Jresazzel Power Bash
 }
 
 function LCH.Common.AddToCCADodgeList()

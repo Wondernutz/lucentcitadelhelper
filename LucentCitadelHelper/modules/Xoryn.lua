@@ -82,7 +82,7 @@ end
 function LCH.Xoryn.AcceleratingCharge(result, targetType, targetUnitId, hitValue)
   if result == ACTION_RESULT_BEGIN and hitValue > 2000 then
     LCH.Alert("", "Chain Lightning", 0xFFD666FF, LCH.Xoryn.constants.accelerating_charge_id, SOUNDS.OBJECTIVE_DISCOVERED, 2000)
-    CombatAlerts.CastAlertsStart(LCH.Xoryn.constants.accelerating_charge_id, "Chain Lightning", hitValue + 3000, nil, nil, { hitValue, "Block!", 1, 0.4, 0, 0.5, SOUNDS.FRIEND_INVITE_RECEIVED })
+    CombatAlerts.CastAlertsStart(LCH.Xoryn.constants.accelerating_charge_id, "Chain Lightning", hitValue + 2900, nil, nil, { hitValue, "Block!", 1, 0.4, 0, 0.5, SOUNDS.FRIEND_INVITE_RECEIVED })
   end
 end
 
