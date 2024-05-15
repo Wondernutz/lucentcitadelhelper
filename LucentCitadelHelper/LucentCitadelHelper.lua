@@ -2,7 +2,7 @@ LCH = LCH or {}
 local LCH = LCH
 
 LCH.name     = "LucentCitadelHelper"
-LCH.version  = "0.4.0"
+LCH.version  = "0.4.2"
 LCH.author   = "@Wondernuts, @kabs12"
 LCH.active   = false
 
@@ -72,10 +72,6 @@ function LCH.EffectChanged(eventCode, changeType, effectSlot, effectName, unitTa
   -- EFFECT_RESULT_GAINED = 1
   -- EFFECT_RESULT_FADED = 2
   -- EFFECT_RESULT_UPDATED = 3
-
-  -- if abilityId == LCH.Xoryn.constants.fluctuating_current_id then
-  --   LCH.Xoryn.UpdateFluctuatingIcons(changeType, unitTag, beginTime, endTime)
-  -- end
 end
   
 
