@@ -4,6 +4,7 @@ LCH.Xoryn = {
   lastFluctuatingCurrent = 0,
   fluctuatingCurrentDuration = 0,
   isFluctuatingActive = false,
+  fluctuatingHolder = nil,
 
   lastOverloadedCurrent = 0,
   overloadedCurrentDuration = 0,
@@ -21,15 +22,24 @@ LCH.Xoryn.constants = {
   fluctuating_current_id = 214597, -- Debuff when holding it
   overloaded_current_id = 214745, -- Debuff from holding/dropping fluctuating current
   tempest_id = 215107, -- Groupwide line mechanic from mirrors
+  fluctuating_max_time = 15.0, -- Max time you can hold fluctuating current before death
+  structured_entropy_id = 126371,
 }
 
 function LCH.Xoryn.Init()
   LCH.Xoryn.lastFluctuatingCurrent = 0
   LCH.Xoryn.fluctuatingCurrentDuration = 0
   LCH.Xoryn.isFluctuatingActive = false
+  LCH.Xoryn.fluctuatingHolder = nil
 
   LCH.Xoryn.lastOverloadedCurrent = 0
   LCH.Xoryn.overloadedCurrentDuration = 0
+end
+
+-- [!] adjust label scale and draw order
+function LCH.Xoryn.adjustLabelForIcon(icon)
+  local order = icon.ctrl:GetDrawLevel() + 1
+  icon.myLabel:SetDrawLevel( order )
 end
 
 function LCH.Xoryn.SplinteredBurst(result, targetType, targetUnitId, hitValue)
@@ -55,9 +65,9 @@ end
 
 function LCH.Xoryn.ArcaneConveyance(result, targetType, targetUnitId, hitValue)
   if result == ACTION_RESULT_EFFECT_GAINED_DURATION then
-    if targetType == COMBAT_UNIT_TYPE_PLAYER then
-      LCH.Alert("", "Arcane Conveyance (you)", 0xFFD700FF, LCH.Xoryn.constants.arcane_conveyance_cast_id, SOUNDS.DUEL_START, 2000)
-    end
+    --if targetType == COMBAT_UNIT_TYPE_PLAYER then
+    --  LCH.Alert("", "Arcane Conveyance (you)", 0xFFD700FF, LCH.Xoryn.constants.arcane_conveyance_cast_id, SOUNDS.DUEL_START, 2000)
+    --end
 
     LCH.AddIconForDuration(
       LCH.GetTagForId(targetUnitId),
@@ -96,12 +106,16 @@ function LCH.Xoryn.FluctuatingCurrent(result, targetType, targetUnitId, hitValue
       CombatAlerts.ScreenBorderEnable(0x22AAFF99, hitValue, borderId)
     end
 
+    local unitTag = LCH.GetTagForId(targetUnitId)
+    LCH.Xoryn.fluctuatingHolder = GetUnitDisplayName(unitTag)
+
     LCH.AddIconForDuration(
-      LCH.GetTagForId(targetUnitId),
-      "LucentCitadelHelper/icons/electric-badge.dds",
+      unitTag,
+      "LucentCitadelHelper/icons/electric-empty.dds",
       hitValue
     )
     LCH.Xoryn.activeIcons[targetUnitId] = "fluctuating"
+    LCH.Xoryn.createFluctuatingIconTextControls(unitTag, GetGameTimeSeconds())
 
   elseif result == ACTION_RESULT_EFFECT_FADED then
     LCH.Xoryn.isFluctuatingActive = false
@@ -109,10 +123,57 @@ function LCH.Xoryn.FluctuatingCurrent(result, targetType, targetUnitId, hitValue
     if targetType == COMBAT_UNIT_TYPE_PLAYER then
       CombatAlerts.ScreenBorderDisable(borderId)
     end
+
+    LCH.Xoryn.removeFluctuatingIconTextControls(LCH.GetTagForId(targetUnitId))
+
     -- The overloaded buff happens before fluctuating falls off, so calling LCH.RemoveIcon() would remove the overloaded icon
     if LCH.Xoryn.activeIcons[targetUnitId] == "fluctuating" then
       LCH.RemoveIcon(LCH.GetTagForId(targetUnitId))
       LCH.Xoryn.activeIcons[targetUnitId] = nil
+    end
+  end
+end
+
+function LCH.Xoryn.createFluctuatingIconTextControls(unitTag, beginTime)
+  -- check if OdySupportIcons is active and the affected unit is a player
+  if LCH.hasOSI() and IsUnitPlayer(unitTag) then
+    -- retrieve the displayname of the affected player
+    local displayName = GetUnitDisplayName( unitTag )
+    -- [!] retrieve the icon object for the affected player
+    local icon = OSI.GetIconForPlayer( displayName )
+    if icon then
+      -- [!] create a label control if no custom control is available
+      if not icon.myLabel then
+        icon.myLabel = icon.ctrl:CreateControl( icon.ctrl:GetName() .. "Label", CT_LABEL )
+        icon.myLabel:SetAnchor( CENTER, icon.ctrl, CENTER, 0, 0 )
+        icon.myLabel:SetFont("$(BOLD_FONT)|42|outline")
+        icon.myLabel:SetScale(3)
+        icon.myLabel:SetDrawLayer( DL_BACKGROUND )
+        icon.myLabel:SetDrawTier( DT_LOW )
+        icon.myLabel:SetColor(0.9,0.9,0.9,0.85)
+      end
+      -- [!] adjust label for icon
+      LCH.Xoryn.adjustLabelForIcon(icon)
+
+      -- [!] update custom label and show it
+      icon.myLabel:SetText(tostring(0))
+      icon.myLabel:SetHidden(false)
+      -- [!] update custom timer
+      icon.startTimer = beginTime
+    end
+  end
+end
+
+function LCH.Xoryn.removeFluctuatingIconTextControls(unitTag)
+  -- check if OdySupportIcons is active and the affected unit is a player
+  if LCH.hasOSI() and IsUnitPlayer(unitTag) then
+    -- retrieve the displayname of the affected player
+    local displayName = GetUnitDisplayName( unitTag )
+    -- [!] retrieve the icon object for the affected player
+    local icon = OSI.GetIconForPlayer( displayName )
+    if icon then
+      -- [!] hide custom label
+      icon.myLabel:SetHidden(true)
     end
   end
 end
@@ -146,13 +207,16 @@ function LCH.Xoryn.OverloadedCurrent(result, targetType, targetUnitId, hitValue)
 end
 
 function LCH.Xoryn.UpdateTick(timeSec)
-  LCHStatus:SetHidden(not (LCH.savedVariables.showFluctuatingCurrentTimer or LCH.savedVariables.showOverloadedCurrentTimer))
+  LCHStatus:SetHidden(not (LCH.savedVariables.showFluctuatingCurrentHolder or LCH.savedVariables.showFluctuatingCurrentTimer or LCH.savedVariables.showOverloadedCurrentTimer))
 
   LCH.Xoryn.FluctuatingCurrentUpdateTick(timeSec)
+  LCH.Xoryn.FluctuatingCurrentIconUpdateTick(timeSec)
   LCH.Xoryn.OverloadedCurrentUpdateTick(timeSec)
 end
 
 function LCH.Xoryn.FluctuatingCurrentUpdateTick(timeSec)
+  LCHStatusLabelXoryn1:SetHidden(not (LCH.savedVariables.showFluctuatingCurrentHolder))
+  LCHStatusLabelXoryn1Value:SetHidden(not (LCH.savedVariables.showFluctuatingCurrentHolder))
   LCHStatusLabelXoryn2:SetHidden(not (LCH.savedVariables.showFluctuatingCurrentTimer))
   LCHStatusLabelXoryn2Value:SetHidden(not (LCH.savedVariables.showFluctuatingCurrentTimer))
 
@@ -160,9 +224,12 @@ function LCH.Xoryn.FluctuatingCurrentUpdateTick(timeSec)
   local timeLeft = LCH.Xoryn.fluctuatingCurrentDuration - delta
 
   if LCH.Xoryn.isFluctuatingActive then
-    LCHStatusLabelXoryn2Value:SetText(string.format("ACTIVE: %s (%s)", LCH.Xoryn.getActiveFluctuatingText(delta), LCH.Xoryn.getActiveFluctuatingText(timeLeft)))
+    LCHStatusLabelXoryn1Value:SetText(string.format("%s - (%s)", LCH.Xoryn.fluctuatingHolder, LCH.Xoryn.getActiveFluctuatingText(delta)))
+
+    LCHStatusLabelXoryn2Value:SetText(string.format("%s", LCH.Xoryn.getActiveFluctuatingText(timeLeft)))
     LCHStatusLabelXoryn2Value:SetColor(LCH.UnpackRGBA(0xFFD666FF))
   else
+    LCHStatusLabelXoryn1Value:SetText("-")
     -- The total duration between new Fluctuating casts is 60s, or the total Fluctuating duration (60s)
     timeLeft = timeLeft + 1
     LCHStatusLabelXoryn2Value:SetText("INCOMING: " .. LCH.Xoryn.getInactiveFluctuatingText(timeLeft))
@@ -170,11 +237,39 @@ function LCH.Xoryn.FluctuatingCurrentUpdateTick(timeSec)
   end
 end
 
+function LCH.Xoryn.FluctuatingCurrentIconUpdateTick(timeSec)
+  -- update icons even out of combat
+  -- check if OdySupportIcons is active
+  if LCH.hasOSI() then
+    -- [!] search for group members with custom timer
+    for i = 1, GROUP_SIZE_MAX do
+      local name = GetUnitDisplayName( "group" .. i )
+      local icon = OSI.GetIconForPlayer( name )
+
+      -- [!] update custom label if icon and timer are available
+      if icon and icon.startTimer then
+        local timeElapsed = timeSec - icon.startTimer
+        if timeElapsed > (LCH.Xoryn.constants.fluctuating_max_time - 3) then
+          if math.fmod(zo_floor(timeElapsed*10), 10) < 5 then
+            icon.myLabel:SetColor(0.9,0.9,0.9,0.85)
+          else
+            icon.myLabel:SetColor(0.9,0,0,0.85)
+          end
+        else
+          icon.myLabel:SetColor(0.9,0.9,0.9,0.85)
+        end
+        icon.myLabel:SetText(tostring(zo_floor(timeElapsed)))
+        LCH.Xoryn.adjustLabelForIcon(icon)
+      end
+    end
+  end
+end
+
 function LCH.Xoryn.getActiveFluctuatingText(seconds)
   if seconds > 5 then 
-    return string.format("%.0f", seconds) .. "s "
+    return string.format("%.0f", seconds) .. "s"
   elseif seconds > 0 then 
-    return string.format("%.1f", seconds) .. "s "
+    return string.format("%.1f", seconds) .. "s"
   else
     return "-"
   end
@@ -182,9 +277,9 @@ end
 
 function LCH.Xoryn.getInactiveFluctuatingText(seconds)
   if seconds > 5 then 
-    return string.format("%.0f", seconds) .. "s "
+    return string.format("%.0f", seconds) .. "s"
   elseif seconds > 0 then 
-    return string.format("%.1f", seconds) .. "s "
+    return string.format("%.1f", seconds) .. "s"
   else
     return "NOW"
   end

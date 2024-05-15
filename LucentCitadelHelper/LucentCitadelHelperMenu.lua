@@ -101,6 +101,13 @@ function LCH.Menu.AddonMenu()
     },
     {
       type    = "checkbox",
+      name    = "Panel: Fluctuating Current holder",
+      default = true,
+      getFunc = function() return LCH.savedVariables.showFluctuatingCurrentHolder end,
+      setFunc = function(newValue) LCH.savedVariables.showFluctuatingCurrentHolder = newValue end,
+    },
+    {
+      type    = "checkbox",
       name    = "Panel: Fluctuating Current timer",
       default = true,
       getFunc = function() return LCH.savedVariables.showFluctuatingCurrentTimer end,

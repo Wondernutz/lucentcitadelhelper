@@ -116,7 +116,7 @@
       </Label>
 
       <!-- Boss 3: Xoryn -->
-      <Label name="$(parent)LabelXoryn1" font="ZoFontWinH1" color="A8A9AD" text="Knot Drop:" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
+      <Label name="$(parent)LabelXoryn1" font="ZoFontWinH1" color="A8A9AD" text="Fluctuating Holder:" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
           <Dimensions x="600" y="50" />
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="0"/>
       </Label>
@@ -125,7 +125,7 @@
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="0" offsetX="275"/>
       </Label>
 
-      <Label name="$(parent)LabelXoryn2" font="ZoFontWinH1" color="FFD666" text="Fluctuating:" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
+      <Label name="$(parent)LabelXoryn2" font="ZoFontWinH1" color="FFD666" text="Fluctuating Duration:" verticalAlignment="CENTER" horizontalAlignment="LEFT"  alpha="0.85">
           <Dimensions x="600" y="50" />
           <Anchor point="CENTER"  relativeTo="$(parent)" relativePoint="CENTER" offsetY="40"/>
       </Label>

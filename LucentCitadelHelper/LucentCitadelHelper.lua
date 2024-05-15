@@ -2,7 +2,7 @@ LCH = LCH or {}
 local LCH = LCH
 
 LCH.name     = "LucentCitadelHelper"
-LCH.version  = "0.3.2"
+LCH.version  = "0.4.0"
 LCH.author   = "@Wondernuts, @kabs12"
 LCH.active   = false
 
@@ -56,6 +56,7 @@ LCH.settings = {
   showMirrorIcons = true,
 
   -- Last Boss
+  showFluctuatingCurrentHolder = true,
   showFluctuatingCurrentTimer = true,
   showOverloadedCurrentTimer = true,
   showOverloadedCurrentIcons = false,
@@ -71,7 +72,12 @@ function LCH.EffectChanged(eventCode, changeType, effectSlot, effectName, unitTa
   -- EFFECT_RESULT_GAINED = 1
   -- EFFECT_RESULT_FADED = 2
   -- EFFECT_RESULT_UPDATED = 3
+
+  -- if abilityId == LCH.Xoryn.constants.fluctuating_current_id then
+  --   LCH.Xoryn.UpdateFluctuatingIcons(changeType, unitTag, beginTime, endTime)
+  -- end
 end
+  
 
 function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic, abilityActionSlotType, sourceName, sourceType, targetName, targetType, hitValue, powerType, damageType, log, sourceUnitId, targetUnitId, abilityId, overflow)
   -- Debug ability casts of NPCs (unit type None)
@@ -116,8 +122,6 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
 
   elseif abilityId == LCH.Xoryn.constants.glass_stomp_id then
     LCH.Xoryn.SplinteredBurst(result, targetType, targetUnitId, hitValue)
-  elseif abilityId == LCH.Xoryn.constants.arcane_conveyance_cast_id then
-    LCH.Xoryn.ArcaneConveyanceIncoming(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Xoryn.constants.arcane_conveyance_debuff_id then
     LCH.Xoryn.ArcaneConveyance(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Xoryn.constants.accelerating_charge_id then
