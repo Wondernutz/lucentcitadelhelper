@@ -1,12 +1,13 @@
 LCH = LCH or {}
 local LCH = LCH
 LCH.Common = {
-
+  castSources = {}
 }
 
 LCH.Common.constants = {
   hindered_id = 165972,
   radiance_debuff_id = 214675,
+  solar_flare_id = 222475, -- Dremora Spellcaster Solar Flare
 }
 
 LCH.Common.CCADodgeIDs = {
@@ -50,7 +51,7 @@ function LCH.Common.AddToCCADodgeList()
 end
 
 function LCH.Common.Init()
-
+  LCH.Common.castSources = {}
 end
 
 function LCH.Common.Hindered(result, targetType, targetUnitId, hitValue)
@@ -81,6 +82,26 @@ function LCH.Common.Radiance(result, targetType, targetUnitId, hitValue)
   elseif result == ACTION_RESULT_EFFECT_FADED then
     if targetType == COMBAT_UNIT_TYPE_PLAYER then
       CombatAlerts.ScreenBorderDisable(borderId)
+    end
+  end
+end
+
+function LCH.Common.ProcessInterrupts(result, targetUnitId) 
+  if (CombatAlertsData.dodge.interrupts[result] and LCH.Common.castSources[targetUnitId]) then
+		CombatAlerts.CastAlertsStop(LCH.Common.castSources[targetUnitId])
+  end
+end
+
+function LCH.Common.SolarFlare(abilityId, result, sourceName, sourceUnitId, targetType, targetUnitId, hitValue)
+  -- TODO: Add if CombatAlerts.DistanceCheck(targetUnitId, 5)
+  if result == ACTION_RESULT_BEGIN then
+    if (targetType == COMBAT_UNIT_TYPE_PLAYER or CombatAlerts.DistanceCheck(targetUnitId, 6) or LibCombatAlerts.isTank) then
+      local flareLandingTime = 500
+
+      local id = CombatAlerts.AlertCast(abilityId, sourceName, hitValue + flareLandingTime,  { flareLandingTime, 0, false, { 1, 0.4, 0, 0.5 }})
+      if (sourceUnitId and sourceUnitId ~= 0) then
+        LCH.Common.castSources[sourceUnitId] = id
+      end
     end
   end
 end
