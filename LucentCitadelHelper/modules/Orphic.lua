@@ -16,7 +16,10 @@ LCH.Orphic.constants = {
   shield_throw_id = 221945, -- Crystal Sentinel Shield Throw
 
   breakout_id = 220185, -- Debuff falls off when Orphic first becomes active
-  xoryn_immune_id = 218006, -- Xoryn Thunder Thrall buff gained when immune?
+  xoryn_immune_id = {
+    [217987] = true, -- Xoryn defeated
+    [219545] = true, -- Xoryn jumps away in execute
+  },
 
   heavy_shock_id = 222071,
 
@@ -177,13 +180,8 @@ end
 
 function LCH.Orphic.XorynImmune(result, targetType, targetUnitId, hitValue)
   -- Detects when Xoryn becomes immune
-  if result == ACTION_RESULT_EFFECT_GAINED then
+  if result == ACTION_RESULT_BEGIN then
     LCH.Orphic.xorynActive = false
-
-  elseif result == ACTION_RESULT_EFFECT_FADED then
-    LCH.Orphic.xorynActive = true
-    LCH.Orphic.lastThunderThrall = GetGameTimeSeconds()
-    LCH.Orphic.isFirstThunderThrall = true
   end
 end
 
