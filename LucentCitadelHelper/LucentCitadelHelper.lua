@@ -2,7 +2,7 @@ LCH = LCH or {}
 local LCH = LCH
 
 LCH.name     = "LucentCitadelHelper"
-LCH.version  = "0.4.2"
+LCH.version  = "0.4.3"
 LCH.author   = "@Wondernuts, @kabs12"
 LCH.active   = false
 
@@ -73,27 +73,37 @@ function LCH.EffectChanged(eventCode, changeType, effectSlot, effectName, unitTa
   -- EFFECT_RESULT_FADED = 2
   -- EFFECT_RESULT_UPDATED = 3
 end
-  
+
+local DEBUG_EVENT = 3
 
 function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic, abilityActionSlotType, sourceName, sourceType, targetName, targetType, hitValue, powerType, damageType, log, sourceUnitId, targetUnitId, abilityId, overflow)
   -- Debug ability casts of NPCs (unit type None)
-  if result == ACTION_RESULT_BEGIN and sourceType == COMBAT_UNIT_TYPE_NONE then
-    LCH:Trace(3, string.format(
-      "Ability: %s, ID: %d, Hit Value: %d, Source name: %s, Target name: %s", abilityName, abilityId, hitValue, sourceName, targetName
-    ))
+  if DEBUG_EVENT <= LCH.debugMode then
+    if result == ACTION_RESULT_BEGIN and sourceType == COMBAT_UNIT_TYPE_NONE then
+      local displaySourceName = sourceName or GetUnitDisplayName(LCH.GetTagForId(sourceUnitId)) or ""
+      local displayTargetName = GetUnitDisplayName(LCH.GetTagForId(targetUnitId)) or ""
+      LCH:Trace(DEBUG_EVENT, string.format(
+        "Ability: %s, ID: %d, Hit Value: %d, Source name: %s, Target name: %s", 
+        GetFormattedAbilityName(abilityId), abilityId, hitValue, displaySourceName, displayTargetName
+      ))
+    end
   end
+
+  LCH.Common.ProcessInterrupts(result, targetUnitId) 
 
   if abilityId == LCH.Common.constants.hindered_id then
     LCH.Common.Hindered(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Common.constants.radiance_debuff_id then
     LCH.Common.Radiance(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Common.constants.solar_flare_id then
+    LCH.Common.SolarFlare(abilityId, result, sourceName, sourceUnitId, targetType, targetUnitId, hitValue)
 
   elseif abilityId == LCH.Zilyesset.constants.brilliant_annihilation_id or abilityId == LCH.Zilyesset.constants.bleak_annihilation_id then
     LCH.Zilyesset.Annihilation(abilityId, result, targetType, targetUnitId, hitValue)
-  elseif abilityId == LCH.Zilyesset.constants.summon_shardborn_lightweaver_id then
-    LCH.Zilyesset.SummonLightweaver(result, targetType, targetUnitId, hitValue)
-  elseif abilityId == LCH.Zilyesset.constants.summon_gloomy_blackguard_id then
-    LCH.Zilyesset.SummonBlackguard(result, targetType, targetUnitId, hitValue)
+  -- elseif abilityId == LCH.Zilyesset.constants.summon_shardborn_lightweaver_id then
+  --   LCH.Zilyesset.SummonLightweaver(result, targetType, targetUnitId, hitValue)
+  -- elseif abilityId == LCH.Zilyesset.constants.summon_gloomy_blackguard_id then
+  --   LCH.Zilyesset.SummonBlackguard(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Zilyesset.constants.porcindark_id then
     LCH.Zilyesset.OnLightSide(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Zilyesset.constants.porcinlight_id then
@@ -109,7 +119,7 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
     LCH.Orphic.HeavyShock(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Orphic.constants.fate_sealer_id then
     LCH.Orphic.FateSealer(result, targetType, targetUnitId, hitValue)
-  elseif abilityId == LCH.Orphic.constants.xoryn_immune_id then
+  elseif LCH.Orphic.constants.xoryn_immune_id[abilityId] then
     LCH.Orphic.XorynImmune(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Orphic.constants.breakout_id then
     LCH.Orphic.Breakout(result, targetType, targetUnitId, hitValue)
