@@ -130,7 +130,7 @@ end
 function LCH.Orphic.ShieldThrow(result, targetType, targetUnitId, hitValue)
   -- Xoryn Jump Mechanic
   if result == ACTION_RESULT_BEGIN and hitValue > 500 then
-    LCH.Alert("", "Shield Throw", 0xCC8747FF, LCH.Orphic.constants.shield_throw_id, SOUNDS.OBJECTIVE_DISCOVERED, 2000)
+    LCH.Alert("", "Shield Throw", 0xCC8747FF, LCH.Orphic.constants.shield_throw_id, SOUNDS.DUEL_START, 2000)
     CombatAlerts.CastAlertsStart(LCH.Orphic.constants.shield_throw_id, "Shield Throw", hitValue, nil, nil, { hitValue, "Block!", 1, 0.4, 0, 0.5, nil })
   end
 end
