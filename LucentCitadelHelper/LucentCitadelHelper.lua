@@ -2,7 +2,7 @@ LCH = LCH or {}
 local LCH = LCH
 
 LCH.name     = "LucentCitadelHelper"
-LCH.version  = "0.4.4"
+LCH.version  = "0.4.5"
 LCH.author   = "@Wondernuts, @kabs12"
 LCH.active   = false
 
@@ -53,6 +53,7 @@ LCH.settings = {
 
   -- Orphic
   showXorynJumpTimer = true,
+  showXorynConeTimer = false,
   showMirrorIcons = true,
 
   -- Last Boss
@@ -115,6 +116,8 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
     LCH.Orphic.ColorChange(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Orphic.constants.thunder_thrall_id then
     LCH.Orphic.ThunderThrall(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Orphic.constants.lightning_flood_id then
+    LCH.Orphic.LightningFlood(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Orphic.constants.heavy_shock_id then
     LCH.Orphic.HeavyShock(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Orphic.constants.fate_sealer_id then

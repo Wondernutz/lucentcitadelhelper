@@ -27,8 +27,8 @@ LCH.Xoryn.constants = {
 }
 
 function LCH.Xoryn.Init()
-  LCH.Xoryn.lastFluctuatingCurrent = 0
-  LCH.Xoryn.fluctuatingCurrentDuration = 0
+  LCH.Xoryn.lastFluctuatingCurrent = GetGameTimeSeconds()
+  LCH.Xoryn.fluctuatingCurrentDuration = 16 -- Time to first fluctuating when fight starts
   LCH.Xoryn.isFluctuatingActive = false
   LCH.Xoryn.fluctuatingHolder = nil
 

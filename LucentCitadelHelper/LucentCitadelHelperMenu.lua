@@ -78,10 +78,17 @@ function LCH.Menu.AddonMenu()
     },
     {
       type    = "checkbox",
-      name    = "Panel: Xoryn Jump Timer",
+      name    = "Panel: Thunder Thrall (Xoryn Jump) Timer",
       default = true,
       getFunc = function() return LCH.savedVariables.showXorynJumpTimer end,
       setFunc = function(newValue) LCH.savedVariables.showXorynJumpTimer = newValue end,
+    },
+    {
+      type    = "checkbox",
+      name    = "Panel: Lightning Flood (Xoryn Cone) Timer",
+      default = false,
+      getFunc = function() return LCH.savedVariables.showXorynConeTimer end,
+      setFunc = function(newValue) LCH.savedVariables.showXorynConeTimer = newValue end,
     },
     {
       type    = "checkbox",
