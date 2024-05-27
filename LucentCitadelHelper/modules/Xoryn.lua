@@ -18,6 +18,7 @@ LCH.Xoryn.constants = {
   arcane_conveyance_cast_id = 223024, -- Tether cast
   arcane_conveyance_debuff_id = 223060, -- Tether debuff
   lustrous_javelin_id = 223546, -- Mantikora Javelin
+  necrotic_barrage_id = 223198, -- Necrotic Barrage
   accelerating_charge_id = 214542, -- Channel before chain lightning
   fluctuating_current_id = 214597, -- Debuff when holding it
   overloaded_current_id = 214745, -- Debuff from holding/dropping fluctuating current
@@ -76,6 +77,13 @@ function LCH.Xoryn.ArcaneConveyance(result, targetType, targetUnitId, hitValue)
     )
   elseif result == ACTION_RESULT_EFFECT_FADED then
     LCH.RemoveIcon(LCH.GetTagForId(targetUnitId))
+  end
+end
+
+function LCH.Xoryn.NecroticBarrage(result, targetType, targetUnitId, hitValue)
+  if result == ACTION_RESULT_BEGIN and hitValue > 500 then
+    LCH.Alert("", "Necrotic Barrage", 0xBF40BFFF, LCH.Xoryn.constants.necrotic_barrage_id, SOUNDS.OBJECTIVE_DISCOVERED, 2000)
+    CombatAlerts.AlertCast(LCH.Xoryn.constants.necrotic_barrage_id, "Necrotic Barrage", hitValue, {-3, 0})
   end
 end
 

@@ -36,6 +36,7 @@ LCH.Common.CCADodgeIDs = {
     [213685] = { -2, 2 }, -- Orphic Shattered Shard Shockwave
     --[221863] = { -2, 2 }, -- Crystal Hollow Sentinel Heavy Attack
     [221877] = { -2, 2 }, -- Ruinach Frenzy
+    [221886] = { -3, 2, false, { 1, 0.4, 0, 0.5 }}, -- Ruinach Bouncing Flames
     [219791] = { -2, 2 }, -- Crystal Atronach Crystal Spear
     [219792] = { -2, 2 }, -- Crystal Atronach Crunch
     --[219793] = { -2, 2,  }, -- Crystal Atronach Crushing Shards

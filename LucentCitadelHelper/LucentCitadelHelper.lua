@@ -2,7 +2,7 @@ LCH = LCH or {}
 local LCH = LCH
 
 LCH.name     = "LucentCitadelHelper"
-LCH.version  = "0.4.5"
+LCH.version  = "0.4.6"
 LCH.author   = "@Wondernuts, @kabs12"
 LCH.active   = false
 
@@ -133,6 +133,8 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
     LCH.Xoryn.SplinteredBurst(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Xoryn.constants.arcane_conveyance_debuff_id then
     LCH.Xoryn.ArcaneConveyance(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Xoryn.constants.necrotic_barrage_id then
+    LCH.Xoryn.NecroticBarrage(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Xoryn.constants.accelerating_charge_id then
     LCH.Xoryn.AcceleratingCharge(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Xoryn.constants.tempest_id then
