@@ -109,7 +109,7 @@ end
 
 function LCH.Xoryn.Tempest(result, targetType, targetUnitId, hitValue)
   if result == ACTION_RESULT_BEGIN and hitValue > 500 then
-    LCH.Alert("", "Tempest", 0x6082B6FF, LCH.Xoryn.constants.tempest_id, SOUNDS.BATTLEGROUND_CAPTURE_FLAG_TAKEN_OWN_TEAM, 2000)
+    --LCH.Alert("", "Tempest", 0x6082B6FF, LCH.Xoryn.constants.tempest_id, SOUNDS.BATTLEGROUND_CAPTURE_FLAG_TAKEN_OWN_TEAM, 2000)
     CombatAlerts.CastAlertsStart(LCH.Xoryn.constants.tempest_id, "Tempest", 8000, 10000, nil, nil)
   end
 end
@@ -123,7 +123,7 @@ function LCH.Xoryn.FluctuatingCurrent(result, targetType, targetUnitId, hitValue
     LCH.Xoryn.fluctuatingCurrentDuration = hitValue / 1000
     
     if targetType == COMBAT_UNIT_TYPE_PLAYER then
-      LCH.Alert("", "Fluctuating Current (you)", 0xFFD666FF, LCH.Xoryn.constants.fluctuating_current_id, SOUNDS.OBJECTIVE_DISCOVERED, 2000)
+      --LCH.Alert("", "Fluctuating Current (you)", 0xFFD666FF, LCH.Xoryn.constants.fluctuating_current_id, SOUNDS.OBJECTIVE_DISCOVERED, 2000)
       CombatAlerts.ScreenBorderEnable(0x22AAFF99, hitValue, borderId)
     end
 
