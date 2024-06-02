@@ -32,6 +32,7 @@ LCH.Orphic.constants = {
   fate_sealer_id = 214311, -- Ball summon
 }
 
+-- TODO: Teach Kabs For loops
 function LCH.Orphic.AddMirrorIcons()
   if LCH.savedVariables.showMirrorIcons and LCH.hasOSI() then
     if table.getn(LCH.status.MirrorIconNumber1) == 0 then
@@ -136,7 +137,7 @@ end
 function LCH.Orphic.ShieldThrow(result, targetType, targetUnitId, hitValue)
   -- Xoryn Jump Mechanic
   if result == ACTION_RESULT_BEGIN and hitValue > 500 then
-    LCH.Alert("", "Shield Throw", 0xCC8747FF, LCH.Orphic.constants.shield_throw_id, SOUNDS.DUEL_START, 2000)
+    --LCH.Alert("", "Shield Throw", 0xCC8747FF, LCH.Orphic.constants.shield_throw_id, SOUNDS.DUEL_START, 2000)
     CombatAlerts.CastAlertsStart(LCH.Orphic.constants.shield_throw_id, "Shield Throw", hitValue, nil, nil, { hitValue, "Block!", 1, 0.4, 0, 0.5, nil })
   end
 end

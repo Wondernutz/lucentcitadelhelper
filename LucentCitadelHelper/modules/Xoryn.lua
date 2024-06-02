@@ -1,6 +1,8 @@
 LCH = LCH or {}
 local LCH = LCH
 LCH.Xoryn = {
+  knotHolder = nil,
+
   lastFluctuatingCurrent = 0,
   fluctuatingCurrentDuration = 0,
   isFluctuatingActive = false,
@@ -25,9 +27,12 @@ LCH.Xoryn.constants = {
   tempest_id = 215107, -- Groupwide line mechanic from mirrors
   fluctuating_max_time = 15.0, -- Max time you can hold fluctuating current before death
   structured_entropy_id = 126371,
+  knot_carry_id = 213477, -- When a user picks up the knot
 }
 
 function LCH.Xoryn.Init()
+  LCH.Xoryn.knotHolder = nil
+
   LCH.Xoryn.lastFluctuatingCurrent = GetGameTimeSeconds()
   LCH.Xoryn.fluctuatingCurrentDuration = 16 -- Time to first fluctuating when fight starts
   LCH.Xoryn.isFluctuatingActive = false
@@ -43,12 +48,20 @@ function LCH.Xoryn.adjustLabelForIcon(icon)
   icon.myLabel:SetDrawLevel( order )
 end
 
+function LCH.Xoryn.KnotCarry(result, targetType, targetUnitId, hitValue)
+  if (result == ACTION_RESULT_EFFECT_GAINED_DURATION) then
+    LCH.Xoryn.knotHolder = LCH.GetNameForId(targetUnitId)
+  elseif (result == ACTION_RESULT_EFFECT_FADED) then
+    LCH.Xoryn.knotHolder = nil
+  end
+end
+
 function LCH.Xoryn.SplinteredBurst(result, targetType, targetUnitId, hitValue)
   if result == ACTION_RESULT_BEGIN then
-    if targetType == COMBAT_UNIT_TYPE_PLAYER then
-      LCH.Alert("", "Splintered Burst", 0x66CCFFFF, LCH.Xoryn.constants.glass_stomp_id, SOUNDS.OBJECTIVE_DISCOVERED, 2000)
-      CombatAlerts.AlertCast(LCH.Xoryn.constants.glass_stomp_id, "Splintered Burst", hitValue, {-2, 1})
-    end
+    -- if targetType == COMBAT_UNIT_TYPE_PLAYER then
+    --   LCH.Alert("", "Splintered Burst", 0x66CCFFFF, LCH.Xoryn.constants.glass_stomp_id, SOUNDS.OBJECTIVE_DISCOVERED, 2000)
+    --   CombatAlerts.AlertCast(LCH.Xoryn.constants.glass_stomp_id, "Splintered Burst", hitValue, {-2, 1})
+    -- end
 
     LCH.AddIconForDuration(
       LCH.GetTagForId(targetUnitId),
@@ -82,14 +95,14 @@ end
 
 function LCH.Xoryn.NecroticBarrage(result, targetType, targetUnitId, hitValue)
   if result == ACTION_RESULT_BEGIN and hitValue > 500 then
-    LCH.Alert("", "Necrotic Barrage", 0xBF40BFFF, LCH.Xoryn.constants.necrotic_barrage_id, SOUNDS.OBJECTIVE_DISCOVERED, 2000)
+    LCH.Alert("Necrotic Barrage", LCH.Xoryn.knotHolder, 0xBF40BFFF, LCH.Xoryn.constants.necrotic_barrage_id, SOUNDS.OBJECTIVE_DISCOVERED, 2000)
     CombatAlerts.AlertCast(LCH.Xoryn.constants.necrotic_barrage_id, "Necrotic Barrage", hitValue, {-3, 0})
   end
 end
 
 function LCH.Xoryn.AcceleratingCharge(result, targetType, targetUnitId, hitValue)
   if result == ACTION_RESULT_BEGIN and hitValue > 2000 then
-    LCH.Alert("", "Chain Lightning", 0xFFD666FF, LCH.Xoryn.constants.accelerating_charge_id, SOUNDS.OBJECTIVE_DISCOVERED, 2000)
+    --LCH.Alert("", "Chain Lightning", 0xFFD666FF, LCH.Xoryn.constants.accelerating_charge_id, SOUNDS.OBJECTIVE_DISCOVERED, 2000)
     CombatAlerts.CastAlertsStart(LCH.Xoryn.constants.accelerating_charge_id, "Chain Lightning", hitValue + 2900, nil, nil, { hitValue, "Block!", 1, 0.4, 0, 0.5, SOUNDS.FRIEND_INVITE_RECEIVED })
   end
 end
