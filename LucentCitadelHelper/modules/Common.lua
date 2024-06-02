@@ -36,6 +36,7 @@ LCH.Common.CCADodgeIDs = {
     [213685] = { -2, 2 }, -- Orphic Shattered Shard Shockwave
     --[221863] = { -2, 2 }, -- Crystal Hollow Sentinel Heavy Attack
     [221877] = { -2, 2 }, -- Ruinach Frenzy
+    [221886] = { -3, 2, false, { 1, 0.4, 0, 0.5 }}, -- Ruinach Bouncing Flames
     [219791] = { -2, 2 }, -- Crystal Atronach Crystal Spear
     [219792] = { -2, 2 }, -- Crystal Atronach Crunch
     --[219793] = { -2, 2,  }, -- Crystal Atronach Crushing Shards
@@ -94,13 +95,13 @@ end
 
 function LCH.Common.SolarFlare(abilityId, result, sourceName, sourceUnitId, targetType, targetUnitId, hitValue)
   if result == ACTION_RESULT_BEGIN then
-    --if (targetType == COMBAT_UNIT_TYPE_PLAYER or CombatAlerts.DistanceCheck(targetUnitId, 6) or LibCombatAlerts.isTank) then
-    local flareLandingTime = 500
+    if (targetType == COMBAT_UNIT_TYPE_PLAYER or CombatAlerts.DistanceCheck(targetUnitId, 8) or LibCombatAlerts.isTank) then
+      local flareLandingTime = 500
 
-    local id = CombatAlerts.AlertCast(abilityId, sourceName, hitValue + flareLandingTime,  { flareLandingTime, 0, false, { 1, 0.4, 0, 0.5 }})
-    if (sourceUnitId and sourceUnitId ~= 0) then
-      LCH.Common.castSources[sourceUnitId] = id
+      local id = CombatAlerts.AlertCast(abilityId, sourceName, hitValue + flareLandingTime,  { flareLandingTime, 0, false, { 1, 0.4, 0, 0.5 }})
+      if (sourceUnitId and sourceUnitId ~= 0) then
+        LCH.Common.castSources[sourceUnitId] = id
+      end
     end
-    --end
   end
 end

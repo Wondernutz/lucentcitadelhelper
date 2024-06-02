@@ -3,6 +3,8 @@ local LCH = LCH
 LCH.Orphic = {
   lastThunderThrall = 0,
   isFirstThunderThrall = true,
+  lastLightningFlood = 0,
+  isFirstLightningFlood = true,
   xorynActive = false,
 }
 
@@ -12,6 +14,10 @@ LCH.Orphic.constants = {
   thunder_thrall_id = 214383,
   thunder_thrall_first_cd = 8.0, -- how soon Xoryn can first jump
   thunder_thrall_cd = 25.5, -- how often Xoryn jumps
+
+  lightning_flood_id = 214355,
+  lightning_flood_first_cd = 3.0, -- how soon Xoryn can cast first cone
+  lightning_flood_cd = 21.5, -- how often Xoryn casts cone
 
   shield_throw_id = 221945, -- Crystal Sentinel Shield Throw
 
@@ -26,6 +32,7 @@ LCH.Orphic.constants = {
   fate_sealer_id = 214311, -- Ball summon
 }
 
+-- TODO: Teach Kabs For loops
 function LCH.Orphic.AddMirrorIcons()
   if LCH.savedVariables.showMirrorIcons and LCH.hasOSI() then
     if table.getn(LCH.status.MirrorIconNumber1) == 0 then
@@ -130,7 +137,7 @@ end
 function LCH.Orphic.ShieldThrow(result, targetType, targetUnitId, hitValue)
   -- Xoryn Jump Mechanic
   if result == ACTION_RESULT_BEGIN and hitValue > 500 then
-    LCH.Alert("", "Shield Throw", 0xCC8747FF, LCH.Orphic.constants.shield_throw_id, SOUNDS.DUEL_START, 2000)
+    --LCH.Alert("", "Shield Throw", 0xCC8747FF, LCH.Orphic.constants.shield_throw_id, SOUNDS.DUEL_START, 2000)
     CombatAlerts.CastAlertsStart(LCH.Orphic.constants.shield_throw_id, "Shield Throw", hitValue, nil, nil, { hitValue, "Block!", 1, 0.4, 0, 0.5, nil })
   end
 end
@@ -145,6 +152,15 @@ function LCH.Orphic.ThunderThrall(result, targetType, targetUnitId, hitValue)
     --if targetType == COMBAT_UNIT_TYPE_PLAYER then
     --  LCH.Alert("", "Thunder Thrall", 0xFFD666FF, LCH.Orphic.constants.thunder_thrall_id, SOUNDS.OBJECTIVE_DISCOVERED, 2000)
     --end
+  end
+end
+
+function LCH.Orphic.LightningFlood(result, targetType, targetUnitId, hitValue)
+  -- Xoryn Cone Mechanic
+  if result == ACTION_RESULT_BEGIN and hitValue > 500 then
+    LCH.Orphic.xorynActive = true
+    LCH.Orphic.lastLightningFlood = GetGameTimeSeconds()
+    LCH.Orphic.isFirstLightningFlood = false
   end
 end
 
@@ -186,9 +202,10 @@ function LCH.Orphic.XorynImmune(result, targetType, targetUnitId, hitValue)
 end
 
 function LCH.Orphic.UpdateTick(timeSec)
-  LCHStatus:SetHidden(not (LCH.savedVariables.showXorynJumpTimer))
+  LCHStatus:SetHidden(not (LCH.savedVariables.showXorynJumpTimer or LCH.savedVariables.showXorynConeTimer))
 
   LCH.Orphic.ThunderThrallUpdateTick(timeSec)
+  LCH.Orphic.LightningFloodUpdateTick(timeSec)
 end
 
 function LCH.Orphic.ThunderThrallUpdateTick(timeSec)
@@ -205,4 +222,20 @@ function LCH.Orphic.ThunderThrallUpdateTick(timeSec)
   end
 
   LCHStatusLabelOrphic1Value:SetText(LCH.GetSecondsRemainingString(timeLeft))
+end
+
+function LCH.Orphic.LightningFloodUpdateTick(timeSec)
+  LCHStatusLabelOrphic2:SetHidden(not (LCH.savedVariables.showXorynConeTimer and LCH.Orphic.xorynActive))
+  LCHStatusLabelOrphic2Value:SetHidden(not (LCH.savedVariables.showXorynConeTimer and LCH.Orphic.xorynActive))
+
+  local delta = timeSec - LCH.Orphic.lastLightningFlood
+
+  local timeLeft = 0
+  if LCH.Orphic.isFirstLightningFlood then
+    timeLeft = LCH.Orphic.constants.lightning_flood_first_cd - delta
+  else
+    timeLeft = LCH.Orphic.constants.lightning_flood_cd - delta
+  end
+
+  LCHStatusLabelOrphic2Value:SetText(LCH.GetSecondsRemainingString(timeLeft))
 end
