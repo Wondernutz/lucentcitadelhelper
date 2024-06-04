@@ -109,7 +109,7 @@ end
 
 function LCH.Xoryn.Tempest(result, targetType, targetUnitId, hitValue)
   if result == ACTION_RESULT_BEGIN and hitValue > 500 then
-    LCH.Alert("", "Tempest", 0x6082B6FF, LCH.Xoryn.constants.tempest_id, SOUNDS.BATTLEGROUND_CAPTURE_FLAG_TAKEN_OWN_TEAM, 2000)
+    --LCH.Alert("", "Tempest", 0x6082B6FF, LCH.Xoryn.constants.tempest_id, SOUNDS.BATTLEGROUND_CAPTURE_FLAG_TAKEN_OWN_TEAM, 2000)
     CombatAlerts.CastAlertsStart(LCH.Xoryn.constants.tempest_id, "Tempest", 8000, 10000, nil, nil)
   end
 end
@@ -123,7 +123,7 @@ function LCH.Xoryn.FluctuatingCurrent(result, targetType, targetUnitId, hitValue
     LCH.Xoryn.fluctuatingCurrentDuration = hitValue / 1000
     
     if targetType == COMBAT_UNIT_TYPE_PLAYER then
-      LCH.Alert("", "Fluctuating Current (you)", 0xFFD666FF, LCH.Xoryn.constants.fluctuating_current_id, SOUNDS.OBJECTIVE_DISCOVERED, 2000)
+      --LCH.Alert("", "Fluctuating Current (you)", 0xFFD666FF, LCH.Xoryn.constants.fluctuating_current_id, SOUNDS.OBJECTIVE_DISCOVERED, 2000)
       CombatAlerts.ScreenBorderEnable(0x22AAFF99, hitValue, borderId)
     end
 
@@ -251,8 +251,15 @@ function LCH.Xoryn.FluctuatingCurrentUpdateTick(timeSec)
     LCHStatusLabelXoryn2Value:SetColor(LCH.UnpackRGBA(0xFFD666FF))
   else
     LCHStatusLabelXoryn1Value:SetText("-")
-    -- The total duration between new Fluctuating casts is 60s, or the total Fluctuating duration (60s)
-    timeLeft = timeLeft + 1
+    
+    if LCH.status.isHMBoss then
+      -- HM: total duration between new Fluctuating casts is ~61s, total Fluctuating duration is 60s
+      timeLeft = timeLeft + 1
+    else
+      -- HM: total duration between new Fluctuating casts is ~61s, total Fluctuating duration is 29s
+      timeLeft = timeLeft + 32
+    end
+
     LCHStatusLabelXoryn2Value:SetText("INCOMING: " .. LCH.Xoryn.getInactiveFluctuatingText(timeLeft))
     LCHStatusLabelXoryn2Value:SetColor(LCH.UnpackRGBA(0xFF8500FF))
   end
