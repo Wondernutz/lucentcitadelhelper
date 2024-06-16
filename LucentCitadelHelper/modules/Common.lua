@@ -95,7 +95,7 @@ end
 
 function LCH.Common.SolarFlare(abilityId, result, sourceName, sourceUnitId, targetType, targetUnitId, hitValue)
   if result == ACTION_RESULT_BEGIN then
-    if (targetType == COMBAT_UNIT_TYPE_PLAYER or CombatAlerts.DistanceCheck(targetUnitId, 8) or LibCombatAlerts.isTank) then
+    if (targetType == COMBAT_UNIT_TYPE_PLAYER or LibCombatAlerts.isTank) then
       local flareLandingTime = 500
 
       local id = CombatAlerts.AlertCast(abilityId, sourceName, hitValue + flareLandingTime,  { flareLandingTime, 0, false, { 1, 0.4, 0, 0.5 }})
