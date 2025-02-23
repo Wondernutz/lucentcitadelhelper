@@ -228,7 +228,11 @@ function LCH.Xoryn.OverloadedCurrent(result, targetType, targetUnitId, hitValue)
 end
 
 function LCH.Xoryn.UpdateTick(timeSec)
-  LCHStatus:SetHidden(not (LCH.savedVariables.showFluctuatingCurrentHolder or LCH.savedVariables.showFluctuatingCurrentTimer or LCH.savedVariables.showOverloadedCurrentTimer))
+  LCHStatus:SetHidden(
+    not (LCH.savedVariables.showFluctuatingCurrentHolder or LCH.savedVariables.showFluctuatingCurrentTimer or 
+         LCH.savedVariables.showOverloadedCurrentTimer or 
+         LCH.savedVariables.showXynizataBeamTime or LCH.savedVariables.showXynizataChannelTimer)
+  )
 
   LCH.Xoryn.FluctuatingCurrentUpdateTick(timeSec)
   LCH.Xoryn.FluctuatingCurrentIconUpdateTick(timeSec)

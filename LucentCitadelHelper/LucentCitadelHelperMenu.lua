@@ -135,6 +135,20 @@ function LCH.Menu.AddonMenu()
       setFunc = function(newValue) LCH.savedVariables.showOverloadedCurrentIcons = newValue end,
     },
     {
+      type    = "checkbox",
+      name    = "Panel: Xynizata Piercing Beam timer",
+      default = false,
+      getFunc = function() return LCH.savedVariables.showXynizataBeamTimer end,
+      setFunc = function(newValue) LCH.savedVariables.showXynizataBeamTimer = newValue end,
+    },
+    {
+      type    = "checkbox",
+      name    = "Panel: Xynizata Channel timer",
+      default = false,
+      getFunc = function() return LCH.savedVariables.showXynizataChannelTimer end,
+      setFunc = function(newValue) LCH.savedVariables.showXynizataChannelTimer = newValue end,
+    },
+    {
       type = "divider",
     },
     {

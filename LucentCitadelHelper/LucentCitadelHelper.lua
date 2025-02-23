@@ -2,7 +2,7 @@ LCH = LCH or {}
 local LCH = LCH
 
 LCH.name     = "LucentCitadelHelper"
-LCH.version  = "0.5.6"
+LCH.version  = "0.5.7"
 LCH.author   = "@Wondernuts, @kabs12"
 LCH.active   = false
 
@@ -61,6 +61,8 @@ LCH.settings = {
   showFluctuatingCurrentTimer = true,
   showOverloadedCurrentTimer = true,
   showOverloadedCurrentIcons = false,
+  showXynizataBeamTimer = false,
+  showXynizataChannelTimer = false,
 
   -- Misc
   uiCustomScale = 1,
@@ -145,11 +147,22 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
     LCH.Xoryn.FluctuatingCurrent(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Xoryn.constants.overloaded_current_id then
     LCH.Xoryn.OverloadedCurrent(result, targetType, targetUnitId, hitValue)
+
+  elseif abilityId == LCH.Xynizata.constants.crystal_bolt_id then
+    LCH.Xynizata.CrystalBolt(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Xynizata.constants.crystal_burst_id then
+    LCH.Xynizata.CrystalBurst(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Xynizata.constants.piercing_beam_id then
+    LCH.Xynizata.PiercingBeam(result, targetType, targetUnitId, hitValue)
+  elseif abilityId == LCH.Xynizata.constants.vitrify_id then
+    LCH.Xynizata.Vitrify(result, targetType, targetUnitId, hitValue)
   end
 end
 
 function LCH.UpdateTick(gameTimeMs)
   local timeSec = GetGameTimeSeconds()
+
+  LCH.Xynizata.UpdateTick(timeSec)
 
   if IsUnitInCombat("boss1") then
     if not LCH.status.inCombat then
