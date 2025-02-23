@@ -15,12 +15,12 @@ LCH.Xynizata.constants = {
   crystal_burst_id = 219076,
 
   piercing_beam_id = 219165,
-  piercing_beam_first_cd = 8.0,
-  piercing_beam_cd = 30.0,
+  piercing_beam_first_cd = 14.0,
+  piercing_beam_cd = 32.0,
 
   vitrify_id = 219083,
-  vitrify_first_cd = 12.0,
-  vitrify_cd = 30.0,
+  vitrify_first_cd = 9.0,
+  vitrify_cd = 22.0,
 }
 
 function LCH.Xynizata.Init()
@@ -52,8 +52,11 @@ end
 function LCH.Xynizata.PiercingBeam(result, targetType, targetUnitId, hitValue)
   LCH.Xynizata.Init()
 
-  if result == ACTION_RESULT_BEGIN then
+  if result == ACTION_RESULT_BEGIN and hitValue > 500 then
     LCH.Alert("Xynizata", "Piercing Beam", 0x5D3FD3FF, LCH.Xynizata.constants.piercing_beam_id, SOUNDS.OBJECTIVE_DISCOVERED, 2000)
+
+    LCH.Xynizata.lastPiercingBeam = GetGameTimeSeconds()
+    LCH.Xynizata.isFirstPiercingBeam = false
   end
 
   LCH.Xynizata.lastCast = GetGameTimeSeconds()
@@ -62,8 +65,11 @@ end
 function LCH.Xynizata.Vitrify(result, targetType, targetUnitId, hitValue)
   LCH.Xynizata.Init()
 
-  if result == ACTION_RESULT_BEGIN then
+  if result == ACTION_RESULT_BEGIN and hitValue > 500 then
     LCH.Alert("Xynizata", "Vitrify (Interrupt)", 0xDA70D6FF, LCH.Xynizata.constants.vitrify_id, SOUNDS.FRIEND_INVITE_RECEIVED, 2000)
+
+    LCH.Xynizata.lastVitrify = GetGameTimeSeconds()
+    LCH.Xynizata.isFirstVitrify = false
   end
 
   LCH.Xynizata.lastCast = GetGameTimeSeconds()

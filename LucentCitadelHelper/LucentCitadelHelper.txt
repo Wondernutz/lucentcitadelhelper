@@ -19,4 +19,5 @@ modules/Common.lua
 modules/Zilyesset.lua
 modules/Orphic.lua
 modules/Xoryn.lua
+modules/Xynizata.lua
 LucentCitadelHelper.xml
