@@ -2,7 +2,7 @@ LCH = LCH or {}
 local LCH = LCH
 
 LCH.name     = "LucentCitadelHelper"
-LCH.version  = "0.5.7"
+LCH.version  = "0.5.8"
 LCH.author   = "@Wondernuts, @kabs12"
 LCH.active   = false
 
@@ -156,6 +156,10 @@ function LCH.CombatEvent(eventCode, result, isError, abilityName, abilityGraphic
     LCH.Xynizata.PiercingBeam(result, targetType, targetUnitId, hitValue)
   elseif abilityId == LCH.Xynizata.constants.vitrify_id then
     LCH.Xynizata.Vitrify(result, targetType, targetUnitId, hitValue)
+
+  elseif abilityId == LCH.Dariel.constants.powerful_throw_id then
+    LCH.Dariel.PowerfulThrow(result, targetType, targetUnitId, hitValue, abilityId)
+
   end
 end
 

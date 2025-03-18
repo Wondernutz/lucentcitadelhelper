@@ -20,7 +20,7 @@ LCH.Xynizata.constants = {
 
   vitrify_id = 219083,
   vitrify_first_cd = 9.0,
-  vitrify_cd = 22.0,
+  vitrify_cd = 20.0,
 }
 
 function LCH.Xynizata.Init()

@@ -3,7 +3,7 @@
 ## Author: @Wondernuts @kabs12
 ## DependsOn: CombatAlerts LibAddonMenu-2.0
 ## OptionalDependsOn: OdySupportIcons 
-## Version: 0.5.7
+## Version: 0.5.8
 ## APIVersion: 101041 101042
 ## SavedVariables: LucentCitadelHelperSavedVariables
 
@@ -16,6 +16,7 @@ LucentCitadelHelperUI.lua
 LucentCitadelHelperUtil.lua
 LucentCitadelHelperMenu.lua
 modules/Common.lua
+modules/Dariel.lua
 modules/Zilyesset.lua
 modules/Orphic.lua
 modules/Xoryn.lua
