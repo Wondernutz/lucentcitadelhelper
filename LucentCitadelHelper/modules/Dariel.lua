@@ -13,6 +13,7 @@ end
 
 function LCH.Dariel.PowerfulThrow(result, targetType, targetUnitId, hitValue, abilityId)
   if result == ACTION_RESULT_BEGIN  and hitValue > 200 then
+    LCH.Alert("Dariel", string.format("Powerful Throw -> %s", LCH.GetNameForId(targetUnitId)), 0xFFD666FF, abilityId, SOUNDS.OBJECTIVE_DISCOVERED, hitValue)
     CombatAlerts.AlertCast(abilityId, "", hitValue, {-2, 1})
 
     local unitTag = LCH.GetTagForId(targetUnitId)
