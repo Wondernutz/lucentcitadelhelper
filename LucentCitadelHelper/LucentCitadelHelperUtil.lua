@@ -100,13 +100,15 @@ end
 
 function LCH.AddGroundIconOnPlayerForDuration(unitTag, texture, durationMillisec)
   local pworld, px, py, pz = GetUnitWorldPosition(unitTag)
-  local name = LCH.name .. "AddGroundIconOnPlayerForDuration" .. unitTag
+  local name = LCH.name .. "AddGroundIconOnPlayerForDuration" .. unitTag .. tostring(GetGameTimeSeconds())
 
   local icon = LCH.AddGroundCustomIcon(px, py, pz, texture)
   EVENT_MANAGER:RegisterForUpdate(name, durationMillisec, function() 
     EVENT_MANAGER:UnregisterForUpdate(name)
     LCH.DiscardPositionIconList({icon})
     end )
+
+  return icon
 end
 
 function LCH.AddIconForDurationDisplayName(displayName, texture, durationMillisec)
