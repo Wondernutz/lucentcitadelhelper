@@ -21,14 +21,14 @@ function LCH.Dariel.PowerfulThrow(result, targetType, targetUnitId, hitValue, ab
   ))
 
   if result == ACTION_RESULT_BEGIN and hitValue > 500 then
-    LCH.Alert("Dariel", string.format("Powerful Throw -> %s", LCH.GetNameForId(targetUnitId)), 0xFFD666FF, abilityId, SOUNDS.OBJECTIVE_DISCOVERED, hitValue)
-    CombatAlerts.AlertCast(abilityId, "", hitValue, {-2, 1})
-
     local unitTag = LCH.GetTagForId(targetUnitId)
     LCH.Dariel.powerfulThrowTarget = unitTag
     LCH.AddIconForDuration(unitTag, "LucentCitadelHelper/icons/meeting-point.dds", hitValue)
 
   elseif result == ACTION_RESULT_EFFECT_GAINED and targetType == COMBAT_UNIT_TYPE_NONE and hitValue > 0 then
+    LCH.Alert("Dariel", string.format("Powerful Throw -> %s", LCH.GetNameForId(targetUnitId)), 0xFFD666FF, abilityId, SOUNDS.OBJECTIVE_DISCOVERED, 2000)
+    CombatAlerts.AlertCast(abilityId, "", 1500, {-2, 1})
+
     local unitTag = LCH.Dariel.powerfulThrowTarget
     local icon = LCH.AddGroundIconOnPlayerForDuration(unitTag, "LucentCitadelHelper/icons/meeting-point.dds", 2000)
   end
