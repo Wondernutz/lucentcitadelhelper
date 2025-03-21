@@ -143,7 +143,7 @@ function LCH.Menu.AddonMenu()
     },
     {
       type    = "checkbox",
-      name    = "Panel: Xynizata Channel timer",
+      name    = "Panel: Xynizata Channel timer and alert",
       default = false,
       getFunc = function() return LCH.savedVariables.showXynizataChannelTimer end,
       setFunc = function(newValue) LCH.savedVariables.showXynizataChannelTimer = newValue end,

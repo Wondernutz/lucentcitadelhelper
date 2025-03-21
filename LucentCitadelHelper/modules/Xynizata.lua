@@ -66,8 +66,9 @@ function LCH.Xynizata.Vitrify(result, targetType, targetUnitId, hitValue)
   LCH.Xynizata.Init()
 
   if result == ACTION_RESULT_BEGIN and hitValue > 500 then
-    LCH.Alert("Xynizata", "Vitrify (Interrupt)", 0xDA70D6FF, LCH.Xynizata.constants.vitrify_id, SOUNDS.FRIEND_INVITE_RECEIVED, 2000)
-
+    if LCH.savedVariables.showXynizataBeamTime then
+      LCH.Alert("Xynizata", "Vitrify (Interrupt)", 0xDA70D6FF, LCH.Xynizata.constants.vitrify_id, SOUNDS.FRIEND_INVITE_RECEIVED, 2000)
+    end
     LCH.Xynizata.lastVitrify = GetGameTimeSeconds()
     LCH.Xynizata.isFirstVitrify = false
   end
