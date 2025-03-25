@@ -42,7 +42,7 @@ LCH.Common.CCADodgeIDs = {
     --[219793] = { -2, 2,  }, -- Crystal Atronach Crushing Shards
     --[222605] = { -2, 2 }, -- Baron Rize Shear
     [223546] = { -3, 2 }, -- Mantikora Javelin
-    --[219030] = { -2, 2 }, -- Jresazzel Power Bash
+    [219030] = { -2, 1 }, -- Jresazzel Power Bash
 }
 
 function LCH.Common.AddToCCADodgeList()
