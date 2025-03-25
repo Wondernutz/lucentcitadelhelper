@@ -149,6 +149,13 @@ function LCH.Menu.AddonMenu()
       setFunc = function(newValue) LCH.savedVariables.showXynizataChannelTimer = newValue end,
     },
     {
+      type    = "checkbox",
+      name    = "Necrotic Barrage Alert",
+      default = true,
+      getFunc = function() return LCH.savedVariables.showNecroticBarrage end,
+      setFunc = function(newValue) LCH.savedVariables.showNecroticBarrage = newValue end,
+    },
+    {
       type = "divider",
     },
     {

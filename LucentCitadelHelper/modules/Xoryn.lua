@@ -94,7 +94,7 @@ function LCH.Xoryn.ArcaneConveyance(result, targetType, targetUnitId, hitValue)
 end
 
 function LCH.Xoryn.NecroticBarrage(result, targetType, targetUnitId, hitValue)
-  if result == ACTION_RESULT_BEGIN and hitValue > 500 then
+  if result == ACTION_RESULT_BEGIN and hitValue > 500 and LCH.savedVariables.showNecroticBarrage then
     LCH.Alert("Necrotic Barrage", LCH.Xoryn.knotHolder, 0xBF40BFFF, LCH.Xoryn.constants.necrotic_barrage_id, SOUNDS.OBJECTIVE_DISCOVERED, 2000)
     CombatAlerts.AlertCast(LCH.Xoryn.constants.necrotic_barrage_id, "Necrotic Barrage", hitValue, {-3, 0})
   end

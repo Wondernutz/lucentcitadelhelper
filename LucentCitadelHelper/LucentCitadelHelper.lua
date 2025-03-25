@@ -2,7 +2,7 @@ LCH = LCH or {}
 local LCH = LCH
 
 LCH.name     = "LucentCitadelHelper"
-LCH.version  = "0.5.9"
+LCH.version  = "0.6.0"
 LCH.author   = "@Wondernuts, @kabs12"
 LCH.active   = false
 
@@ -63,6 +63,7 @@ LCH.settings = {
   showOverloadedCurrentIcons = false,
   showXynizataBeamTimer = false,
   showXynizataChannelTimer = false,
+  showNecroticBarrage = true,
 
   -- Misc
   uiCustomScale = 1,
