@@ -3,7 +3,7 @@
 ## Author: @Wondernuts @kabs12
 ## DependsOn: CombatAlerts>=201001 LibAddonMenu-2.0>=40
 ## OptionalDependsOn: OdySupportIcons 
-## Version: 0.6.0
+## Version: 0.6.1
 ## APIVersion: 101045
 ## SavedVariables: LucentCitadelHelperSavedVariables
 
