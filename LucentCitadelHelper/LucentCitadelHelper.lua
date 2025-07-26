@@ -2,7 +2,7 @@ LCH = LCH or {}
 local LCH = LCH
 
 LCH.name     = "LucentCitadelHelper"
-LCH.version  = "0.6.1"
+LCH.version  = "0.7.0"
 LCH.author   = "@Wondernuts, @kabs12"
 LCH.active   = false
 
@@ -345,7 +345,6 @@ function LCH.OnAddonLoaded(event, addonName)
   LCH.RestorePosition()
   LCH.Menu.AddonMenu()
   SLASH_COMMANDS["/lch"] = LCH.CommandLine
-  LCH.Common.AddToCCADodgeList()
   
 	EVENT_MANAGER:UnregisterForEvent(LCH.name, EVENT_ADD_ON_LOADED )
 	EVENT_MANAGER:RegisterForEvent(LCH.name .. "PlayerActive", EVENT_PLAYER_ACTIVATED,

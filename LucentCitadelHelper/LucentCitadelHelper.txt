@@ -1,10 +1,10 @@
 ## Title: Lucent Citadel Helper
 ## Description: Additional alerts for Lucent Citadel
 ## Author: @Wondernuts @kabs12
-## DependsOn: CombatAlerts>=201001 LibAddonMenu-2.0>=40
+## DependsOn: CombatAlerts>=202000 LibAddonMenu-2.0>=40
 ## OptionalDependsOn: OdySupportIcons 
-## Version: 0.6.1
-## APIVersion: 101045
+## Version: 0.7.0
+## APIVersion: 101046 101047
 ## SavedVariables: LucentCitadelHelperSavedVariables
 
 Lang/en.lua
@@ -15,6 +15,7 @@ LucentCitadelHelperData.lua
 LucentCitadelHelperUI.lua
 LucentCitadelHelperUtil.lua
 LucentCitadelHelperMenu.lua
+modules/CCATimers.lua
 modules/Common.lua
 modules/Dariel.lua
 modules/Zilyesset.lua
